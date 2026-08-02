@@ -1,0 +1,38 @@
+[
+  {
+    "author": "Marta G.",
+    "rating": 5,
+    "es": {
+      "context": "Alumna de Hatha",
+      "text": "Las clases de Hatha con Cyane me han cambiado la forma de estar en el cuerpo. Explica con claridad y te acompaña con mucha cercanía."
+    },
+    "en": {
+      "context": "Hatha student",
+      "text": "Cyane's Hatha classes have changed how I inhabit my body. She explains clearly and guides you with such warmth."
+    }
+  },
+  {
+    "author": "Laura P.",
+    "rating": 5,
+    "es": {
+      "context": "Yoga en la playa",
+      "text": "Los domingos en la playa son mi ritual favorito. Practicar frente al mar con Cyane es desconectar de verdad."
+    },
+    "en": {
+      "context": "Beach yoga",
+      "text": "Sunday beach yoga is my favourite ritual. Practising by the sea with Cyane is a true way to switch off."
+    }
+  },
+  {
+    "author": "Anna R.",
+    "rating": 5,
+    "es": {
+      "context": "Clases privadas",
+      "text": "Empecé con clases privadas porque era principiante. Cyane adapta cada sesión a lo que necesito: Yin, Ashtanga o Yoga Facial."
+    },
+    "en": {
+      "context": "Private classes",
+      "text": "I started with private classes as a beginner. Cyane adapts every session to what I need — Yin, Ashtanga or Facial Yoga."
+    }
+  }
+]

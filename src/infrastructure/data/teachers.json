@@ -1,0 +1,15 @@
+[
+  {
+    "slug": "cyane",
+    "name": "Cyane",
+    "imageUrl": "/images/cyane.png",
+    "es": {
+      "role": "Profesora de yoga · RYT 220H (India)",
+      "bio": "El yoga transformó mi vida y hoy mi misión es compartir las herramientas que me han ayudado a encontrar equilibrio, paz y amor propio.\n\nCreo en un yoga auténtico, accesible y consciente, que te ayuda a volver a ti."
+    },
+    "en": {
+      "role": "Yoga teacher · RYT 220H (India)",
+      "bio": "Yoga transformed my life, and today my mission is to share the tools that have helped me find balance, peace and self-love.\n\nI believe in an authentic, accessible and mindful yoga that helps you come back to yourself."
+    }
+  }
+]

@@ -1,0 +1,163 @@
+{
+  "meta": {
+    "title": "Blau Yoga · Cyane · Yoga in Barcelona",
+    "description": "Yoga classes with Cyane: Hatha, Yin, Ashtanga and Facial Yoga. In-person and private classes. Beach yoga every Sunday. RYT 220H (India)."
+  },
+  "nav": {
+    "home": "Home",
+    "classes": "Classes",
+    "schedule": "Schedule",
+    "about": "About me",
+    "blog": "Blog",
+    "pricing": "Pricing",
+    "contact": "Contact",
+    "cta": "Book a class"
+  },
+  "blog": {
+    "label": "Blog",
+    "title": "Notes from the mat",
+    "subtitle": "Reflections, practices and yoga tips for everyday life.",
+    "metaTitle": "Blog · Blau Yoga",
+    "metaDescription": "Articles on yoga, wellbeing and mindful practice with Cyane · Blau Yoga.",
+    "readMore": "Read article →",
+    "back": "Back to blog",
+    "empty": "New articles coming soon. In the meantime, book a class."
+  },
+  "hero": {
+    "eyebrow": "Breathe. Connect. Bloom.",
+    "title": "Your space of calm in the heart of Barcelona",
+    "subtitle": "Yoga classes for all levels in a warm and authentic atmosphere.",
+    "cta": "Book your class",
+    "imageAlt": "Yoga practice by the sea"
+  },
+  "features": {
+    "wellbeing": {
+      "title": "Whole-self wellbeing",
+      "text": "Body, mind and emotions"
+    },
+    "levels": {
+      "title": "All levels",
+      "text": "Classes adapted to you"
+    },
+    "community": {
+      "title": "Community",
+      "text": "Connect and grow together"
+    },
+    "location": {
+      "title": "Close to you",
+      "text": "In the heart of Barcelona"
+    }
+  },
+  "studio": {
+    "label": "Our studio",
+    "title": "A space created for your wellbeing",
+    "text": "Blau Yoga is a yoga and wellness studio in Barcelona, created for you to find balance, listen to yourself and feel at home. Natural light, warm materials and small groups so we can accompany you closely.",
+    "cta": "Discover the studio",
+    "imageAlt": "Blau Yoga studio interior"
+  },
+  "quote": {
+    "text": "Yoga is not about touching your toes, it is about what you learn on the way down.",
+    "author": "Jigar Gor"
+  },
+  "classes": {
+    "label": "Classes",
+    "title": "Find your practice",
+    "subtitle": "Hatha, Yin, Ashtanga, Facial Yoga and beach yoga: choose the class your body needs today.",
+    "minutes": "{count} min",
+    "level": {
+      "all": "All levels",
+      "beginner": "Beginner",
+      "intermediate": "Intermediate level"
+    },
+    "cta": "See schedule & book"
+  },
+  "schedule": {
+    "label": "Schedule",
+    "title": "Book your moment",
+    "subtitle": "In-person classes during the week and beach yoga on Sundays. Confirm your spot via WhatsApp.",
+    "book": "Book",
+    "prevDay": "Previous day",
+    "nextDay": "Next day",
+    "whatsappMessage": "Hi Cyane! I'd like to book a spot for the {className} class on {day} at {time}. Thank you!",
+    "days": {
+      "monday": "Monday",
+      "tuesday": "Tuesday",
+      "wednesday": "Wednesday",
+      "thursday": "Thursday",
+      "friday": "Friday",
+      "saturday": "Saturday",
+      "sunday": "Sunday"
+    }
+  },
+  "about": {
+    "label": "About me",
+    "title": "Hi, I'm {name}",
+    "cta": "Get to know me",
+    "imageAlt": "Cyane practising yoga in nature",
+    "stats": {
+      "cert": { "value": "RYT 220H", "label": "certified in India" },
+      "styles": { "value": "4 styles", "label": "Hatha · Yin · Ashtanga · Facial" },
+      "beach": { "value": "Sundays", "label": "beach yoga" },
+      "formats": { "value": "2 formats", "label": "in-person & private" }
+    }
+  },
+  "pricing": {
+    "label": "Pricing",
+    "title": "Choose your plan",
+    "subtitle": "Group classes, a monthly pack or a private session. No commitment.",
+    "perMonth": "/month",
+    "single": "one-time",
+    "popular": "Most popular",
+    "cta": "Get started",
+    "whatsappMessage": "Hi Cyane! I'd like to sign up for {planName} ({priceLabel}). Thank you!"
+  },
+  "reviews": {
+    "label": "Testimonials",
+    "title": "What students say"
+  },
+  "contact": {
+    "label": "Contact",
+    "title": "Let's talk",
+    "subtitle": "Write to me to book an in-person class, a private session or Sunday beach yoga.",
+    "address": "Barcelona",
+    "email": "hola@blauyoga.com",
+    "phone": "+34 600 00 00 00",
+    "imageAlt": "Water at the shoreline",
+    "form": {
+      "name": "Name",
+      "namePlaceholder": "Your name",
+      "email": "Email",
+      "emailPlaceholder": "you@email.com",
+      "message": "Message",
+      "messagePlaceholder": "Tell me if you're looking for an in-person class, a private session or beach yoga...",
+      "submit": "Send message",
+      "sending": "Sending...",
+      "errors": {
+        "nameRequired": "Please enter your name",
+        "emailInvalid": "Please enter a valid email",
+        "messageRequired": "Please write a message of at least 10 characters"
+      },
+      "success": "Message sent! I'll get back to you very soon.",
+      "error": "The message could not be sent. Please try again."
+    }
+  },
+  "footer": {
+    "tagline": "Yoga with Cyane · RYT 220H",
+    "explore": "Explore",
+    "follow": "Follow me",
+    "rights": "© {year} Blau Yoga. All rights reserved.",
+    "values": "Calm · Connection · Balance · Wellbeing · Nature · Presence",
+    "social": {
+      "facebook": "Facebook",
+      "instagram": "Instagram",
+      "email": "Email",
+      "whatsapp": "WhatsApp",
+      "spotify": "Yoga playlist on Spotify"
+    }
+  },
+  "language": {
+    "label": "Language",
+    "es": "Español",
+    "en": "English"
+  }
+}

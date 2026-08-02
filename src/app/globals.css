@@ -1,0 +1,32 @@
+@import "tailwindcss";
+
+@theme {
+  /* Blau Yoga — Azul profundo como color principal de marca */
+  --color-deep: #0f4c5c; /* Azul profundo (principal) */
+  --color-deep-dark: #0a3a47;
+  --color-teal: #2fa7a6; /* Azul turquesa (acento) */
+  --color-teal-dark: #248f8e;
+  --color-aqua: #a8d5d1; /* Agua clara */
+  --color-sky: #dceef0; /* Azul cielo */
+  --color-sand: #f4f1ea; /* Arena clara */
+  --color-linen: #e6ded1; /* Lino */
+  --color-wood: #d7c2a4; /* Madera clara */
+  --color-ink: #35565f;
+
+  --font-sans: var(--font-jost), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-cormorant), ui-serif, Georgia, serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-sand);
+  color: var(--color-ink);
+}
+
+::selection {
+  background-color: var(--color-aqua);
+  color: var(--color-deep);
+}

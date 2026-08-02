@@ -1,0 +1,50 @@
+[
+  {
+    "slug": "beneficios-del-yoga-en-la-playa",
+    "coverImageUrl": "/images/contacto-orilla.jpg",
+    "publishedAt": "2026-07-15T10:00:00.000Z",
+    "visible": true,
+    "es": {
+      "title": "Beneficios del yoga en la playa",
+      "excerpt": "Practicar frente al mar suma presencia, respiración más amplia y una conexión especial con la naturaleza.",
+      "paragraphs": [
+        "Practicar yoga en la playa no es solo un cambio de escenario: el sonido del mar, la arena bajo los pies y el aire salino invitan al cuerpo a soltar y a la mente a calmarse con más facilidad.",
+        "En Blau Yoga ofrecemos yoga en la playa todos los domingos. Es una práctica abierta a todos los niveles, pensada para que puedas disfrutar del movimiento al aire libre sin prisas ni exigencias.",
+        "Si nunca has venido, te esperamos con esterilla, presencia y una sonrisa. Reserva tu plaza por WhatsApp y ven a respirar junto al mar."
+      ]
+    },
+    "en": {
+      "title": "Benefits of beach yoga",
+      "excerpt": "Practising by the sea brings more presence, fuller breath and a special connection with nature.",
+      "paragraphs": [
+        "Practising yoga on the beach is more than a change of scenery: the sound of the sea, the sand under your feet and the salty air help the body release and the mind settle more easily.",
+        "At Blau Yoga we offer beach yoga every Sunday. It is an all-levels practice designed so you can enjoy outdoor movement without rush or pressure.",
+        "If you have never joined us, we welcome you with a mat, presence and a smile. Book your spot via WhatsApp and come breathe by the sea."
+      ]
+    }
+  },
+  {
+    "slug": "yin-yoga-para-soltar-tensiones",
+    "coverImageUrl": "/images/clase-yin-yoga.png",
+    "publishedAt": "2026-08-01T10:00:00.000Z",
+    "visible": true,
+    "es": {
+      "title": "Yin Yoga para soltar tensiones",
+      "excerpt": "Una práctica lenta y profunda para liberar el tejido conectivo y volver a la calma.",
+      "paragraphs": [
+        "El Yin Yoga propone posturas sostenidas con suavidad. En lugar de buscar intensidad muscular, invitamos al cuerpo a abrirse poco a poco, respetando sus límites.",
+        "Es ideal si sientes rigidez, estrés acumulado o necesitas un espacio de silencio después de la semana. En clase usamos soportes y una guía cercana para que te sientas segura en cada postura.",
+        "Puedes reservar una clase de Yin entre semana o combinarla con Hatha y Ashtanga según lo que tu cuerpo pida cada día."
+      ]
+    },
+    "en": {
+      "title": "Yin Yoga to release tension",
+      "excerpt": "A slow, deep practice to open connective tissue and return to calm.",
+      "paragraphs": [
+        "Yin Yoga offers gently held postures. Instead of seeking muscular intensity, we invite the body to open gradually, honouring its limits.",
+        "It is ideal if you feel stiff, carry stress, or need a quiet space after a busy week. In class we use props and warm guidance so you feel supported in every pose.",
+        "You can book a Yin class during the week or combine it with Hatha and Ashtanga according to what your body needs each day."
+      ]
+    }
+  }
+]

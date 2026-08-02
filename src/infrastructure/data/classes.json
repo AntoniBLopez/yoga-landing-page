@@ -1,0 +1,77 @@
+[
+  {
+    "slug": "hatha",
+    "durationMin": 60,
+    "level": "all",
+    "imageUrl": "/images/clase-hatha.png",
+    "order": 1,
+    "es": {
+      "title": "Hatha Yoga",
+      "description": "Posturas sostenidas y respiración consciente para fortalecer el cuerpo, calmar la mente y encontrar equilibrio."
+    },
+    "en": {
+      "title": "Hatha Yoga",
+      "description": "Held postures and conscious breathing to strengthen the body, calm the mind and find balance."
+    }
+  },
+  {
+    "slug": "yin",
+    "durationMin": 75,
+    "level": "all",
+    "imageUrl": "/images/clase-yin-yoga.png",
+    "order": 2,
+    "es": {
+      "title": "Yin Yoga",
+      "description": "Una práctica lenta y profunda: posturas largas que liberan tensiones, abren el tejido conectivo y te invitan a soltar."
+    },
+    "en": {
+      "title": "Yin Yoga",
+      "description": "A slow, deep practice: long-held postures that release tension, open connective tissue and invite you to let go."
+    }
+  },
+  {
+    "slug": "ashtanga",
+    "durationMin": 60,
+    "level": "intermediate",
+    "imageUrl": "/images/clase-ashtanga.png",
+    "order": 3,
+    "es": {
+      "title": "Ashtanga",
+      "description": "Una secuencia dinámica y energizante que une movimiento y respiración para ganar fuerza, flexibilidad y foco."
+    },
+    "en": {
+      "title": "Ashtanga",
+      "description": "A dynamic, energising sequence that links movement and breath to build strength, flexibility and focus."
+    }
+  },
+  {
+    "slug": "yoga-facial",
+    "durationMin": 45,
+    "level": "all",
+    "imageUrl": "https://images.unsplash.com/photo-1552196563-55cd4e45efb3?auto=format&fit=crop&w=900&q=80",
+    "order": 4,
+    "es": {
+      "title": "Yoga Facial",
+      "description": "Ejercicios suaves para el rostro y el cuello que tonifican, liberan tensión y te ayudan a reconectar con tu expresión natural."
+    },
+    "en": {
+      "title": "Facial Yoga",
+      "description": "Gentle exercises for the face and neck that tone, release tension and help you reconnect with your natural expression."
+    }
+  },
+  {
+    "slug": "yoga-playa",
+    "durationMin": 60,
+    "level": "all",
+    "imageUrl": "/images/clase-yoga-playa.png",
+    "order": 5,
+    "es": {
+      "title": "Yoga en la playa",
+      "description": "Práctica al aire libre frente al mar, todos los domingos. Respira, muévete y conecta con la naturaleza."
+    },
+    "en": {
+      "title": "Beach Yoga",
+      "description": "Outdoor practice by the sea, every Sunday. Breathe, move and connect with nature."
+    }
+  }
+]

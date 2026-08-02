@@ -1,0 +1,11 @@
+[
+  { "day": "monday", "time": "09:30", "classSlug": "hatha", "teacherSlug": "cyane" },
+  { "day": "monday", "time": "19:00", "classSlug": "yin", "teacherSlug": "cyane" },
+  { "day": "tuesday", "time": "18:30", "classSlug": "ashtanga", "teacherSlug": "cyane" },
+  { "day": "wednesday", "time": "09:30", "classSlug": "hatha", "teacherSlug": "cyane" },
+  { "day": "wednesday", "time": "19:00", "classSlug": "yoga-facial", "teacherSlug": "cyane" },
+  { "day": "thursday", "time": "18:30", "classSlug": "yin", "teacherSlug": "cyane" },
+  { "day": "friday", "time": "09:30", "classSlug": "ashtanga", "teacherSlug": "cyane" },
+  { "day": "saturday", "time": "10:00", "classSlug": "hatha", "teacherSlug": "cyane" },
+  { "day": "sunday", "time": "10:00", "classSlug": "yoga-playa", "teacherSlug": "cyane" }
+]

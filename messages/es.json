@@ -1,0 +1,163 @@
+{
+  "meta": {
+    "title": "Blau Yoga · Cyane · Yoga en Barcelona",
+    "description": "Clases de yoga con Cyane: Hatha, Yin, Ashtanga y Yoga Facial. Clases presenciales y privadas. Yoga en la playa todos los domingos. RYT 220H (India)."
+  },
+  "nav": {
+    "home": "Inicio",
+    "classes": "Clases",
+    "schedule": "Horarios",
+    "about": "Sobre mí",
+    "blog": "Blog",
+    "pricing": "Precios",
+    "contact": "Contacto",
+    "cta": "Reservar clase"
+  },
+  "blog": {
+    "label": "Blog",
+    "title": "Notas desde el mat",
+    "subtitle": "Reflexiones, prácticas y tips de yoga para tu día a día.",
+    "metaTitle": "Blog · Blau Yoga",
+    "metaDescription": "Artículos de yoga, bienestar y práctica consciente con Cyane · Blau Yoga.",
+    "readMore": "Leer artículo →",
+    "back": "Volver al blog",
+    "empty": "Pronto habrá nuevos artículos. Mientras tanto, reserva una clase."
+  },
+  "hero": {
+    "eyebrow": "Respira. Conecta. Florece.",
+    "title": "Tu espacio de calma en el corazón de Barcelona",
+    "subtitle": "Clases de yoga para todos los niveles en un ambiente acogedor y auténtico.",
+    "cta": "Reserva tu clase",
+    "imageAlt": "Práctica de yoga frente al mar"
+  },
+  "features": {
+    "wellbeing": {
+      "title": "Bienestar integral",
+      "text": "Cuerpo, mente y emociones"
+    },
+    "levels": {
+      "title": "Todos los niveles",
+      "text": "Clases adaptadas a ti"
+    },
+    "community": {
+      "title": "Comunidad",
+      "text": "Conecta y crece en comunidad"
+    },
+    "location": {
+      "title": "Cerca de ti",
+      "text": "En el corazón de Barcelona"
+    }
+  },
+  "studio": {
+    "label": "Nuestro estudio",
+    "title": "Un espacio creado para tu bienestar",
+    "text": "Blau Yoga es un estudio de yoga y bienestar en Barcelona, creado para que encuentres equilibrio, te escuches y te sientas como en casa. Luz natural, materiales cálidos y grupos reducidos para acompañarte de cerca.",
+    "cta": "Conoce el estudio",
+    "imageAlt": "Interior del estudio Blau Yoga"
+  },
+  "quote": {
+    "text": "El yoga no se trata de tocar los pies, se trata de lo que aprendes en el camino.",
+    "author": "Jigar Gor"
+  },
+  "classes": {
+    "label": "Clases",
+    "title": "Encuentra tu práctica",
+    "subtitle": "Hatha, Yin, Ashtanga, Yoga Facial y yoga en la playa: elige la clase que tu cuerpo necesita hoy.",
+    "minutes": "{count} min",
+    "level": {
+      "all": "Todos los niveles",
+      "beginner": "Principiante",
+      "intermediate": "Nivel intermedio"
+    },
+    "cta": "Ver horarios y reservar"
+  },
+  "schedule": {
+    "label": "Horarios",
+    "title": "Reserva tu momento",
+    "subtitle": "Clases presenciales entre semana y yoga en la playa los domingos. Confirma tu plaza por WhatsApp.",
+    "book": "Reservar",
+    "prevDay": "Día anterior",
+    "nextDay": "Día siguiente",
+    "whatsappMessage": "¡Hola Cyane! Me gustaría reservar plaza para la clase de {className} el {day} a las {time}. ¡Gracias!",
+    "days": {
+      "monday": "Lunes",
+      "tuesday": "Martes",
+      "wednesday": "Miércoles",
+      "thursday": "Jueves",
+      "friday": "Viernes",
+      "saturday": "Sábado",
+      "sunday": "Domingo"
+    }
+  },
+  "about": {
+    "label": "Sobre mí",
+    "title": "Hola, soy {name}",
+    "cta": "Conóceme mejor",
+    "imageAlt": "Cyane practicando yoga en la naturaleza",
+    "stats": {
+      "cert": { "value": "RYT 220H", "label": "certificada en India" },
+      "styles": { "value": "4 estilos", "label": "Hatha · Yin · Ashtanga · Facial" },
+      "beach": { "value": "Domingos", "label": "yoga en la playa" },
+      "formats": { "value": "2 formatos", "label": "presencial y privada" }
+    }
+  },
+  "pricing": {
+    "label": "Precios",
+    "title": "Elige tu plan",
+    "subtitle": "Clases grupales, bono mensual o sesión privada. Sin permanencia.",
+    "perMonth": "/mes",
+    "single": "pago único",
+    "popular": "Más popular",
+    "cta": "Empezar ahora",
+    "whatsappMessage": "¡Hola Cyane! Me gustaría apuntarme a {planName} ({priceLabel}). ¡Gracias!"
+  },
+  "reviews": {
+    "label": "Testimonios",
+    "title": "Lo que dicen las alumnas"
+  },
+  "contact": {
+    "label": "Contacto",
+    "title": "¿Hablamos?",
+    "subtitle": "Escríbeme para reservar una clase presencial, una sesión privada o el yoga de domingo en la playa.",
+    "address": "Barcelona",
+    "email": "hola@blauyoga.com",
+    "phone": "+34 600 00 00 00",
+    "imageAlt": "Agua en la orilla de la playa",
+    "form": {
+      "name": "Nombre",
+      "namePlaceholder": "Tu nombre",
+      "email": "Email",
+      "emailPlaceholder": "tu@email.com",
+      "message": "Mensaje",
+      "messagePlaceholder": "Cuéntame si buscas clase presencial, privada o yoga en la playa...",
+      "submit": "Enviar mensaje",
+      "sending": "Enviando...",
+      "errors": {
+        "nameRequired": "Escribe tu nombre",
+        "emailInvalid": "Introduce un email válido",
+        "messageRequired": "Escribe un mensaje de al menos 10 caracteres"
+      },
+      "success": "¡Mensaje enviado! Te responderé muy pronto.",
+      "error": "No se pudo enviar el mensaje. Inténtalo de nuevo."
+    }
+  },
+  "footer": {
+    "tagline": "Yoga con Cyane · RYT 220H",
+    "explore": "Explorar",
+    "follow": "Sígueme",
+    "rights": "© {year} Blau Yoga. Todos los derechos reservados.",
+    "values": "Calma · Conexión · Equilibrio · Bienestar · Naturalidad · Presencia",
+    "social": {
+      "facebook": "Facebook",
+      "instagram": "Instagram",
+      "email": "Correo",
+      "whatsapp": "WhatsApp",
+      "spotify": "Playlist de yoga en Spotify"
+    }
+  },
+  "language": {
+    "label": "Idioma",
+    "es": "Español",
+    "en": "English"
+  }
+}

@@ -1,0 +1,50 @@
+[
+  {
+    "slug": "clase-suelta",
+    "price": 15,
+    "currency": "€",
+    "period": "single",
+    "featured": false,
+    "order": 1,
+    "es": {
+      "name": "Clase presencial",
+      "features": ["1 clase grupal a tu elección", "Hatha, Yin, Ashtanga o Yoga Facial", "Sin permanencia"]
+    },
+    "en": {
+      "name": "In-person class",
+      "features": ["1 group class of your choice", "Hatha, Yin, Ashtanga or Facial Yoga", "No commitment"]
+    }
+  },
+  {
+    "slug": "bono-8",
+    "price": 90,
+    "currency": "€",
+    "period": "monthly",
+    "featured": true,
+    "order": 2,
+    "es": {
+      "name": "Bono 8 clases",
+      "features": ["8 clases grupales al mes", "Incluye yoga en la playa (domingos)", "Todos los estilos", "Reserva prioritaria"]
+    },
+    "en": {
+      "name": "8-class pack",
+      "features": ["8 group classes per month", "Includes beach yoga (Sundays)", "All styles", "Priority booking"]
+    }
+  },
+  {
+    "slug": "clase-privada",
+    "price": 50,
+    "currency": "€",
+    "period": "single",
+    "featured": false,
+    "order": 3,
+    "es": {
+      "name": "Clase privada",
+      "features": ["Sesión 1:1 adaptada a ti", "En estudio o a domicilio", "Ideal para empezar o profundizar", "Horario flexible"]
+    },
+    "en": {
+      "name": "Private class",
+      "features": ["1:1 session tailored to you", "At the studio or at home", "Ideal to start or go deeper", "Flexible schedule"]
+    }
+  }
+]
