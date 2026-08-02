@@ -42,6 +42,7 @@ export default buildConfig({
   secret: process.env.PAYLOAD_SECRET || "insecure-dev-secret",
   db: sqliteAdapter({
     client: {
+      // Local default; on Vercel use a remote DB URL (never rely on ./data).
       url: process.env.DATABASE_URL || "file:./data/payload.db",
     },
     migrationDir: path.resolve(dirname, "migrations"),
@@ -50,5 +51,16 @@ export default buildConfig({
   typescript: {
     outputFile: path.resolve(dirname, "payload-types.ts"),
   },
-  onInit: seed,
+  onInit: async (payload) => {
+    // Avoid touching SQLite when the site runs from JSON seed data (Vercel MVP).
+    if (process.env.USE_STATIC_CONTENT === "true") return;
+    if (
+      process.env.VERCEL === "1" &&
+      process.env.USE_STATIC_CONTENT !== "false" &&
+      (!process.env.DATABASE_URL || process.env.DATABASE_URL.startsWith("file:"))
+    ) {
+      return;
+    }
+    await seed(payload);
+  },
 });

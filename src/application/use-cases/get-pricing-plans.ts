@@ -1,12 +1,11 @@
 import type { Locale, PricingPlan } from "@/domain/entities";
 import type { PricingPlanRepository } from "@/domain/repositories";
-import { PayloadPricingPlanRepository } from "@/infrastructure/repositories/PayloadPricingPlanRepository";
+import { getPricingPlanRepository } from "@/infrastructure/repositories/createRepositories";
 
-const defaultRepository: PricingPlanRepository = new PayloadPricingPlanRepository();
-
-export function getPricingPlans(
+export async function getPricingPlans(
   locale: Locale,
-  repository: PricingPlanRepository = defaultRepository,
+  repository?: PricingPlanRepository,
 ): Promise<PricingPlan[]> {
-  return repository.findAll(locale);
+  const repo = repository ?? (await getPricingPlanRepository());
+  return repo.findAll(locale);
 }

@@ -1,12 +1,11 @@
 import type { Locale, YogaClass } from "@/domain/entities";
 import type { ClassRepository } from "@/domain/repositories";
-import { PayloadClassRepository } from "@/infrastructure/repositories/PayloadClassRepository";
+import { getClassRepository } from "@/infrastructure/repositories/createRepositories";
 
-const defaultRepository: ClassRepository = new PayloadClassRepository();
-
-export function getClasses(
+export async function getClasses(
   locale: Locale,
-  repository: ClassRepository = defaultRepository,
+  repository?: ClassRepository,
 ): Promise<YogaClass[]> {
-  return repository.findAll(locale);
+  const repo = repository ?? (await getClassRepository());
+  return repo.findAll(locale);
 }

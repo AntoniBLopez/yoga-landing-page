@@ -1,10 +1,8 @@
-/* THIS FILE WAS GENERATED AUTOMATICALLY BY PAYLOAD. */
 import type { Metadata } from "next";
 
-import config from "@payload-config";
-import { generatePageMetadata, RootPage } from "@payloadcms/next/views";
+import { useStaticContent } from "@/config/content";
 
-import { importMap } from "../importMap.js";
+import { StaticAdminNotice } from "../StaticAdminNotice";
 
 type Args = {
   params: Promise<{
@@ -15,10 +13,32 @@ type Args = {
   }>;
 };
 
-export const generateMetadata = ({ params, searchParams }: Args): Promise<Metadata> =>
-  generatePageMetadata({ config, params, searchParams });
+export async function generateMetadata(args: Args): Promise<Metadata> {
+  if (useStaticContent()) {
+    return { title: "Admin · Blau Yoga (MVP)" };
+  }
+  const [{ generatePageMetadata }, { default: config }] = await Promise.all([
+    import("@payloadcms/next/views"),
+    import("@payload-config"),
+  ]);
+  return generatePageMetadata({ config, params: args.params, searchParams: args.searchParams });
+}
 
-const Page = ({ params, searchParams }: Args) =>
-  RootPage({ config, params, searchParams, importMap });
+export default async function Page(args: Args) {
+  if (useStaticContent()) {
+    return <StaticAdminNotice />;
+  }
 
-export default Page;
+  const [{ RootPage }, { default: config }, { importMap }] = await Promise.all([
+    import("@payloadcms/next/views"),
+    import("@payload-config"),
+    import("../importMap.js"),
+  ]);
+
+  return RootPage({
+    config,
+    params: args.params,
+    searchParams: args.searchParams,
+    importMap,
+  });
+}

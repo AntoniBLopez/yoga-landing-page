@@ -11,7 +11,6 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "images.unsplash.com",
       },
-      // Payload Media absolute URLs in local/dev (e.g. http://localhost:3000/api/media/file/...)
       {
         protocol: "http",
         hostname: "localhost",
@@ -24,4 +23,6 @@ const nextConfig: NextConfig = {
   },
 };
 
+// Keep withPayload so Turbopack can resolve Payload/drizzle deps.
+// Frontend content uses JSON on Vercel MVP (see src/config/content.ts).
 export default withPayload(withNextIntl(nextConfig));

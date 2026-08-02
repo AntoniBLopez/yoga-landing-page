@@ -1,8 +1,6 @@
 import type { Locale, ScheduleSlot, Weekday } from "@/domain/entities";
 import type { ScheduleSlotRepository } from "@/domain/repositories";
-import { PayloadScheduleSlotRepository } from "@/infrastructure/repositories/PayloadScheduleSlotRepository";
-
-const defaultRepository: ScheduleSlotRepository = new PayloadScheduleSlotRepository();
+import { getScheduleSlotRepository } from "@/infrastructure/repositories/createRepositories";
 
 const WEEKDAY_ORDER: Weekday[] = [
   "monday",
@@ -25,9 +23,10 @@ export interface ScheduleDay {
  */
 export async function getWeeklySchedule(
   locale: Locale,
-  repository: ScheduleSlotRepository = defaultRepository,
+  repository?: ScheduleSlotRepository,
 ): Promise<ScheduleDay[]> {
-  const slots = await repository.findAll(locale);
+  const repo = repository ?? (await getScheduleSlotRepository());
+  const slots = await repo.findAll(locale);
 
   return WEEKDAY_ORDER.flatMap((day) => {
     const daySlots = slots

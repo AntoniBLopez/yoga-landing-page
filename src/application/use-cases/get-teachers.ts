@@ -1,12 +1,11 @@
 import type { Locale, Teacher } from "@/domain/entities";
 import type { TeacherRepository } from "@/domain/repositories";
-import { PayloadTeacherRepository } from "@/infrastructure/repositories/PayloadTeacherRepository";
+import { getTeacherRepository } from "@/infrastructure/repositories/createRepositories";
 
-const defaultRepository: TeacherRepository = new PayloadTeacherRepository();
-
-export function getTeachers(
+export async function getTeachers(
   locale: Locale,
-  repository: TeacherRepository = defaultRepository,
+  repository?: TeacherRepository,
 ): Promise<Teacher[]> {
-  return repository.findAll(locale);
+  const repo = repository ?? (await getTeacherRepository());
+  return repo.findAll(locale);
 }

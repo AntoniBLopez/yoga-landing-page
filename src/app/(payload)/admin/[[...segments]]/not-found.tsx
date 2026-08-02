@@ -1,10 +1,6 @@
-/* THIS FILE WAS GENERATED AUTOMATICALLY BY PAYLOAD. */
 import type { Metadata } from "next";
 
-import config from "@payload-config";
-import { generatePageMetadata, NotFoundPage } from "@payloadcms/next/views";
-
-import { importMap } from "../importMap.js";
+import { useStaticContent } from "@/config/content";
 
 type Args = {
   params: Promise<{
@@ -15,10 +11,30 @@ type Args = {
   }>;
 };
 
-export const generateMetadata = ({ params, searchParams }: Args): Promise<Metadata> =>
-  generatePageMetadata({ config, params, searchParams });
+export async function generateMetadata(args: Args): Promise<Metadata> {
+  if (useStaticContent()) return { title: "No encontrado" };
+  const { generatePageMetadata } = await import("@payloadcms/next/views");
+  const config = (await import("@payload-config")).default;
+  return generatePageMetadata({ config, params: args.params, searchParams: args.searchParams });
+}
 
-const NotFound = ({ params, searchParams }: Args) =>
-  NotFoundPage({ config, params, searchParams, importMap });
+export default async function NotFound(args: Args) {
+  if (useStaticContent()) {
+    return (
+      <main style={{ padding: "3rem 1.25rem", fontFamily: "system-ui, sans-serif" }}>
+        <p>Página no encontrada.</p>
+        <a href="/">Volver</a>
+      </main>
+    );
+  }
 
-export default NotFound;
+  const { NotFoundPage } = await import("@payloadcms/next/views");
+  const config = (await import("@payload-config")).default;
+  const { importMap } = await import("../importMap.js");
+  return NotFoundPage({
+    config,
+    params: args.params,
+    searchParams: args.searchParams,
+    importMap,
+  });
+}

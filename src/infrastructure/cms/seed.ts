@@ -1,41 +1,12 @@
 import type { Payload } from "payload";
 
 import classesData from "../data/classes.json";
-import teachersData from "../data/teachers.json";
-import scheduleData from "../data/schedule-slots.json";
+import { lexicalFromParagraphs } from "../data/lexical";
+import postsData from "../data/posts.json";
 import pricingData from "../data/pricing-plans.json";
 import reviewsData from "../data/reviews.json";
-import postsData from "../data/posts.json";
-
-function lexicalFromParagraphs(paragraphs: string[]) {
-  return {
-    root: {
-      type: "root",
-      format: "" as const,
-      indent: 0,
-      version: 1,
-      direction: "ltr" as const,
-      children: paragraphs.map((text) => ({
-        type: "paragraph",
-        format: "" as const,
-        indent: 0,
-        version: 1,
-        direction: "ltr" as const,
-        children: [
-          {
-            type: "text",
-            detail: 0,
-            format: 0,
-            mode: "normal" as const,
-            style: "",
-            text,
-            version: 1,
-          },
-        ],
-      })),
-    },
-  };
-}
+import scheduleData from "../data/schedule-slots.json";
+import teachersData from "../data/teachers.json";
 
 async function seedPosts(payload: Payload): Promise<void> {
   const { totalDocs } = await payload.count({ collection: "posts" });

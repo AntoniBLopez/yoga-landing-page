@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowRight, Award, Flower2, Waves, Users } from "lucide-react";
+import { ArrowRight, Flower2, Heart, MapPin, Sun } from "lucide-react";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 
@@ -8,10 +8,10 @@ import type { Teacher } from "@/domain/entities";
 import { FadeIn } from "@/presentation/components/ui/FadeIn";
 
 const STATS = [
-  { key: "cert", Icon: Award },
-  { key: "styles", Icon: Flower2 },
-  { key: "beach", Icon: Waves },
-  { key: "formats", Icon: Users },
+  { key: "years", Icon: Flower2 },
+  { key: "students", Icon: Heart },
+  { key: "city", Icon: MapPin },
+  { key: "passion", Icon: Sun },
 ] as const;
 
 export function AboutSection({ teacher }: { teacher: Teacher }) {
@@ -59,13 +59,11 @@ export function AboutSection({ teacher }: { teacher: Teacher }) {
         <div className="mx-auto grid max-w-6xl grid-cols-2 gap-y-10 px-5 py-12 md:px-8 lg:grid-cols-4 lg:py-14">
           {STATS.map(({ key, Icon }, index) => (
             <FadeIn key={key} delay={index * 0.08} className="flex flex-col items-center text-center">
-              <Icon className="mb-3 h-6 w-6 text-aqua" strokeWidth={1.6} />
-              <p className="font-display text-2xl font-semibold text-sand">
+              <Icon className="mb-3 h-6 w-6 text-sand" strokeWidth={1.5} />
+              <p className="text-sm font-semibold tracking-[0.14em] text-sand uppercase">
                 {t(`stats.${key}.value`)}
               </p>
-              <p className="mt-1 text-xs uppercase tracking-[0.2em] text-sky">
-                {t(`stats.${key}.label`)}
-              </p>
+              <p className="mt-1 text-sm text-sand/80">{t(`stats.${key}.label`)}</p>
             </FadeIn>
           ))}
         </div>

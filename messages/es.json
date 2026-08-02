@@ -95,10 +95,10 @@
     "cta": "Conóceme mejor",
     "imageAlt": "Cyane practicando yoga en la naturaleza",
     "stats": {
-      "cert": { "value": "RYT 220H", "label": "certificada en India" },
-      "styles": { "value": "4 estilos", "label": "Hatha · Yin · Ashtanga · Facial" },
-      "beach": { "value": "Domingos", "label": "yoga en la playa" },
-      "formats": { "value": "2 formatos", "label": "presencial y privada" }
+      "years": { "value": "+5 años", "label": "de práctica" },
+      "students": { "value": "+500", "label": "alumnos" },
+      "city": { "value": "Barcelona", "label": "Born" },
+      "passion": { "value": "Pasión", "label": "por enseñar" }
     }
   },
   "pricing": {

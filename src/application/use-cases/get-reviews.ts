@@ -1,12 +1,11 @@
 import type { Locale, Review } from "@/domain/entities";
 import type { ReviewRepository } from "@/domain/repositories";
-import { PayloadReviewRepository } from "@/infrastructure/repositories/PayloadReviewRepository";
+import { getReviewRepository } from "@/infrastructure/repositories/createRepositories";
 
-const defaultRepository: ReviewRepository = new PayloadReviewRepository();
-
-export function getReviews(
+export async function getReviews(
   locale: Locale,
-  repository: ReviewRepository = defaultRepository,
+  repository?: ReviewRepository,
 ): Promise<Review[]> {
-  return repository.findAll(locale);
+  const repo = repository ?? (await getReviewRepository());
+  return repo.findAll(locale);
 }

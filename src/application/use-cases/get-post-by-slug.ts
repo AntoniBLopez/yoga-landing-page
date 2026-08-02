@@ -1,13 +1,12 @@
 import type { BlogPost, Locale } from "@/domain/entities";
 import type { PostRepository } from "@/domain/repositories";
-import { PayloadPostRepository } from "@/infrastructure/repositories/PayloadPostRepository";
+import { getPostRepository } from "@/infrastructure/repositories/createRepositories";
 
-const defaultRepository: PostRepository = new PayloadPostRepository();
-
-export function getPostBySlug(
+export async function getPostBySlug(
   slug: string,
   locale: Locale,
-  repository: PostRepository = defaultRepository,
+  repository?: PostRepository,
 ): Promise<BlogPost | null> {
-  return repository.findBySlug(slug, locale);
+  const repo = repository ?? (await getPostRepository());
+  return repo.findBySlug(slug, locale);
 }

@@ -1,30 +1,29 @@
-import type { ServerFunctionClient } from "payload";
-
-import config from "@payload-config";
-import "@payloadcms/next/css";
-import { handleServerFunctions, RootLayout } from "@payloadcms/next/layouts";
+import { useStaticContent } from "@/config/content";
 import React from "react";
-
-import { importMap } from "./admin/importMap.js";
-import "./custom.scss";
 
 type Args = {
   children: React.ReactNode;
 };
 
-const serverFunction: ServerFunctionClient = async function (args) {
-  "use server";
-  return handleServerFunctions({
-    ...args,
-    config,
-    importMap,
-  });
-};
+export default async function Layout({ children }: Args) {
+  if (useStaticContent()) {
+    return (
+      <html lang="es">
+        <body
+          style={{
+            margin: 0,
+            fontFamily: "system-ui, sans-serif",
+            background: "#F4F1EA",
+            color: "#15586B",
+            minHeight: "100vh",
+          }}
+        >
+          {children}
+        </body>
+      </html>
+    );
+  }
 
-const Layout = ({ children }: Args) => (
-  <RootLayout config={config} importMap={importMap} serverFunction={serverFunction}>
-    {children}
-  </RootLayout>
-);
-
-export default Layout;
+  const { default: PayloadRootLayout } = await import("./PayloadRootLayout");
+  return <PayloadRootLayout>{children}</PayloadRootLayout>;
+}
