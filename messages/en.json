@@ -78,7 +78,7 @@
     "book": "Book",
     "prevDay": "Previous day",
     "nextDay": "Next day",
-    "whatsappMessage": "Hi Cyane! I'd like to book a spot for the {className} class on {day} at {time}. Thank you!",
+    "whatsappMessage": "Hi Cyane! I'd like to book a spot for the {className} class on {day} at {time}. Could you give me more information? Thank you!",
     "days": {
       "monday": "Monday",
       "tuesday": "Tuesday",
@@ -109,7 +109,7 @@
     "single": "one-time",
     "popular": "Most popular",
     "cta": "Get started",
-    "whatsappMessage": "Hi Cyane! I'd like to sign up for {planName} ({priceLabel}). Thank you!"
+    "whatsappMessage": "Hi Cyane! I'd like to sign up for {planName} ({priceLabel}). Could you give me more information? Thank you!"
   },
   "reviews": {
     "label": "Testimonials",

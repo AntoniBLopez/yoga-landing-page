@@ -78,7 +78,7 @@
     "book": "Reservar",
     "prevDay": "Día anterior",
     "nextDay": "Día siguiente",
-    "whatsappMessage": "¡Hola Cyane! Me gustaría reservar plaza para la clase de {className} el {day} a las {time}. ¡Gracias!",
+    "whatsappMessage": "¡Hola Cyane! Me gustaría reservar plaza para la clase de {className} el {day} a las {time}. ¿Me das más información? ¡Gracias!",
     "days": {
       "monday": "Lunes",
       "tuesday": "Martes",
@@ -109,7 +109,7 @@
     "single": "pago único",
     "popular": "Más popular",
     "cta": "Empezar ahora",
-    "whatsappMessage": "¡Hola Cyane! Me gustaría apuntarme a {planName} ({priceLabel}). ¡Gracias!"
+    "whatsappMessage": "¡Hola Cyane! Me gustaría apuntarme a {planName} ({priceLabel}). ¿Me das más información? ¡Gracias!"
   },
   "reviews": {
     "label": "Testimonios",

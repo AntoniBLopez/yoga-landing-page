@@ -42,7 +42,7 @@ export function Navbar() {
       )}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 md:px-8">
-        <a href="/" aria-label="Blau Yoga">
+        <a href="/#inicio" aria-label="Blau Yoga">
           <Logo tagline={tFooter("tagline")} tone="light" />
         </a>
 
