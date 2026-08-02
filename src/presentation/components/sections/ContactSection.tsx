@@ -4,7 +4,7 @@ import { Mail, MapPin, Phone } from "lucide-react";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 
-import { WHATSAPP_PHONE_DISPLAY } from "@/config/contact";
+import { CONTACT_EMAIL, SOCIAL_LINKS, WHATSAPP_PHONE_DISPLAY } from "@/config/contact";
 import { FadeIn } from "@/presentation/components/ui/FadeIn";
 import { SectionHeading } from "@/presentation/components/ui/SectionHeading";
 import { getWhatsAppChatUrl } from "@/presentation/lib/whatsapp";
@@ -18,7 +18,7 @@ export function ContactSection() {
 
   const items = [
     { Icon: MapPin, text: t("address") },
-    { Icon: Mail, text: t("email"), href: `mailto:${t("email")}` },
+    { Icon: Mail, text: CONTACT_EMAIL, href: SOCIAL_LINKS.email },
     {
       Icon: Phone,
       text: WHATSAPP_PHONE_DISPLAY,

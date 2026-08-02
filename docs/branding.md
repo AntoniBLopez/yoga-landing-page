@@ -23,8 +23,8 @@ Extracted from the brand board. Hex values match project tokens (case-normalized
 
 | Name (board) | Hex | CSS variable | Tailwind token | Role |
 |---|---|---|---|---|
-| Azul profundo | `#15586B` | `--color-deep` | `deep` | Primary brand, headings, primary CTAs, logo |
-| — | `#104555` | `--color-deep-dark` | `deep-dark` | Hover / pressed deep |
+| Azul profundo | `#0F4C5C` | `--color-deep` | `deep` | Primary brand, headings, primary CTAs, logo |
+| — | `#0A3A47` | `--color-deep-dark` | `deep-dark` | Hover / pressed deep |
 | Azul turquesa | `#2FA7A6` | `--color-teal` | `teal` | Accent, labels, secondary CTAs, links |
 | — | `#248F8E` | `--color-teal-dark` | `teal-dark` | Hover / pressed teal |
 | Agua clara | `#A8D5D1` | `--color-aqua` | `aqua` | Soft accent, selection, light borders |
@@ -120,8 +120,8 @@ Coastal water and sand, olive light and shadow, sunlit practice, clean studio pr
 
 ```css
 /* src/app/globals.css — @theme */
---color-deep: #15586b;
---color-deep-dark: #104555;
+--color-deep: #0f4c5c;
+--color-deep-dark: #0a3a47;
 --color-teal: #2fa7a6;
 --color-teal-dark: #248f8e;
 --color-aqua: #a8d5d1;

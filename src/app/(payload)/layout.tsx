@@ -14,7 +14,7 @@ export default async function Layout({ children }: Args) {
             margin: 0,
             fontFamily: "system-ui, sans-serif",
             background: "#F4F1EA",
-            color: "#15586B",
+            color: "#0F4C5C",
             minHeight: "100vh",
           }}
         >

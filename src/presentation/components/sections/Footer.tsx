@@ -3,8 +3,9 @@
 import { useTranslations } from "next-intl";
 import type { SVGProps } from "react";
 
-import { getWhatsAppChatUrl } from "@/presentation/lib/whatsapp";
+import { SOCIAL_LINKS } from "@/config/contact";
 import { Logo } from "@/presentation/components/ui/Logo";
+import { getWhatsAppChatUrl } from "@/presentation/lib/whatsapp";
 
 const NAV_ITEMS = [
   { key: "classes", href: "/#clases" },
@@ -74,15 +75,11 @@ function SpotifyIcon(props: SVGProps<SVGSVGElement>) {
 }
 
 const SOCIAL = [
-  { key: "facebook", href: "https://www.facebook.com/", Icon: FacebookIcon },
-  { key: "instagram", href: "https://www.instagram.com/cyaneyoga/", Icon: InstagramIcon },
-  { key: "email", href: "mailto:hola@blauyoga.com", Icon: MailIcon },
+  { key: "facebook", href: SOCIAL_LINKS.facebook, Icon: FacebookIcon },
+  { key: "instagram", href: SOCIAL_LINKS.instagram, Icon: InstagramIcon },
+  { key: "email", href: SOCIAL_LINKS.email, Icon: MailIcon },
   { key: "whatsapp", href: getWhatsAppChatUrl(), Icon: WhatsAppIcon },
-  {
-    key: "spotify",
-    href: "https://open.spotify.com/playlist/37i9dQZF1DX9uKNf5jGX6m",
-    Icon: SpotifyIcon,
-  },
+  { key: "spotify", href: SOCIAL_LINKS.spotify, Icon: SpotifyIcon },
 ] as const;
 
 export function Footer() {
