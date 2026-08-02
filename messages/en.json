@@ -21,7 +21,15 @@
     "metaDescription": "Articles on yoga, wellbeing and mindful practice with Cyane · Blau Yoga.",
     "readMore": "Read article →",
     "back": "Back to blog",
-    "empty": "New articles coming soon. In the meantime, book a class."
+    "empty": "New articles coming soon. In the meantime, book a class.",
+    "cta": {
+      "label": "Take the next step",
+      "title": "Start caring for your body and mind",
+      "subtitle": "Book an in-person class, a private session or Sunday beach yoga. I’m here to guide you.",
+      "primary": "View schedule",
+      "secondary": "Message on WhatsApp",
+      "whatsappMessage": "Hi Cyane! I read a blog article and would like to know more about the classes. Could you give me more information? Thank you!"
+    }
   },
   "hero": {
     "eyebrow": "Breathe. Connect. Bloom.",

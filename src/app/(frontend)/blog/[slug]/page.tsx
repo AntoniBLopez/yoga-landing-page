@@ -7,6 +7,7 @@ import { getLocale, getTranslations } from "next-intl/server";
 
 import { getPostBySlug } from "@/application/use-cases/get-post-by-slug";
 import type { Locale } from "@/domain/entities";
+import { BlogPostCta } from "@/presentation/components/blog/BlogPostCta";
 import { BlogRichText } from "@/presentation/components/blog/BlogRichText";
 import { Footer } from "@/presentation/components/sections/Footer";
 import { Navbar } from "@/presentation/components/sections/Navbar";
@@ -82,6 +83,8 @@ export default async function BlogPostPage({ params }: PageProps) {
           <FadeIn delay={0.15} className="mt-10 md:mt-12">
             <BlogRichText content={post.content} />
           </FadeIn>
+
+          <BlogPostCta />
         </article>
       </main>
       <Footer />

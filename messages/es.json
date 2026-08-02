@@ -21,7 +21,15 @@
     "metaDescription": "Artículos de yoga, bienestar y práctica consciente con Cyane · Blau Yoga.",
     "readMore": "Leer artículo →",
     "back": "Volver al blog",
-    "empty": "Pronto habrá nuevos artículos. Mientras tanto, reserva una clase."
+    "empty": "Pronto habrá nuevos artículos. Mientras tanto, reserva una clase.",
+    "cta": {
+      "label": "Da el siguiente paso",
+      "title": "Empieza a cuidar tu cuerpo y tu mente",
+      "subtitle": "Reserva una clase presencial, privada o el yoga de domingo en la playa. Estoy aquí para acompañarte.",
+      "primary": "Ver horarios",
+      "secondary": "Escribir por WhatsApp",
+      "whatsappMessage": "¡Hola Cyane! He leído un artículo del blog y me gustaría saber más sobre las clases. ¿Me das más información? ¡Gracias!"
+    }
   },
   "hero": {
     "eyebrow": "Respira. Conecta. Florece.",

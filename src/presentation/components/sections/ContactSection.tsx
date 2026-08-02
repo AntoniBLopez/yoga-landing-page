@@ -11,7 +11,7 @@ import { getWhatsAppChatUrl } from "@/presentation/lib/whatsapp";
 
 import { ContactForm } from "./ContactForm";
 
-const CONTACT_IMAGE = "/images/contacto-orilla.jpg";
+const CONTACT_IMAGE = "/images/contacto-orilla-3.png";
 
 export function ContactSection() {
   const t = useTranslations("contact");
@@ -28,8 +28,38 @@ export function ContactSection() {
 
   return (
     <section id="contacto" className="bg-white">
-      <div className="mx-auto max-w-6xl px-5 py-20 md:px-8 lg:py-28">
-        <SectionHeading label={t("label")} title={t("title")} subtitle={t("subtitle")} />
+      {/* Mobile: shoreline behind the section heading */}
+      <div className="relative overflow-hidden lg:hidden">
+        <Image
+          src={CONTACT_IMAGE}
+          alt=""
+          fill
+          sizes="100vw"
+          aria-hidden
+          className="object-cover object-center"
+        />
+        <div
+          aria-hidden
+          className="absolute inset-0 bg-white/55 backdrop-blur-[2px]"
+        />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-white to-transparent"
+        />
+        <div className="relative z-10 px-5 pt-16 pb-10">
+          <SectionHeading
+            label={t("label")}
+            title={t("title")}
+            subtitle={t("subtitle")}
+            className="mb-0"
+          />
+        </div>
+      </div>
+
+      <div className="mx-auto max-w-6xl px-5 py-12 md:px-8 lg:py-28">
+        <div className="hidden lg:block">
+          <SectionHeading label={t("label")} title={t("title")} subtitle={t("subtitle")} />
+        </div>
 
         <div className="grid gap-12 lg:grid-cols-5">
           <FadeIn className="lg:col-span-2">
