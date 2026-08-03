@@ -9,13 +9,27 @@ import { Button } from "@/presentation/components/ui/Button";
 import { FadeIn } from "@/presentation/components/ui/FadeIn";
 import { SectionHeading } from "@/presentation/components/ui/SectionHeading";
 
-export function ClassesSection({ classes }: { classes: YogaClass[] }) {
+export function ClassesSection({
+  classes,
+  showHeading = true,
+}: {
+  classes: YogaClass[];
+  showHeading?: boolean;
+}) {
   const t = useTranslations("classes");
 
   return (
     <section id="clases" className="bg-sand">
-      <div className="mx-auto max-w-7xl px-5 py-20 md:px-8 lg:py-28">
-        <SectionHeading label={t("label")} title={t("title")} subtitle={t("subtitle")} />
+      <div
+        className={
+          showHeading
+            ? "mx-auto max-w-7xl px-5 py-20 md:px-8 lg:py-28"
+            : "mx-auto max-w-7xl px-5 pb-20 pt-10 md:px-8 md:pb-28 md:pt-12"
+        }
+      >
+        {showHeading ? (
+          <SectionHeading label={t("label")} title={t("title")} subtitle={t("subtitle")} />
+        ) : null}
 
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {classes.map((yogaClass, index) => (
@@ -54,7 +68,7 @@ export function ClassesSection({ classes }: { classes: YogaClass[] }) {
 
         <FadeIn className="mt-12 text-center">
           <Button asChild variant="outline" size="lg">
-            <a href="#horarios">{t("cta")}</a>
+            <a href="/horarios">{t("cta")}</a>
           </Button>
         </FadeIn>
       </div>

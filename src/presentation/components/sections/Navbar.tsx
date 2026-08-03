@@ -10,13 +10,13 @@ import { Logo } from "@/presentation/components/ui/Logo";
 import { cn } from "@/presentation/lib/utils";
 
 const NAV_ITEMS = [
-  { key: "home", href: "/#inicio" },
-  { key: "classes", href: "/#clases" },
-  { key: "schedule", href: "/#horarios" },
-  { key: "about", href: "/#sobre-mi" },
+  { key: "home", href: "/" },
+  { key: "classes", href: "/clases" },
+  { key: "schedule", href: "/horarios" },
+  { key: "about", href: "/sobre-mi" },
   { key: "blog", href: "/blog" },
-  { key: "pricing", href: "/#precios" },
-  { key: "contact", href: "/#contacto" },
+  { key: "pricing", href: "/precios" },
+  { key: "contact", href: "/contacto" },
 ] as const;
 
 export function Navbar() {
@@ -68,7 +68,7 @@ export function Navbar() {
         )}
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 md:px-8">
-          <a href="/#inicio" aria-label="Blau Yoga">
+          <a href="/" aria-label="Blau Yoga">
             <Logo tagline={tFooter("tagline")} tone="light" />
           </a>
 
@@ -83,10 +83,10 @@ export function Navbar() {
               </a>
             ))}
             <LanguageSwitcher tone="light" />
-            <Button asChild size="sm" variant="primary">
-              <a href="/#horarios">{t("cta")}</a>
-            </Button>
-          </nav>
+          <Button asChild size="sm" variant="primary">
+            <a href="/horarios">{t("cta")}</a>
+          </Button>
+        </nav>
 
           <button
             type="button"
@@ -114,9 +114,9 @@ export function Navbar() {
             <div className="mt-3 flex items-center justify-between">
               <LanguageSwitcher />
               <Button asChild size="sm" variant="primary">
-                <a href="/#horarios" onClick={() => setOpen(false)}>
-                  {t("cta")}
-                </a>
+              <a href="/horarios" onClick={() => setOpen(false)}>
+                {t("cta")}
+              </a>
               </Button>
             </div>
           </nav>

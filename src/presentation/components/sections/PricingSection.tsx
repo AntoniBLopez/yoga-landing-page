@@ -10,13 +10,27 @@ import { SectionHeading } from "@/presentation/components/ui/SectionHeading";
 import { cn } from "@/presentation/lib/utils";
 import { buildWhatsAppUrl } from "@/presentation/lib/whatsapp";
 
-export function PricingSection({ plans }: { plans: PricingPlan[] }) {
+export function PricingSection({
+  plans,
+  showHeading = true,
+}: {
+  plans: PricingPlan[];
+  showHeading?: boolean;
+}) {
   const t = useTranslations("pricing");
 
   return (
     <section id="precios" className="bg-sky/50">
-      <div className="mx-auto max-w-6xl px-5 py-20 md:px-8 lg:py-28">
-        <SectionHeading label={t("label")} title={t("title")} subtitle={t("subtitle")} />
+      <div
+        className={
+          showHeading
+            ? "mx-auto max-w-6xl px-5 py-20 md:px-8 lg:py-28"
+            : "mx-auto max-w-6xl px-5 py-16 md:px-8 md:py-20"
+        }
+      >
+        {showHeading ? (
+          <SectionHeading label={t("label")} title={t("title")} subtitle={t("subtitle")} />
+        ) : null}
 
         <div className="grid items-stretch gap-6 md:grid-cols-3">
           {plans.map((plan, index) => (

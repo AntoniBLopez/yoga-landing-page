@@ -36,7 +36,7 @@ export function Studio() {
           </h2>
           <p className="mt-6 max-w-md text-base leading-relaxed text-ink/80">{t("text")}</p>
           <a
-            href="#contacto"
+            href="/contacto"
             className="group mt-8 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-teal transition-colors hover:text-teal-dark"
           >
             {t("cta")}

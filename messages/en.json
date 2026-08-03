@@ -13,6 +13,28 @@
     "contact": "Contact",
     "cta": "Book a class"
   },
+  "pages": {
+    "classes": {
+      "metaTitle": "Classes · Blau Yoga",
+      "metaDescription": "Hatha, Yin, Ashtanga, Facial Yoga and beach yoga with Cyane in Barcelona."
+    },
+    "schedule": {
+      "metaTitle": "Schedule · Blau Yoga",
+      "metaDescription": "Check class times and book in-person or beach yoga via WhatsApp."
+    },
+    "about": {
+      "metaTitle": "About me · Cyane · Blau Yoga",
+      "metaDescription": "Meet Cyane, RYT 220H yoga teacher. Mindful practice in Barcelona."
+    },
+    "pricing": {
+      "metaTitle": "Pricing · Blau Yoga",
+      "metaDescription": "Drop-in class, monthly pack and private session. Choose the plan that fits you."
+    },
+    "contact": {
+      "metaTitle": "Contact · Blau Yoga",
+      "metaDescription": "Write to book an in-person class, a private session or beach yoga in Barcelona."
+    }
+  },
   "blog": {
     "label": "Blog",
     "title": "Notes from the mat",
@@ -107,6 +129,138 @@
       "students": { "value": "+500", "label": "students" },
       "city": { "value": "Barcelona", "label": "Born" },
       "passion": { "value": "Passion", "label": "for teaching" }
+    },
+    "page": {
+      "story": {
+        "label": "My story",
+        "title": "My path to yoga",
+        "subtitle": "A practice that began as a personal search and became my way of supporting others.",
+        "steps": {
+          "discover": {
+            "label": "The beginning",
+            "title": "How I discovered yoga",
+            "text": "I came to yoga at a time when I needed to pause. I wasn’t looking to perfect poses — I was looking for a space to breathe, listen inward and return to my body with kindness."
+          },
+          "train": {
+            "label": "The decision",
+            "title": "When I chose to train",
+            "text": "The more I practised, the clearer it became: I wanted to go deeper. I decided to train seriously to understand not only movement, but also breath, anatomy and the mindful dimension of yoga."
+          },
+          "change": {
+            "label": "The shift",
+            "title": "What changed in my life",
+            "text": "Yoga taught me to inhabit myself with more presence. It softened my relationship with stress, restored confidence and reminded me that wellbeing is not a destination — it is a daily practice."
+          },
+          "teach": {
+            "label": "Sharing",
+            "title": "Why I teach",
+            "text": "I teach because I want others to find what I found: a warm yoga practice without pressure, with space to simply be. Helping you come back to yourself is how this path makes sense to me."
+          }
+        }
+      },
+      "philosophy": {
+        "label": "My approach",
+        "title": "How I teach",
+        "subtitle": "What you’ll find in my classes: presence, care and yoga that adapts to you.",
+        "points": {
+          "accessible": {
+            "title": "Accessible yoga, no pressure",
+            "text": "It isn’t about going further — it’s about coming home to yourself. We practise with respect, without competing or forcing."
+          },
+          "breath": {
+            "title": "Attention to breath and body",
+            "text": "Breath guides movement. I invite you to feel, observe and choose from inner listening."
+          },
+          "levels": {
+            "title": "Adaptations for all levels",
+            "text": "Every body is different. I offer variations and options so you can practise safely, wherever you start."
+          },
+          "safe": {
+            "title": "A safe, judgement-free space",
+            "text": "I create warm spaces where you can be yourself. There is no performance here — only presence, care and community."
+          }
+        }
+      },
+      "training": {
+        "label": "Credentials",
+        "title": "Training & certifications",
+        "subtitle": "A solid foundation to guide you with care, clarity and awareness.",
+        "items": {
+          "main": {
+            "label": "Main training",
+            "title": "RYT 220H · India",
+            "text": "Certified RYT 220H training in India, where I deepened asana, pranayama, philosophy and the essence of mindful practice."
+          },
+          "extra": {
+            "label": "Ongoing learning",
+            "title": "Courses & specialisation",
+            "text": "I continue training in Yin Yoga, applied anatomy, meditation and supportive tools to adapt practice to every stage of life."
+          },
+          "retreats": {
+            "label": "Immersions",
+            "title": "Retreats & study",
+            "text": "Retreats and immersions have shaped how I teach: more presence, deeper listening and a more human approach to yoga."
+          }
+        }
+      },
+      "values": {
+        "label": "Compass",
+        "title": "Values that guide my practice",
+        "subtitle": "What I want you to feel every time you step into class.",
+        "items": {
+          "authenticity": {
+            "title": "Authenticity",
+            "text": "Real, warm yoga — without masks."
+          },
+          "listening": {
+            "title": "Body listening",
+            "text": "Honouring signals, limits and your own pace."
+          },
+          "community": {
+            "title": "Community",
+            "text": "Growing together, with kindness and respect."
+          },
+          "awareness": {
+            "title": "Awareness",
+            "text": "Presence in breath, movement and everyday life."
+          },
+          "accessibility": {
+            "title": "Accessibility",
+            "text": "A practice open to every body and level."
+          }
+        }
+      },
+      "offMat": {
+        "label": "Beyond the mat",
+        "title": "Off the mat",
+        "subtitle": "Who I am when I’m not teaching.",
+        "items": {
+          "barcelona": {
+            "label": "Barcelona",
+            "title": "My city",
+            "text": "I love walking by the sea, wandering through El Born and finding quiet corners of light where I can slow down."
+          },
+          "rituals": {
+            "label": "Everyday",
+            "title": "Daily rituals",
+            "text": "A calm coffee, a few minutes of conscious breath, and moving my body even a little — that’s how many of my days begin."
+          },
+          "inspire": {
+            "label": "Inspiration",
+            "title": "What nourishes me",
+            "text": "Books that open perspective, soft playlists for practice, and nature as a constant reminder of presence."
+          }
+        }
+      },
+      "cta": {
+        "label": "Next step",
+        "title": "Want to know if my style is for you?",
+        "subtitle": "Message me or book a trial class. I’d love to support you.",
+        "primary": "Book a trial class",
+        "whatsapp": "Write to me",
+        "instagram": "Follow me on Instagram →",
+        "whatsappMessage": "Hi Cyane! I read your story and would like to know if your yoga style is for me. Could you give me more information? Thank you!"
+      }
     }
   },
   "pricing": {
@@ -117,7 +271,26 @@
     "single": "one-time",
     "popular": "Most popular",
     "cta": "Get started",
-    "whatsappMessage": "Hi Cyane! I'd like to sign up for {planName} ({priceLabel}). Could you give me more information? Thank you!"
+    "whatsappMessage": "Hi Cyane! I'd like to sign up for {planName} ({priceLabel}). Could you give me more information? Thank you!",
+    "faq": {
+      "label": "Common questions",
+      "title": "FAQ",
+      "subtitle": "The essentials so you can choose calmly and start when you’re ready.",
+      "items": {
+        "beginner": {
+          "question": "Can I come if I’ve never practised yoga?",
+          "answer": "Yes. Classes are open to all levels and I offer adaptations so you can practise safely, even if it’s your first time. If you’re unsure, message me and I’ll guide you."
+        },
+        "pack": {
+          "question": "How does the 8-class pack work?",
+          "answer": "The pack gives you 8 group classes per month, including Sunday beach yoga. You can mix styles according to what your body needs each week. No commitment."
+        },
+        "cancel": {
+          "question": "What if I can’t attend a booked class?",
+          "answer": "Please let me know as early as possible on WhatsApp. That way I can free your spot and, when the plan allows, move you to another class in the week. I’m happy to find the best option with you."
+        }
+      }
+    }
   },
   "reviews": {
     "label": "Testimonials",
@@ -154,6 +327,7 @@
     "explore": "Explore",
     "follow": "Follow me",
     "rights": "© {year} Blau Yoga. All rights reserved.",
+    "credit": "Website by <creator>Antoni</creator>",
     "values": "Calm · Connection · Balance · Wellbeing · Nature · Presence",
     "social": {
       "facebook": "Facebook",

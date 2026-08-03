@@ -1,24 +1,27 @@
 "use client";
 
-import { ArrowRight, Flower2, Heart, MapPin, Sun } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 
 import type { Teacher } from "@/domain/entities";
+import { AboutStatsBanner } from "@/presentation/components/sections/about/AboutStatsBanner";
 import { FadeIn } from "@/presentation/components/ui/FadeIn";
 
-const STATS = [
-  { key: "years", Icon: Flower2 },
-  { key: "students", Icon: Heart },
-  { key: "city", Icon: MapPin },
-  { key: "passion", Icon: Sun },
-] as const;
-
-export function AboutSection({ teacher }: { teacher: Teacher }) {
+export function AboutSection({
+  teacher,
+  pageMode = false,
+  showStats = true,
+}: {
+  teacher: Teacher;
+  pageMode?: boolean;
+  /** Stats banner under the intro (landing). On the about page we place it later. */
+  showStats?: boolean;
+}) {
   const t = useTranslations("about");
 
   return (
-    <section id="sobre-mi" className="bg-sand">
+    <section id="sobre-mi" className={pageMode ? "bg-sand pt-20 md:pt-24" : "bg-sand"}>
       <div className="grid lg:grid-cols-2 lg:items-stretch">
         <FadeIn className="order-2 flex flex-col justify-center px-8 py-14 md:px-14 md:py-20 lg:order-1 lg:px-16 xl:px-24">
           <p className="mb-3 text-xs font-medium uppercase tracking-[0.3em] text-ink/50">
@@ -30,13 +33,15 @@ export function AboutSection({ teacher }: { teacher: Teacher }) {
           <p className="mt-6 max-w-lg text-base leading-relaxed whitespace-pre-line text-ink/80">
             {teacher.bio}
           </p>
-          <a
-            href="#contacto"
-            className="group mt-8 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-deep transition-colors hover:text-teal"
-          >
-            {t("cta")}
-            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-          </a>
+          {!pageMode ? (
+            <a
+              href="/sobre-mi"
+              className="group mt-8 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-deep transition-colors hover:text-teal"
+            >
+              {t("cta")}
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+            </a>
+          ) : null}
         </FadeIn>
 
         <FadeIn
@@ -55,19 +60,7 @@ export function AboutSection({ teacher }: { teacher: Teacher }) {
         </FadeIn>
       </div>
 
-      <div className="bg-deep">
-        <div className="mx-auto grid max-w-6xl grid-cols-2 gap-y-10 px-5 py-12 md:px-8 lg:grid-cols-4 lg:py-14">
-          {STATS.map(({ key, Icon }, index) => (
-            <FadeIn key={key} delay={index * 0.08} className="flex flex-col items-center text-center">
-              <Icon className="mb-3 h-6 w-6 text-sand" strokeWidth={1.5} />
-              <p className="text-sm font-semibold tracking-[0.14em] text-sand uppercase">
-                {t(`stats.${key}.value`)}
-              </p>
-              <p className="mt-1 text-sm text-sand/80">{t(`stats.${key}.label`)}</p>
-            </FadeIn>
-          ))}
-        </div>
-      </div>
+      {showStats ? <AboutStatsBanner /> : null}
     </section>
   );
 }

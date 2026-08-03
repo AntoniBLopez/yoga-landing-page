@@ -13,6 +13,28 @@
     "contact": "Contacto",
     "cta": "Reservar clase"
   },
+  "pages": {
+    "classes": {
+      "metaTitle": "Clases · Blau Yoga",
+      "metaDescription": "Hatha, Yin, Ashtanga, Yoga Facial y yoga en la playa con Cyane en Barcelona."
+    },
+    "schedule": {
+      "metaTitle": "Horarios · Blau Yoga",
+      "metaDescription": "Consulta horarios y reserva tu clase de yoga presencial o en la playa por WhatsApp."
+    },
+    "about": {
+      "metaTitle": "Sobre mí · Cyane · Blau Yoga",
+      "metaDescription": "Conoce a Cyane, profesora de yoga RYT 220H. Práctica consciente en Barcelona."
+    },
+    "pricing": {
+      "metaTitle": "Precios · Blau Yoga",
+      "metaDescription": "Clase presencial, bono mensual y clase privada. Elige el plan que mejor se adapta a ti."
+    },
+    "contact": {
+      "metaTitle": "Contacto · Blau Yoga",
+      "metaDescription": "Escríbeme para reservar una clase presencial, privada o yoga en la playa en Barcelona."
+    }
+  },
   "blog": {
     "label": "Blog",
     "title": "Notas desde el mat",
@@ -107,6 +129,138 @@
       "students": { "value": "+500", "label": "alumnos" },
       "city": { "value": "Barcelona", "label": "Born" },
       "passion": { "value": "Pasión", "label": "por enseñar" }
+    },
+    "page": {
+      "story": {
+        "label": "Mi historia",
+        "title": "Mi camino hacia el yoga",
+        "subtitle": "Una práctica que empezó como búsqueda personal y se convirtió en mi forma de acompañar a otras.",
+        "steps": {
+          "discover": {
+            "label": "El comienzo",
+            "title": "Cómo descubrí el yoga",
+            "text": "Llegué al yoga en un momento en el que necesitaba parar. No buscaba perfeccionar posturas: buscaba un espacio donde respirar, escucharme y volver al cuerpo con amabilidad."
+          },
+          "train": {
+            "label": "La decisión",
+            "title": "El momento de formarme",
+            "text": "Cuanto más practicaba, más claro era: quería profundizar. Decidí formarme con seriedad para entender no solo el movimiento, sino también la respiración, la anatomía y la dimensión consciente del yoga."
+          },
+          "change": {
+            "label": "La transformación",
+            "title": "Qué cambió en mi vida",
+            "text": "El yoga me enseñó a habitarme con más presencia. Suavizó mi relación con el estrés, me devolvió confianza y me recordó que el bienestar no es un destino: es una práctica diaria."
+          },
+          "teach": {
+            "label": "Compartir",
+            "title": "Por qué enseño",
+            "text": "Enseño porque quiero que otras personas encuentren lo que yo encontré: un yoga cercano, sin presión y con espacio para ser. Acompañarte a volver a ti es mi forma de dar sentido a este camino."
+          }
+        }
+      },
+      "philosophy": {
+        "label": "Mi enfoque",
+        "title": "Cómo enseño",
+        "subtitle": "Lo que encontrarás en mis clases: presencia, cuidado y un yoga que se adapta a ti.",
+        "points": {
+          "accessible": {
+            "title": "Yoga accesible y sin presión",
+            "text": "No se trata de llegar más lejos, sino de llegar a ti. Practicamos con respeto, sin competir y sin forzar."
+          },
+          "breath": {
+            "title": "Atención a la respiración y al cuerpo",
+            "text": "La respiración guía el movimiento. Te invito a sentir, a observar y a elegir desde la escucha interna."
+          },
+          "levels": {
+            "title": "Adaptaciones para todos los niveles",
+            "text": "Cada cuerpo es distinto. Ofrezco variaciones y opciones para que puedas practicar con seguridad, empieces cuando empieces."
+          },
+          "safe": {
+            "title": "Ambiente seguro y sin juicios",
+            "text": "Creo espacios cálidos donde puedes ser tú. Aquí no hay rendimiento: hay presencia, cuidado y comunidad."
+          }
+        }
+      },
+      "training": {
+        "label": "Credenciales",
+        "title": "Formación y certificaciones",
+        "subtitle": "Una base sólida para acompañarte con rigor, cercanía y conciencia.",
+        "items": {
+          "main": {
+            "label": "Formación principal",
+            "title": "RYT 220H · India",
+            "text": "Formación certificada RYT 220H en India, donde profundicé en asana, pranayama, filosofía y la esencia de una práctica consciente."
+          },
+          "extra": {
+            "label": "Formación continua",
+            "title": "Cursos y especialización",
+            "text": "Sigo formándome en Yin Yoga, anatomía aplicada, meditación y herramientas de acompañamiento para adaptar la práctica a cada etapa de la vida."
+          },
+          "retreats": {
+            "label": "Inmersiones",
+            "title": "Retiros y estudios",
+            "text": "He vivido retiros e inmersiones que han marcado mi manera de enseñar: más presencia, más escucha y una mirada más humana del yoga."
+          }
+        }
+      },
+      "values": {
+        "label": "Brújula",
+        "title": "Valores que guían mi práctica",
+        "subtitle": "Lo que quiero que sientas cada vez que entras en clase.",
+        "items": {
+          "authenticity": {
+            "title": "Autenticidad",
+            "text": "Un yoga real, cercano y sin máscaras."
+          },
+          "listening": {
+            "title": "Escucha del cuerpo",
+            "text": "Priorizar señales, límites y ritmo propio."
+          },
+          "community": {
+            "title": "Comunidad",
+            "text": "Crecer acompañadas, con calidez y respeto."
+          },
+          "awareness": {
+            "title": "Consciencia",
+            "text": "Presencia en la respiración, el gesto y el día a día."
+          },
+          "accessibility": {
+            "title": "Accesibilidad",
+            "text": "Una práctica abierta a todos los cuerpos y niveles."
+          }
+        }
+      },
+      "offMat": {
+        "label": "Más allá de la esterilla",
+        "title": "Fuera del mat",
+        "subtitle": "Así soy también cuando no estoy enseñando.",
+        "items": {
+          "barcelona": {
+            "label": "Barcelona",
+            "title": "Mi ciudad",
+            "text": "Me encanta caminar cerca del mar, perdernos por el Born y buscar rincones con luz donde respirar más despacio."
+          },
+          "rituals": {
+            "label": "Cotidianidad",
+            "title": "Rituales diarios",
+            "text": "Café con calma, unos minutos de respiración consciente y mover el cuerpo aunque sea un poco: así empiezo muchos días."
+          },
+          "inspire": {
+            "label": "Inspiración",
+            "title": "Lo que me nutre",
+            "text": "Libros que abren perspectiva, playlists suaves para practicar y la naturaleza como recordatorio constante de presencia."
+          }
+        }
+      },
+      "cta": {
+        "label": "Próximo paso",
+        "title": "¿Quieres saber si mi estilo es para ti?",
+        "subtitle": "Escríbeme o reserva una clase de prueba. Estaré encantada de acompañarte.",
+        "primary": "Reservar una clase de prueba",
+        "whatsapp": "Escríbeme",
+        "instagram": "Sígueme en Instagram →",
+        "whatsappMessage": "¡Hola Cyane! He leído tu historia y me gustaría saber si tu estilo de yoga es para mí. ¿Me das más información? ¡Gracias!"
+      }
     }
   },
   "pricing": {
@@ -117,7 +271,26 @@
     "single": "pago único",
     "popular": "Más popular",
     "cta": "Empezar ahora",
-    "whatsappMessage": "¡Hola Cyane! Me gustaría apuntarme a {planName} ({priceLabel}). ¿Me das más información? ¡Gracias!"
+    "whatsappMessage": "¡Hola Cyane! Me gustaría apuntarme a {planName} ({priceLabel}). ¿Me das más información? ¡Gracias!",
+    "faq": {
+      "label": "Dudas frecuentes",
+      "title": "Preguntas frecuentes",
+      "subtitle": "Lo esencial para elegir con calma y empezar cuando estés lista.",
+      "items": {
+        "beginner": {
+          "question": "¿Puedo venir si nunca he practicado yoga?",
+          "answer": "Sí. Las clases están abiertas a todos los niveles y ofrezco adaptaciones para que puedas practicar con seguridad, aunque sea tu primera vez. Si tienes dudas, escríbeme y te oriento."
+        },
+        "pack": {
+          "question": "¿Cómo funciona el bono de 8 clases?",
+          "answer": "El bono te permite asistir a 8 clases grupales al mes, incluyendo el yoga en la playa de los domingos. Puedes combinar estilos según lo que tu cuerpo necesite cada semana. Sin permanencia."
+        },
+        "cancel": {
+          "question": "¿Qué pasa si no puedo asistir a una clase reservada?",
+          "answer": "Avísame con la mayor antelación posible por WhatsApp. Así puedo liberar tu plaza y, si el plan lo permite, recolocarte en otra clase de la semana. Hablo contigo sin problema para encontrar la mejor opción."
+        }
+      }
+    }
   },
   "reviews": {
     "label": "Testimonios",
@@ -154,6 +327,7 @@
     "explore": "Explorar",
     "follow": "Sígueme",
     "rights": "© {year} Blau Yoga. Todos los derechos reservados.",
+    "credit": "Web hecha por <creator>Antoni</creator>",
     "values": "Calma · Conexión · Equilibrio · Bienestar · Naturalidad · Presencia",
     "social": {
       "facebook": "Facebook",

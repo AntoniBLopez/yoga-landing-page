@@ -4,16 +4,17 @@ import { useTranslations } from "next-intl";
 import type { SVGProps } from "react";
 
 import { SOCIAL_LINKS } from "@/config/contact";
+import { WEB_CREATOR } from "@/config/site";
 import { Logo } from "@/presentation/components/ui/Logo";
 import { getWhatsAppChatUrl } from "@/presentation/lib/whatsapp";
 
 const NAV_ITEMS = [
-  { key: "classes", href: "/#clases" },
-  { key: "schedule", href: "/#horarios" },
-  { key: "about", href: "/#sobre-mi" },
+  { key: "classes", href: "/clases" },
+  { key: "schedule", href: "/horarios" },
+  { key: "about", href: "/sobre-mi" },
   { key: "blog", href: "/blog" },
-  { key: "pricing", href: "/#precios" },
-  { key: "contact", href: "/#contacto" },
+  { key: "pricing", href: "/precios" },
+  { key: "contact", href: "/contacto" },
 ] as const;
 
 function iconProps(props: SVGProps<SVGSVGElement>) {
@@ -139,6 +140,20 @@ export function Footer() {
           </p>
           <p className="mt-4 text-center text-xs text-sky/50">
             {t("rights", { year: new Date().getFullYear() })}
+          </p>
+          <p className="mt-3 text-center text-[11px] tracking-wide text-sky/35">
+            {t.rich("credit", {
+              creator: (chunks) => (
+                <a
+                  href={WEB_CREATOR}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-aqua/70 transition-colors hover:text-aqua"
+                >
+                  {chunks}
+                </a>
+              ),
+            })}
           </p>
         </div>
       </div>

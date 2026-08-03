@@ -30,7 +30,7 @@ export function BlogPostCta() {
 
         <div className="relative mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
           <Button asChild variant="primary" size="lg">
-            <a href="/#horarios">{t("primary")}</a>
+            <a href="/horarios">{t("primary")}</a>
           </Button>
           <a
             href={buildWhatsAppUrl(t("whatsappMessage"))}

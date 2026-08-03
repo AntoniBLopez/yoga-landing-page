@@ -42,7 +42,7 @@ export function Hero() {
             </h1>
             <p className="mt-6 max-w-md text-lg text-ink">{t("subtitle")}</p>
             <Button asChild size="lg" variant="primary" className="mt-9">
-              <a href="#horarios">{t("cta")}</a>
+              <a href="/horarios">{t("cta")}</a>
             </Button>
           </motion.div>
         </div>
