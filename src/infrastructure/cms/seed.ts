@@ -84,51 +84,332 @@ async function seedFaqs(payload: Payload): Promise<void> {
   }
 }
 
+const needsSections = (value: unknown) =>
+  !Array.isArray(value) || value.length === 0;
+
+async function updatePageLocales(
+  payload: Payload,
+  slug: string,
+  es: Record<string, unknown>,
+  en: Record<string, unknown>,
+): Promise<void> {
+  await payload.updateGlobal({ slug: slug as never, locale: "es", data: es as never });
+  await payload.updateGlobal({ slug: slug as never, locale: "en", data: en as never });
+}
+
+function sharedSiteContent(locale: "es" | "en") {
+  const data = siteContentData[locale];
+  return {
+    meta: data.meta,
+    nav: data.nav,
+    reviews: data.reviews,
+    footer: data.footer,
+    pageMeta: data.pageMeta,
+  };
+}
+
+function aboutPageSeed(locale: "es" | "en", sections?: Array<{ id: string; visible?: boolean }>) {
+  const data = siteContentData[locale];
+  return {
+    sections: toCmsSections(sections ?? siteSettingsData.aboutSections),
+    about: data.about,
+    ...data.aboutPage,
+  };
+}
+
+async function seedPageGlobals(payload: Payload): Promise<void> {
+  const es = siteContentData.es;
+  const en = siteContentData.en;
+
+  await updatePageLocales(
+    payload,
+    "home-page-content",
+    {
+      sections: toCmsSections(siteSettingsData.landingSections),
+      studioCtas: toCmsSections(siteSettingsData.landingStudioCtas),
+      hero: es.hero,
+      features: es.features,
+      quote: es.quote,
+    },
+    {
+      sections: toCmsSections(siteSettingsData.landingSections),
+      studioCtas: toCmsSections(siteSettingsData.landingStudioCtas),
+      hero: en.hero,
+      features: en.features,
+      quote: en.quote,
+    },
+  );
+
+  await updatePageLocales(
+    payload,
+    "about-page-content",
+    aboutPageSeed("es"),
+    aboutPageSeed("en"),
+  );
+
+  await updatePageLocales(
+    payload,
+    "studio-page-content",
+    {
+      sections: toCmsSections(siteSettingsData.studioSections),
+      studio: es.studio,
+    },
+    {
+      sections: toCmsSections(siteSettingsData.studioSections),
+      studio: en.studio,
+    },
+  );
+
+  await updatePageLocales(
+    payload,
+    "pricing-page-content",
+    {
+      sections: toCmsSections(siteSettingsData.pricingSections),
+      pricing: es.pricing,
+    },
+    {
+      sections: toCmsSections(siteSettingsData.pricingSections),
+      pricing: en.pricing,
+    },
+  );
+
+  await updatePageLocales(
+    payload,
+    "classes-page-content",
+    {
+      sections: toCmsSections(siteSettingsData.classesSections),
+      classes: es.classes,
+    },
+    {
+      sections: toCmsSections(siteSettingsData.classesSections),
+      classes: en.classes,
+    },
+  );
+
+  await updatePageLocales(
+    payload,
+    "schedule-page-content",
+    {
+      sections: toCmsSections(siteSettingsData.scheduleSections),
+      schedule: es.schedule,
+    },
+    {
+      sections: toCmsSections(siteSettingsData.scheduleSections),
+      schedule: en.schedule,
+    },
+  );
+
+  await updatePageLocales(
+    payload,
+    "contact-page-content",
+    {
+      sections: toCmsSections(siteSettingsData.contactSections),
+      contact: es.contact,
+    },
+    {
+      sections: toCmsSections(siteSettingsData.contactSections),
+      contact: en.contact,
+    },
+  );
+
+  await updatePageLocales(
+    payload,
+    "blog-page-content",
+    {
+      sections: toCmsSections(siteSettingsData.blogSections),
+      blog: es.blog,
+    },
+    {
+      sections: toCmsSections(siteSettingsData.blogSections),
+      blog: en.blog,
+    },
+  );
+}
+
+async function backfillPageGlobals(payload: Payload): Promise<void> {
+  const settings = await payload.findGlobal({ slug: "site-settings", locale: "es" });
+  const legacy = settings as {
+    landingSections?: unknown;
+    landingStudioCtas?: unknown;
+    aboutSections?: unknown;
+    studioSections?: unknown;
+    pricingSections?: unknown;
+  };
+
+  const home = await payload.findGlobal({ slug: "home-page-content", locale: "es" });
+  if (needsSections(home.sections) || !home.hero?.title) {
+    payload.logger.info("Backfilling home-page-content ...");
+    const featuresEs = siteContentData.es.features;
+    await payload.updateGlobal({
+      slug: "home-page-content",
+      locale: "es",
+      data: {
+        sections: toCmsSections(
+          (legacy.landingSections as typeof siteSettingsData.landingSections) ??
+            siteSettingsData.landingSections,
+        ),
+        studioCtas: toCmsSections(
+          (legacy.landingStudioCtas as typeof siteSettingsData.landingStudioCtas) ??
+            siteSettingsData.landingStudioCtas,
+        ),
+        hero: siteContentData.es.hero,
+        features: featuresEs,
+        quote: siteContentData.es.quote,
+      } as never,
+    });
+    const homeEs = await payload.findGlobal({ slug: "home-page-content", locale: "es" });
+    const rows = homeEs.features ?? [];
+    await payload.updateGlobal({
+      slug: "home-page-content",
+      locale: "en",
+      data: {
+        sections: toCmsSections(siteSettingsData.landingSections),
+        studioCtas: toCmsSections(siteSettingsData.landingStudioCtas),
+        hero: siteContentData.en.hero,
+        features: siteContentData.en.features.map((item, index) => ({
+          id: rows[index]?.id,
+          icon: item.icon,
+          title: item.title,
+          text: item.text,
+        })),
+        quote: siteContentData.en.quote,
+      } as never,
+    });
+  }
+
+  const about = await payload.findGlobal({ slug: "about-page-content", locale: "es" });
+  if (needsSections(about.sections) || !about.story?.title) {
+    payload.logger.info("Backfilling about-page-content ...");
+    await updatePageLocales(
+      payload,
+      "about-page-content",
+      aboutPageSeed(
+        "es",
+        (legacy.aboutSections as typeof siteSettingsData.aboutSections) ??
+          siteSettingsData.aboutSections,
+      ),
+      aboutPageSeed("en"),
+    );
+  }
+
+  const studio = await payload.findGlobal({ slug: "studio-page-content", locale: "es" });
+  if (needsSections(studio.sections) || !studio.studio?.title) {
+    payload.logger.info("Backfilling studio-page-content ...");
+    await updatePageLocales(
+      payload,
+      "studio-page-content",
+      {
+        sections: toCmsSections(
+          (legacy.studioSections as typeof siteSettingsData.studioSections) ??
+            siteSettingsData.studioSections,
+        ),
+        studio: siteContentData.es.studio,
+      },
+      {
+        sections: toCmsSections(siteSettingsData.studioSections),
+        studio: siteContentData.en.studio,
+      },
+    );
+  }
+
+  const pricing = await payload.findGlobal({ slug: "pricing-page-content", locale: "es" });
+  if (needsSections(pricing.sections) || !pricing.pricing?.title) {
+    payload.logger.info("Backfilling pricing-page-content ...");
+    await updatePageLocales(
+      payload,
+      "pricing-page-content",
+      {
+        sections: toCmsSections(
+          (legacy.pricingSections as typeof siteSettingsData.pricingSections) ??
+            siteSettingsData.pricingSections,
+        ),
+        pricing: siteContentData.es.pricing,
+      },
+      {
+        sections: toCmsSections(siteSettingsData.pricingSections),
+        pricing: siteContentData.en.pricing,
+      },
+    );
+  }
+
+  const classes = await payload.findGlobal({ slug: "classes-page-content", locale: "es" });
+  if (needsSections(classes.sections) || !classes.classes?.title) {
+    await updatePageLocales(
+      payload,
+      "classes-page-content",
+      {
+        sections: toCmsSections(siteSettingsData.classesSections),
+        classes: siteContentData.es.classes,
+      },
+      {
+        sections: toCmsSections(siteSettingsData.classesSections),
+        classes: siteContentData.en.classes,
+      },
+    );
+  }
+
+  const schedule = await payload.findGlobal({ slug: "schedule-page-content", locale: "es" });
+  if (needsSections(schedule.sections) || !schedule.schedule?.title) {
+    await updatePageLocales(
+      payload,
+      "schedule-page-content",
+      {
+        sections: toCmsSections(siteSettingsData.scheduleSections),
+        schedule: siteContentData.es.schedule,
+      },
+      {
+        sections: toCmsSections(siteSettingsData.scheduleSections),
+        schedule: siteContentData.en.schedule,
+      },
+    );
+  }
+
+  const contact = await payload.findGlobal({ slug: "contact-page-content", locale: "es" });
+  if (needsSections(contact.sections) || !contact.contact?.title) {
+    await updatePageLocales(
+      payload,
+      "contact-page-content",
+      {
+        sections: toCmsSections(siteSettingsData.contactSections),
+        contact: siteContentData.es.contact,
+      },
+      {
+        sections: toCmsSections(siteSettingsData.contactSections),
+        contact: siteContentData.en.contact,
+      },
+    );
+  }
+
+  const blog = await payload.findGlobal({ slug: "blog-page-content", locale: "es" });
+  if (needsSections(blog.sections) || !blog.blog?.title) {
+    await updatePageLocales(
+      payload,
+      "blog-page-content",
+      {
+        sections: toCmsSections(siteSettingsData.blogSections),
+        blog: siteContentData.es.blog,
+      },
+      {
+        sections: toCmsSections(siteSettingsData.blogSections),
+        blog: siteContentData.en.blog,
+      },
+    );
+  }
+}
+
 async function seedGlobals(payload: Payload): Promise<void> {
-  const existing = await payload.findGlobal({ slug: "site-content", locale: "es" });
+  const shared = await payload.findGlobal({ slug: "site-content", locale: "es" });
+  const home = await payload.findGlobal({ slug: "home-page-content", locale: "es" });
 
-  // Existing installs: backfill studio page copy + gallery if missing
-  if (existing.hero?.title) {
-    if (!existing.studio?.rental?.title) {
-      payload.logger.info("Backfilling studio page content ...");
-      await payload.updateGlobal({
-        slug: "site-content",
-        locale: "es",
-        data: { studio: siteContentData.es.studio },
-      });
-      await payload.updateGlobal({
-        slug: "site-content",
-        locale: "en",
-        data: { studio: siteContentData.en.studio },
-      });
-    }
-
-    // Migrate aboutPage from legacy JSON blob → structured groups
-    const aboutPage = existing.aboutPage as
-      | { story?: { title?: string | null } }
-      | null
-      | undefined;
-    if (!aboutPage?.story?.title) {
-      payload.logger.info("Backfilling structured about page content ...");
-      await payload.updateGlobal({
-        slug: "site-content",
-        locale: "es",
-        data: { aboutPage: siteContentData.es.aboutPage } as never,
-      });
-      await payload.updateGlobal({
-        slug: "site-content",
-        locale: "en",
-        data: { aboutPage: siteContentData.en.aboutPage } as never,
-      });
-    }
+  // Existing installs: migrate/backfill page globals + site chrome
+  if (shared.meta?.title || home.hero?.title) {
+    await backfillPageGlobals(payload);
 
     const settings = await payload.findGlobal({ slug: "site-settings", locale: "es" });
     const patch: Record<string, unknown> = {};
-    let refreshSiteContent = false;
 
     if (!settings.teacherName?.trim()) {
       patch.teacherName = siteSettingsData.teacherName;
-      refreshSiteContent = true;
     }
 
     if (!settings.studioGallery?.length) {
@@ -139,35 +420,17 @@ async function seedGlobals(payload: Payload): Promise<void> {
       }));
     }
 
-    // Migrate legacy boolean section maps → ordered arrays
-    if (!Array.isArray(settings.landingSections)) {
-      patch.landingSections = toCmsSections(siteSettingsData.landingSections);
-    }
-    if (!Array.isArray(settings.landingStudioCtas)) {
-      patch.landingStudioCtas = toCmsSections(siteSettingsData.landingStudioCtas);
-    }
     if (!settings.headerNav || typeof settings.headerNav !== "object") {
       patch.headerNav = siteSettingsData.headerNav;
-      // Page available; header link off by default (from JSON)
       patch.pages = { ...(settings.pages ?? {}), studio: true };
     }
-    if (!settings.footerNav || typeof settings.footerNav !== "object") {
-      patch.footerNav = siteSettingsData.footerNav;
+    if (needsSections(settings.footerNav)) {
+      patch.footerNav = toCmsSections(siteSettingsData.footerNav);
     }
-    if (!settings.footerSocial || typeof settings.footerSocial !== "object") {
-      patch.footerSocial = siteSettingsData.footerSocial;
-    }
-    if (!Array.isArray(settings.aboutSections)) {
-      patch.aboutSections = toCmsSections(siteSettingsData.aboutSections);
-    }
-    if (!Array.isArray(settings.studioSections)) {
-      patch.studioSections = toCmsSections(siteSettingsData.studioSections);
-    }
-    if (!Array.isArray(settings.pricingSections)) {
-      patch.pricingSections = toCmsSections(siteSettingsData.pricingSections);
+    if (needsSections(settings.footerSocial)) {
+      patch.footerSocial = toCmsSections(siteSettingsData.footerSocial);
     }
 
-    // Prefer placeholder taglines so teacherName can drive copy from admin
     if (
       typeof settings.tagline === "string" &&
       settings.tagline.includes("Cyane") &&
@@ -177,11 +440,10 @@ async function seedGlobals(payload: Payload): Promise<void> {
     }
 
     if (Object.keys(patch).length > 0) {
-      payload.logger.info("Backfilling site settings (teacherName / sections / gallery) ...");
+      payload.logger.info("Backfilling site settings ...");
       await payload.updateGlobal({
         slug: "site-settings",
         locale: "es",
-        // JSON seed shape is compatible at runtime; cast for Payload generated types
         data: patch as never,
       });
       if (patch.studioGallery || patch.tagline) {
@@ -196,35 +458,36 @@ async function seedGlobals(payload: Payload): Promise<void> {
       }
     }
 
-    if (refreshSiteContent) {
-      payload.logger.info(
-        "Refreshing site content with {teacherName} placeholders ...",
+    // Keep shared chrome populated even after page-field split
+    if (!shared.meta?.title) {
+      await updatePageLocales(
+        payload,
+        "site-content",
+        sharedSiteContent("es"),
+        sharedSiteContent("en"),
       );
-      await payload.updateGlobal({
-        slug: "site-content",
-        locale: "es",
-        data: siteContentData.es,
-      });
-      await payload.updateGlobal({
-        slug: "site-content",
-        locale: "en",
-        data: siteContentData.en,
-      });
     }
+
     return;
   }
 
-  payload.logger.info("Seeding site settings & content globals ...");
+  payload.logger.info("Seeding site settings & page content globals ...");
 
   const {
     tagline,
     contact: { address, ...contactRest },
     images,
-    landingSections,
-    landingStudioCtas,
-    aboutSections,
-    studioSections,
-    pricingSections,
+    landingSections: _landingSections,
+    landingStudioCtas: _landingStudioCtas,
+    aboutSections: _aboutSections,
+    studioSections: _studioSections,
+    pricingSections: _pricingSections,
+    classesSections: _classesSections,
+    scheduleSections: _scheduleSections,
+    contactSections: _contactSections,
+    blogSections: _blogSections,
+    footerNav,
+    footerSocial,
     ...settingsRest
   } = siteSettingsData;
 
@@ -233,11 +496,8 @@ async function seedGlobals(payload: Payload): Promise<void> {
     locale: "es",
     data: {
       ...settingsRest,
-      landingSections: toCmsSections(landingSections),
-      landingStudioCtas: toCmsSections(landingStudioCtas),
-      aboutSections: toCmsSections(aboutSections),
-      studioSections: toCmsSections(studioSections),
-      pricingSections: toCmsSections(pricingSections),
+      footerNav: toCmsSections(footerNav),
+      footerSocial: toCmsSections(footerSocial),
       tagline: tagline.es,
       contact: { ...contactRest, address: address.es },
       images: {
@@ -266,16 +526,14 @@ async function seedGlobals(payload: Payload): Promise<void> {
     } as never,
   });
 
-  await payload.updateGlobal({
-    slug: "site-content",
-    locale: "es",
-    data: siteContentData.es,
-  });
-  await payload.updateGlobal({
-    slug: "site-content",
-    locale: "en",
-    data: siteContentData.en,
-  });
+  await updatePageLocales(
+    payload,
+    "site-content",
+    sharedSiteContent("es"),
+    sharedSiteContent("en"),
+  );
+
+  await seedPageGlobals(payload);
 }
 
 /**

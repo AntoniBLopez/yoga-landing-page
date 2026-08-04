@@ -8,6 +8,7 @@ import { PageHero } from "@/presentation/components/layout/PageHero";
 import { PageShell } from "@/presentation/components/layout/PageShell";
 import { ScheduleSection } from "@/presentation/components/sections/ScheduleSection";
 import { assertPageVisible } from "@/presentation/lib/page-visibility";
+import { renderOrderedSections } from "@/presentation/lib/section-order";
 
 export const dynamic = "force-dynamic";
 
@@ -25,10 +26,12 @@ export default async function SchedulePage() {
   ]);
   assertPageVisible(settings.pages, "schedule");
 
-  return (
-    <PageShell>
+  const sections = renderOrderedSections(settings.scheduleSections, {
+    hero: () => (
       <PageHero label={t("label")} title={t("title")} subtitle={t("subtitle")} tone="sky" />
-      <ScheduleSection schedule={schedule} showHeading={false} />
-    </PageShell>
-  );
+    ),
+    list: () => <ScheduleSection schedule={schedule} showHeading={false} />,
+  });
+
+  return <PageShell>{sections}</PageShell>;
 }

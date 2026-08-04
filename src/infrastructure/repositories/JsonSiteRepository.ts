@@ -3,9 +3,15 @@ import type { SiteContentMessages, SiteSettings } from "@/domain/site";
 
 import {
   DEFAULT_ABOUT_SECTIONS,
+  DEFAULT_BLOG_SECTIONS,
+  DEFAULT_CLASSES_SECTIONS,
+  DEFAULT_CONTACT_SECTIONS,
+  DEFAULT_FOOTER_NAV,
+  DEFAULT_FOOTER_SOCIAL,
   DEFAULT_LANDING_SECTIONS,
   DEFAULT_LANDING_STUDIO_CTAS,
   DEFAULT_PRICING_SECTIONS,
+  DEFAULT_SCHEDULE_SECTIONS,
   DEFAULT_STUDIO_SECTIONS,
 } from "../data/section-order-defaults";
 import { injectSitePlaceholders } from "@/presentation/lib/inject-placeholders";
@@ -52,8 +58,8 @@ export class JsonSiteRepository {
       },
       pages: siteSettingsData.pages,
       headerNav: siteSettingsData.headerNav,
-      footerNav: siteSettingsData.footerNav,
-      footerSocial: siteSettingsData.footerSocial,
+      footerNav: mapSectionOrder(siteSettingsData.footerNav, DEFAULT_FOOTER_NAV),
+      footerSocial: mapSectionOrder(siteSettingsData.footerSocial, DEFAULT_FOOTER_SOCIAL),
       landingSections: mapSectionOrder(
         siteSettingsData.landingSections,
         DEFAULT_LANDING_SECTIONS,
@@ -71,6 +77,19 @@ export class JsonSiteRepository {
         siteSettingsData.pricingSections,
         DEFAULT_PRICING_SECTIONS,
       ),
+      classesSections: mapSectionOrder(
+        siteSettingsData.classesSections,
+        DEFAULT_CLASSES_SECTIONS,
+      ),
+      scheduleSections: mapSectionOrder(
+        siteSettingsData.scheduleSections,
+        DEFAULT_SCHEDULE_SECTIONS,
+      ),
+      contactSections: mapSectionOrder(
+        siteSettingsData.contactSections,
+        DEFAULT_CONTACT_SECTIONS,
+      ),
+      blogSections: mapSectionOrder(siteSettingsData.blogSections, DEFAULT_BLOG_SECTIONS),
     };
   }
 

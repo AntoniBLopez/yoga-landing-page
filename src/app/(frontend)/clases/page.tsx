@@ -8,6 +8,7 @@ import { PageHero } from "@/presentation/components/layout/PageHero";
 import { PageShell } from "@/presentation/components/layout/PageShell";
 import { ClassesSection } from "@/presentation/components/sections/ClassesSection";
 import { assertPageVisible } from "@/presentation/lib/page-visibility";
+import { renderOrderedSections } from "@/presentation/lib/section-order";
 
 export const dynamic = "force-dynamic";
 
@@ -25,10 +26,12 @@ export default async function ClassesPage() {
   ]);
   assertPageVisible(settings.pages, "classes");
 
-  return (
-    <PageShell>
+  const sections = renderOrderedSections(settings.classesSections, {
+    hero: () => (
       <PageHero label={t("label")} title={t("title")} subtitle={t("subtitle")} tone="sand" />
-      <ClassesSection classes={classes} showHeading={false} />
-    </PageShell>
-  );
+    ),
+    list: () => <ClassesSection classes={classes} showHeading={false} />,
+  });
+
+  return <PageShell>{sections}</PageShell>;
 }

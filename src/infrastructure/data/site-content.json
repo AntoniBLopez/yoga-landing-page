@@ -24,18 +24,22 @@
     },
     "features": [
       {
+        "icon": "leaf",
         "title": "Bienestar integral",
         "text": "Cuerpo, mente y emociones"
       },
       {
+        "icon": "sun",
         "title": "Todos los niveles",
         "text": "Clases adaptadas a ti"
       },
       {
+        "icon": "heart",
         "title": "Comunidad",
         "text": "Conecta y crece en comunidad"
       },
       {
+        "icon": "mapPin",
         "title": "Cerca de ti",
         "text": "En el corazón de Barcelona"
       }
@@ -308,18 +312,22 @@
     },
     "features": [
       {
+        "icon": "leaf",
         "title": "Whole-self wellbeing",
         "text": "Body, mind and emotions"
       },
       {
+        "icon": "sun",
         "title": "All levels",
         "text": "Classes adapted to you"
       },
       {
+        "icon": "heart",
         "title": "Community",
         "text": "Connect and grow together"
       },
       {
+        "icon": "mapPin",
         "title": "Close to you",
         "text": "In the heart of Barcelona"
       }

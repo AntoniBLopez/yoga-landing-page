@@ -62,25 +62,21 @@ export interface SiteHeaderNavVisibility {
   cta: boolean;
 }
 
-/** Per-link visibility in the footer explore column */
-export interface SiteFooterNavVisibility {
-  classes: boolean;
-  schedule: boolean;
-  studio: boolean;
-  about: boolean;
-  blog: boolean;
-  pricing: boolean;
-  contact: boolean;
-}
+export type FooterNavKey =
+  | "classes"
+  | "schedule"
+  | "studio"
+  | "about"
+  | "blog"
+  | "pricing"
+  | "contact";
 
-/** Per-network visibility in the footer social column */
-export interface SiteFooterSocialVisibility {
-  facebook: boolean;
-  instagram: boolean;
-  email: boolean;
-  whatsapp: boolean;
-  spotify: boolean;
-}
+export type FooterSocialKey =
+  | "facebook"
+  | "instagram"
+  | "email"
+  | "whatsapp"
+  | "spotify";
 
 /** Section entry for ordered/visibility-controlled page layouts */
 export interface OrderedSection {
@@ -103,14 +99,20 @@ export interface SiteSettings {
   images: SiteImages;
   pages: SitePageVisibility;
   headerNav: SiteHeaderNavVisibility;
-  footerNav: SiteFooterNavVisibility;
-  footerSocial: SiteFooterSocialVisibility;
+  /** Ordered explore links in the footer */
+  footerNav: OrderedSection[];
+  /** Ordered social links in the footer */
+  footerSocial: OrderedSection[];
   landingSections: OrderedSection[];
   /** CTAs inside the landing Studio block (explore / rental) */
   landingStudioCtas: OrderedSection[];
   aboutSections: OrderedSection[];
   studioSections: OrderedSection[];
   pricingSections: OrderedSection[];
+  classesSections: OrderedSection[];
+  scheduleSections: OrderedSection[];
+  contactSections: OrderedSection[];
+  blogSections: OrderedSection[];
 }
 
 /** Partial message tree merged over next-intl JSON defaults */

@@ -1,16 +1,22 @@
 import type { Locale } from "@/domain/entities";
 import type { SiteContentMessages, SiteSettings } from "@/domain/site";
+import { injectSitePlaceholders } from "@/presentation/lib/inject-placeholders";
 import { resolveImageUrl } from "@/infrastructure/repositories/media";
 
 import {
   DEFAULT_ABOUT_SECTIONS,
+  DEFAULT_BLOG_SECTIONS,
+  DEFAULT_CLASSES_SECTIONS,
+  DEFAULT_CONTACT_SECTIONS,
+  DEFAULT_FOOTER_NAV,
+  DEFAULT_FOOTER_SOCIAL,
   DEFAULT_LANDING_SECTIONS,
   DEFAULT_LANDING_STUDIO_CTAS,
   DEFAULT_PRICING_SECTIONS,
+  DEFAULT_SCHEDULE_SECTIONS,
   DEFAULT_STUDIO_SECTIONS,
 } from "../data/section-order-defaults";
 import { getPayloadClient } from "../payload/client";
-import { injectSitePlaceholders } from "@/presentation/lib/inject-placeholders";
 
 import { mapSectionOrder } from "./mapSectionOrder";
 import { mapSiteContentToMessages } from "./mapSiteContent";
@@ -20,14 +26,39 @@ function asBool(value: boolean | null | undefined, fallback: boolean): boolean {
   return typeof value === "boolean" ? value : fallback;
 }
 
+const ABOUT_PAGE_KEYS = [
+  "story",
+  "philosophy",
+  "training",
+  "values",
+  "offMat",
+  "cta",
+] as const;
+
 export class PayloadSiteRepository {
   async getSettings(locale: Locale): Promise<SiteSettings> {
     const payload = await getPayloadClient();
-    const doc = await payload.findGlobal({
-      slug: "site-settings",
-      locale,
-      depth: 1,
-    });
+    const [
+      doc,
+      home,
+      about,
+      studio,
+      pricing,
+      classes,
+      schedule,
+      contact,
+      blog,
+    ] = await Promise.all([
+      payload.findGlobal({ slug: "site-settings", locale, depth: 1 }),
+      payload.findGlobal({ slug: "home-page-content", locale, depth: 0 }),
+      payload.findGlobal({ slug: "about-page-content", locale, depth: 0 }),
+      payload.findGlobal({ slug: "studio-page-content", locale, depth: 0 }),
+      payload.findGlobal({ slug: "pricing-page-content", locale, depth: 0 }),
+      payload.findGlobal({ slug: "classes-page-content", locale, depth: 0 }),
+      payload.findGlobal({ slug: "schedule-page-content", locale, depth: 0 }),
+      payload.findGlobal({ slug: "contact-page-content", locale, depth: 0 }),
+      payload.findGlobal({ slug: "blog-page-content", locale, depth: 0 }),
+    ]);
 
     const defaults = DEFAULT_SITE_SETTINGS;
     const images = doc.images;
@@ -35,13 +66,25 @@ export class PayloadSiteRepository {
     const brandName = doc.brandName?.trim() || defaults.brandName;
     const nameVars = { teacherName, brandName };
 
-    // Legacy FAQ toggle → pricingSections.faq visibility when array is empty/missing
-    const pricingSections = mapSectionOrder(doc.pricingSections, DEFAULT_PRICING_SECTIONS);
+    const legacy = doc as {
+      landingSections?: unknown;
+      landingStudioCtas?: unknown;
+      aboutSections?: unknown;
+      studioSections?: unknown;
+      pricingSections?: unknown;
+      showPricingFaq?: boolean;
+    };
+
+    const pricingSections = mapSectionOrder(
+      pricing.sections ?? legacy.pricingSections,
+      DEFAULT_PRICING_SECTIONS,
+    );
     if (
-      !Array.isArray(doc.pricingSections) &&
-      typeof (doc as { showPricingFaq?: boolean }).showPricingFaq === "boolean"
+      !Array.isArray(pricing.sections) &&
+      !Array.isArray(legacy.pricingSections) &&
+      typeof legacy.showPricingFaq === "boolean"
     ) {
-      const faqVisible = (doc as { showPricingFaq?: boolean }).showPricingFaq !== false;
+      const faqVisible = legacy.showPricingFaq !== false;
       for (const section of pricingSections) {
         if (section.id === "faq") section.visible = faqVisible;
       }
@@ -124,47 +167,82 @@ export class PayloadSiteRepository {
         contact: asBool(doc.headerNav?.contact, defaults.headerNav.contact),
         cta: asBool(doc.headerNav?.cta, defaults.headerNav.cta),
       },
-      footerNav: {
-        classes: asBool(doc.footerNav?.classes, defaults.footerNav.classes),
-        schedule: asBool(doc.footerNav?.schedule, defaults.footerNav.schedule),
-        studio: asBool(doc.footerNav?.studio, defaults.footerNav.studio),
-        about: asBool(doc.footerNav?.about, defaults.footerNav.about),
-        blog: asBool(doc.footerNav?.blog, defaults.footerNav.blog),
-        pricing: asBool(doc.footerNav?.pricing, defaults.footerNav.pricing),
-        contact: asBool(doc.footerNav?.contact, defaults.footerNav.contact),
-      },
-      footerSocial: {
-        facebook: asBool(doc.footerSocial?.facebook, defaults.footerSocial.facebook),
-        instagram: asBool(doc.footerSocial?.instagram, defaults.footerSocial.instagram),
-        email: asBool(doc.footerSocial?.email, defaults.footerSocial.email),
-        whatsapp: asBool(doc.footerSocial?.whatsapp, defaults.footerSocial.whatsapp),
-        spotify: asBool(doc.footerSocial?.spotify, defaults.footerSocial.spotify),
-      },
-      landingSections: mapSectionOrder(doc.landingSections, DEFAULT_LANDING_SECTIONS),
-      landingStudioCtas: mapSectionOrder(doc.landingStudioCtas, DEFAULT_LANDING_STUDIO_CTAS),
-      aboutSections: mapSectionOrder(doc.aboutSections, DEFAULT_ABOUT_SECTIONS),
-      studioSections: mapSectionOrder(doc.studioSections, DEFAULT_STUDIO_SECTIONS),
+      footerNav: mapSectionOrder(doc.footerNav, DEFAULT_FOOTER_NAV),
+      footerSocial: mapSectionOrder(doc.footerSocial, DEFAULT_FOOTER_SOCIAL),
+      landingSections: mapSectionOrder(
+        home.sections ?? legacy.landingSections,
+        DEFAULT_LANDING_SECTIONS,
+      ),
+      landingStudioCtas: mapSectionOrder(
+        home.studioCtas ?? legacy.landingStudioCtas,
+        DEFAULT_LANDING_STUDIO_CTAS,
+      ),
+      aboutSections: mapSectionOrder(
+        about.sections ?? legacy.aboutSections,
+        DEFAULT_ABOUT_SECTIONS,
+      ),
+      studioSections: mapSectionOrder(
+        studio.sections ?? legacy.studioSections,
+        DEFAULT_STUDIO_SECTIONS,
+      ),
       pricingSections,
+      classesSections: mapSectionOrder(classes.sections, DEFAULT_CLASSES_SECTIONS),
+      scheduleSections: mapSectionOrder(schedule.sections, DEFAULT_SCHEDULE_SECTIONS),
+      contactSections: mapSectionOrder(contact.sections, DEFAULT_CONTACT_SECTIONS),
+      blogSections: mapSectionOrder(blog.sections, DEFAULT_BLOG_SECTIONS),
     };
   }
 
   async getContentMessages(locale: Locale): Promise<SiteContentMessages> {
     const payload = await getPayloadClient();
-    const doc = await payload.findGlobal({
-      slug: "site-content",
-      locale,
-      depth: 0,
-    });
+    const [
+      shared,
+      home,
+      about,
+      studio,
+      pricing,
+      classes,
+      schedule,
+      contact,
+      blog,
+    ] = await Promise.all([
+      payload.findGlobal({ slug: "site-content", locale, depth: 0 }),
+      payload.findGlobal({ slug: "home-page-content", locale, depth: 0 }),
+      payload.findGlobal({ slug: "about-page-content", locale, depth: 0 }),
+      payload.findGlobal({ slug: "studio-page-content", locale, depth: 0 }),
+      payload.findGlobal({ slug: "pricing-page-content", locale, depth: 0 }),
+      payload.findGlobal({ slug: "classes-page-content", locale, depth: 0 }),
+      payload.findGlobal({ slug: "schedule-page-content", locale, depth: 0 }),
+      payload.findGlobal({ slug: "contact-page-content", locale, depth: 0 }),
+      payload.findGlobal({ slug: "blog-page-content", locale, depth: 0 }),
+    ]);
+
+    const aboutPage: Record<string, unknown> = {};
+    for (const key of ABOUT_PAGE_KEYS) {
+      const value = about[key];
+      if (value) aboutPage[key] = value;
+    }
+
     return mapSiteContentToMessages({
-      ...doc,
-      aboutPage:
-        doc.aboutPage && typeof doc.aboutPage === "object" && !Array.isArray(doc.aboutPage)
-          ? (doc.aboutPage as Record<string, unknown>)
-          : null,
+      meta: shared.meta,
+      nav: shared.nav,
+      reviews: shared.reviews,
+      footer: shared.footer,
       pageMeta:
-        doc.pageMeta && typeof doc.pageMeta === "object" && !Array.isArray(doc.pageMeta)
-          ? (doc.pageMeta as Record<string, unknown>)
+        shared.pageMeta && typeof shared.pageMeta === "object" && !Array.isArray(shared.pageMeta)
+          ? (shared.pageMeta as Record<string, unknown>)
           : null,
+      hero: home.hero,
+      features: home.features,
+      quote: home.quote,
+      studio: studio.studio,
+      pricing: pricing.pricing,
+      classes: classes.classes,
+      schedule: schedule.schedule,
+      contact: contact.contact,
+      blog: blog.blog,
+      about: about.about,
+      aboutPage: Object.keys(aboutPage).length ? aboutPage : null,
     });
   }
 }

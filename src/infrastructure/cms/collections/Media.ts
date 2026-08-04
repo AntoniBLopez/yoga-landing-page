@@ -2,10 +2,15 @@ import path from "path";
 import { fileURLToPath } from "url";
 import type { CollectionConfig } from "payload";
 
+import { COLLECTIONS_ADMIN_GROUP } from "../adminGroups";
+
 const dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export const Media: CollectionConfig = {
   slug: "media",
+  admin: {
+    group: COLLECTIONS_ADMIN_GROUP,
+  },
   access: {
     read: () => true,
   },

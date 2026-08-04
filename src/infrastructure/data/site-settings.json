@@ -76,22 +76,22 @@
     "contact": true,
     "cta": true
   },
-  "footerNav": {
-    "classes": true,
-    "schedule": true,
-    "studio": true,
-    "about": true,
-    "blog": true,
-    "pricing": true,
-    "contact": true
-  },
-  "footerSocial": {
-    "facebook": true,
-    "instagram": true,
-    "email": true,
-    "whatsapp": true,
-    "spotify": true
-  },
+  "footerNav": [
+    { "id": "classes", "visible": true },
+    { "id": "schedule", "visible": true },
+    { "id": "studio", "visible": true },
+    { "id": "about", "visible": true },
+    { "id": "blog", "visible": true },
+    { "id": "pricing", "visible": true },
+    { "id": "contact", "visible": true }
+  ],
+  "footerSocial": [
+    { "id": "facebook", "visible": true },
+    { "id": "instagram", "visible": true },
+    { "id": "email", "visible": true },
+    { "id": "whatsapp", "visible": true },
+    { "id": "spotify", "visible": true }
+  ],
   "landingSections": [
     {
       "id": "hero",
@@ -213,5 +213,21 @@
       "id": "faq",
       "visible": true
     }
+  ],
+  "classesSections": [
+    { "id": "hero", "visible": true },
+    { "id": "list", "visible": true }
+  ],
+  "scheduleSections": [
+    { "id": "hero", "visible": true },
+    { "id": "list", "visible": true }
+  ],
+  "contactSections": [
+    { "id": "hero", "visible": true },
+    { "id": "form", "visible": true }
+  ],
+  "blogSections": [
+    { "id": "hero", "visible": true },
+    { "id": "list", "visible": true }
   ]
 }

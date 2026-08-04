@@ -4,7 +4,7 @@ import { useTranslations } from "next-intl";
 import type { SVGProps } from "react";
 
 import { WEB_CREATOR } from "@/config/site";
-import type { SiteFooterNavVisibility, SitePageVisibility } from "@/domain/site";
+import type { FooterNavKey, FooterSocialKey, SitePageVisibility } from "@/domain/site";
 import { useSite } from "@/presentation/components/providers/SiteProvider";
 import { Logo } from "@/presentation/components/ui/Logo";
 import { useContactLinks } from "@/presentation/hooks/useContactLinks";
@@ -14,20 +14,34 @@ import {
 } from "@/presentation/lib/nav-visibility";
 
 type FooterLink = {
-  key: keyof SiteFooterNavVisibility;
+  key: FooterNavKey;
   href: string;
   page: keyof SitePageVisibility;
 };
 
-const NAV_ITEMS: FooterLink[] = [
-  { key: "classes", href: "/clases", page: "classes" },
-  { key: "schedule", href: "/horarios", page: "schedule" },
-  { key: "studio", href: "/estudio", page: "studio" },
-  { key: "about", href: "/sobre-mi", page: "about" },
-  { key: "blog", href: "/blog", page: "blog" },
-  { key: "pricing", href: "/precios", page: "pricing" },
-  { key: "contact", href: "/contacto", page: "contact" },
-];
+const NAV_BY_KEY: Record<FooterNavKey, FooterLink> = {
+  classes: { key: "classes", href: "/clases", page: "classes" },
+  schedule: { key: "schedule", href: "/horarios", page: "schedule" },
+  studio: { key: "studio", href: "/estudio", page: "studio" },
+  about: { key: "about", href: "/sobre-mi", page: "about" },
+  blog: { key: "blog", href: "/blog", page: "blog" },
+  pricing: { key: "pricing", href: "/precios", page: "pricing" },
+  contact: { key: "contact", href: "/contacto", page: "contact" },
+};
+
+function isFooterNavKey(id: string): id is FooterNavKey {
+  return id in NAV_BY_KEY;
+}
+
+function isFooterSocialKey(id: string): id is FooterSocialKey {
+  return (
+    id === "facebook" ||
+    id === "instagram" ||
+    id === "email" ||
+    id === "whatsapp" ||
+    id === "spotify"
+  );
+}
 
 function iconProps(props: SVGProps<SVGSVGElement>) {
   return {
@@ -87,24 +101,46 @@ function SpotifyIcon(props: SVGProps<SVGSVGElement>) {
   );
 }
 
+const SOCIAL_ICONS = {
+  facebook: FacebookIcon,
+  instagram: InstagramIcon,
+  email: MailIcon,
+  whatsapp: WhatsAppIcon,
+  spotify: SpotifyIcon,
+} as const;
+
 export function Footer() {
   const t = useTranslations("footer");
   const tNav = useTranslations("nav");
   const site = useSite();
   const contact = useContactLinks();
 
-  const navItems = NAV_ITEMS.filter((item) =>
-    isFooterNavVisible(site, item.key, item.page),
-  );
-  const social = (
-    [
-      { key: "facebook" as const, href: contact.facebook, Icon: FacebookIcon },
-      { key: "instagram" as const, href: contact.instagram, Icon: InstagramIcon },
-      { key: "email" as const, href: contact.emailHref, Icon: MailIcon },
-      { key: "whatsapp" as const, href: contact.whatsappChatUrl, Icon: WhatsAppIcon },
-      { key: "spotify" as const, href: contact.spotify, Icon: SpotifyIcon },
-    ] as const
-  ).filter((item) => isFooterSocialVisible(site, item.key) && Boolean(item.href));
+  const socialHrefs: Record<FooterSocialKey, string> = {
+    facebook: contact.facebook,
+    instagram: contact.instagram,
+    email: contact.emailHref,
+    whatsapp: contact.whatsappChatUrl,
+    spotify: contact.spotify,
+  };
+
+  const navItems = (site.footerNav ?? [])
+    .filter(
+      (item) =>
+        isFooterNavKey(item.id) && isFooterNavVisible(site, item.id, NAV_BY_KEY[item.id].page),
+    )
+    .map((item) => NAV_BY_KEY[item.id as FooterNavKey]);
+
+  const social = (site.footerSocial ?? [])
+    .filter(
+      (item) =>
+        isFooterSocialKey(item.id) &&
+        isFooterSocialVisible(site, item.id) &&
+        Boolean(socialHrefs[item.id]),
+    )
+    .map((item) => {
+      const key = item.id as FooterSocialKey;
+      return { key, href: socialHrefs[key], Icon: SOCIAL_ICONS[key] };
+    });
 
   return (
     <footer className="bg-deep text-sky">

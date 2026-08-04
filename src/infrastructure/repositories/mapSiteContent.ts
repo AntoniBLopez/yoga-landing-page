@@ -31,7 +31,11 @@ type ContentDoc = {
   meta?: StringRecord | null;
   nav?: StringRecord | null;
   hero?: StringRecord | null;
-  features?: Array<{ title?: string | null; text?: string | null }> | null;
+  features?: Array<{
+    icon?: string | null;
+    title?: string | null;
+    text?: string | null;
+  }> | null;
   studio?: StudioDoc | null;
   quote?: StringRecord | null;
   classes?: StringRecord | null;
@@ -96,16 +100,20 @@ export function mapSiteContentToMessages(doc: ContentDoc | null | undefined): Si
   if (hero) messages.hero = hero;
 
   if (doc.features?.length) {
-    const keyed: Record<string, { title: string; text: string }> = {};
-    doc.features.forEach((item, index) => {
-      if (!item?.title || !item?.text) return;
-      keyed[`item${index}`] = { title: item.title, text: item.text };
-    });
-    if (Object.keys(keyed).length) {
+    const list = doc.features
+      .filter((item) => item?.title?.trim() && item?.text?.trim())
+      .map((item) => ({
+        icon: item.icon?.trim() || "leaf",
+        title: item.title as string,
+        text: item.text as string,
+      }));
+    if (list.length) {
+      const keyed: Record<string, { title: string; text: string }> = {};
+      list.forEach((item, index) => {
+        keyed[`item${index}`] = { title: item.title, text: item.text };
+      });
       messages.features = keyed;
-      messages.featuresList = doc.features
-        .filter((item) => item?.title && item?.text)
-        .map((item) => ({ title: item.title as string, text: item.text as string }));
+      messages.featuresList = list;
     }
   }
 

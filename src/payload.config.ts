@@ -15,8 +15,16 @@ import { Reviews } from "./infrastructure/cms/collections/Reviews";
 import { ScheduleSlots } from "./infrastructure/cms/collections/ScheduleSlots";
 import { Teachers } from "./infrastructure/cms/collections/Teachers";
 import { Users } from "./infrastructure/cms/collections/Users";
+import { AboutPageContent } from "./infrastructure/cms/globals/AboutPageContent";
+import { BlogPageContent } from "./infrastructure/cms/globals/BlogPageContent";
+import { ClassesPageContent } from "./infrastructure/cms/globals/ClassesPageContent";
+import { ContactPageContent } from "./infrastructure/cms/globals/ContactPageContent";
+import { HomePageContent } from "./infrastructure/cms/globals/HomePageContent";
+import { PricingPageContent } from "./infrastructure/cms/globals/PricingPageContent";
+import { SchedulePageContent } from "./infrastructure/cms/globals/SchedulePageContent";
 import { SiteContent } from "./infrastructure/cms/globals/SiteContent";
 import { SiteSettings } from "./infrastructure/cms/globals/SiteSettings";
+import { StudioPageContent } from "./infrastructure/cms/globals/StudioPageContent";
 import { seed } from "./infrastructure/cms/seed";
 
 const filename = fileURLToPath(import.meta.url);
@@ -43,7 +51,18 @@ export default buildConfig({
     Reviews,
     Posts,
   ],
-  globals: [SiteSettings, SiteContent],
+  globals: [
+    SiteSettings,
+    SiteContent,
+    HomePageContent,
+    AboutPageContent,
+    StudioPageContent,
+    PricingPageContent,
+    ClassesPageContent,
+    SchedulePageContent,
+    ContactPageContent,
+    BlogPageContent,
+  ],
   editor: lexicalEditor(),
   localization: {
     locales: [

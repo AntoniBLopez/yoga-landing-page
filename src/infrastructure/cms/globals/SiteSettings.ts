@@ -1,20 +1,14 @@
 import type { GlobalConfig } from "payload";
 
 import { ColorField, Group, Toggle } from "./fieldHelpers";
-import {
-  aboutSectionsField,
-  landingSectionsField,
-  landingStudioCtasField,
-  pricingSectionsField,
-  studioSectionsField,
-} from "./sectionOrderFields";
+import { footerNavField, footerSocialField } from "./sectionOrderFields";
 
 export const SiteSettings: GlobalConfig = {
   slug: "site-settings",
   label: "Ajustes del sitio",
   admin: {
     description:
-      "Marca, logo, colores, contacto, imágenes principales y qué páginas/secciones se muestran.",
+      "Marca, logo, colores, contacto, imágenes y visibilidad de páginas/menús. El orden de secciones de cada página está en Colecciones.",
   },
   access: {
     read: () => true,
@@ -290,37 +284,8 @@ export const SiteSettings: GlobalConfig = {
         {
           label: "Menú footer",
           description:
-            "Muestra u oculta cada enlace de «Explorar» en el footer. Las páginas desactivadas en «Páginas visibles» nunca aparecen.",
-          fields: [
-            Group("footerNav", "Enlaces del footer", [
-              Toggle("classes", "Clases", true),
-              Toggle("schedule", "Horarios", true),
-              Toggle("studio", "Estudio", true),
-              Toggle("about", "Sobre mí", true),
-              Toggle("blog", "Blog", true),
-              Toggle("pricing", "Precios", true),
-              Toggle("contact", "Contacto", true),
-            ]),
-            Group("footerSocial", "Redes sociales del footer", [
-              Toggle("facebook", "Facebook", true),
-              Toggle("instagram", "Instagram", true),
-              Toggle("email", "Email", true),
-              Toggle("whatsapp", "WhatsApp", true),
-              Toggle("spotify", "Spotify", true),
-            ]),
-          ],
-        },
-        {
-          label: "Orden de secciones",
-          description:
-            "Arrastra las filas para reordenar. Desactiva «Visible» para ocultar. Si falta alguna sección, se añade al final con el orden por defecto.",
-          fields: [
-            landingSectionsField,
-            landingStudioCtasField,
-            aboutSectionsField,
-            studioSectionsField,
-            pricingSectionsField,
-          ],
+            "Arrastra para reordenar enlaces y redes. Desactiva «Visible» para ocultar. Las páginas desactivadas en «Páginas visibles» no aparecen aunque el enlace esté activo.",
+          fields: [footerNavField, footerSocialField],
         },
       ],
     },

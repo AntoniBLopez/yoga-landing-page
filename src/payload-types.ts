@@ -104,10 +104,26 @@ export interface Config {
   globals: {
     'site-settings': SiteSetting;
     'site-content': SiteContent;
+    'home-page-content': HomePageContent;
+    'about-page-content': AboutPageContent;
+    'studio-page-content': StudioPageContent;
+    'pricing-page-content': PricingPageContent;
+    'classes-page-content': ClassesPageContent;
+    'schedule-page-content': SchedulePageContent;
+    'contact-page-content': ContactPageContent;
+    'blog-page-content': BlogPageContent;
   };
   globalsSelect: {
     'site-settings': SiteSettingsSelect<false> | SiteSettingsSelect<true>;
     'site-content': SiteContentSelect<false> | SiteContentSelect<true>;
+    'home-page-content': HomePageContentSelect<false> | HomePageContentSelect<true>;
+    'about-page-content': AboutPageContentSelect<false> | AboutPageContentSelect<true>;
+    'studio-page-content': StudioPageContentSelect<false> | StudioPageContentSelect<true>;
+    'pricing-page-content': PricingPageContentSelect<false> | PricingPageContentSelect<true>;
+    'classes-page-content': ClassesPageContentSelect<false> | ClassesPageContentSelect<true>;
+    'schedule-page-content': SchedulePageContentSelect<false> | SchedulePageContentSelect<true>;
+    'contact-page-content': ContactPageContentSelect<false> | ContactPageContentSelect<true>;
+    'blog-page-content': BlogPageContentSelect<false> | BlogPageContentSelect<true>;
   };
   locale: 'es' | 'en';
   widgets: {
@@ -714,7 +730,7 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
   createdAt?: T;
 }
 /**
- * Marca, logo, colores, contacto, imágenes principales y qué páginas/secciones se muestran.
+ * Marca, logo, colores, contacto, imágenes y visibilidad de páginas/menús. El orden de secciones de cada página está en Colecciones.
  *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "site-settings".
@@ -851,78 +867,22 @@ export interface SiteSetting {
     contact?: boolean | null;
     cta?: boolean | null;
   };
-  footerNav?: {
-    classes?: boolean | null;
-    schedule?: boolean | null;
-    studio?: boolean | null;
-    about?: boolean | null;
-    blog?: boolean | null;
-    pricing?: boolean | null;
-    contact?: boolean | null;
-  };
-  footerSocial?: {
-    facebook?: boolean | null;
-    instagram?: boolean | null;
-    email?: boolean | null;
-    whatsapp?: boolean | null;
-    spotify?: boolean | null;
-  };
   /**
-   * Arrastra para cambiar el orden. Desactiva «Visible» para ocultar una sección.
+   * Arrastra para reordenar. Desactiva «Visible» para ocultar. Las páginas desactivadas en «Páginas visibles» nunca aparecen.
    */
-  landingSections?:
+  footerNav?:
     | {
-        section:
-          | 'hero'
-          | 'features'
-          | 'studio'
-          | 'quote'
-          | 'classes'
-          | 'schedule'
-          | 'about'
-          | 'pricing'
-          | 'reviews'
-          | 'contact';
+        section: 'classes' | 'schedule' | 'studio' | 'about' | 'blog' | 'pricing' | 'contact';
         visible?: boolean | null;
         id?: string | null;
       }[]
     | null;
   /**
-   * Arrastra para poner uno encima del otro. Desactiva «Visible» para ocultar un botón.
+   * Arrastra para reordenar. Desactiva «Visible» para ocultar una red.
    */
-  landingStudioCtas?:
+  footerSocial?:
     | {
-        section: 'explore' | 'rental';
-        visible?: boolean | null;
-        id?: string | null;
-      }[]
-    | null;
-  /**
-   * Arrastra para cambiar el orden. Desactiva «Visible» para ocultar una sección.
-   */
-  aboutSections?:
-    | {
-        section: 'intro' | 'story' | 'philosophy' | 'training' | 'stats' | 'reviews' | 'values' | 'offMat' | 'cta';
-        visible?: boolean | null;
-        id?: string | null;
-      }[]
-    | null;
-  /**
-   * Arrastra para cambiar el orden. Desactiva «Visible» para ocultar una sección.
-   */
-  studioSections?:
-    | {
-        section: 'hero' | 'intro' | 'gallery' | 'rental';
-        visible?: boolean | null;
-        id?: string | null;
-      }[]
-    | null;
-  /**
-   * Arrastra para cambiar el orden. Desactiva «Visible» para ocultar una sección.
-   */
-  pricingSections?:
-    | {
-        section: 'hero' | 'plans' | 'faq';
+        section: 'facebook' | 'instagram' | 'email' | 'whatsapp' | 'spotify';
         visible?: boolean | null;
         id?: string | null;
       }[]
@@ -931,7 +891,7 @@ export interface SiteSetting {
   createdAt?: string | null;
 }
 /**
- * Títulos, subtítulos y textos de la web. Cambia el idioma arriba a la derecha del admin para editar ES/EN.
+ * Meta, menú, footer, reseñas y SEO. Los textos de cada página están en Colecciones → «… (página)».
  *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "site-content".
@@ -953,6 +913,73 @@ export interface SiteContent {
     contact?: string | null;
     cta?: string | null;
   };
+  reviews?: {
+    label?: string | null;
+    title?: string | null;
+  };
+  footer?: {
+    tagline?: string | null;
+    explore?: string | null;
+    follow?: string | null;
+    /**
+     * Ej. © {year} Blau Yoga. Todos los derechos reservados.
+     */
+    rights?: string | null;
+    values?: string | null;
+  };
+  /**
+   * Ej. { "classes": { "metaTitle": "...", "metaDescription": "..." }, ... }
+   */
+  pageMeta?:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * Orden de secciones y textos propios de la home.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "home-page-content".
+ */
+export interface HomePageContent {
+  id: number;
+  /**
+   * Arrastra para reordenar las secciones de la home. Desactiva «Visible» para ocultarlas.
+   */
+  sections?:
+    | {
+        section:
+          | 'hero'
+          | 'features'
+          | 'studio'
+          | 'quote'
+          | 'classes'
+          | 'schedule'
+          | 'about'
+          | 'pricing'
+          | 'reviews'
+          | 'contact';
+        visible?: boolean | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Arrastra para poner uno encima del otro. Desactiva «Visible» para ocultar un botón.
+   */
+  studioCtas?:
+    | {
+        section: 'explore' | 'rental';
+        visible?: boolean | null;
+        id?: string | null;
+      }[]
+    | null;
   hero: {
     eyebrow?: string | null;
     title: string;
@@ -960,10 +987,202 @@ export interface SiteContent {
     cta?: string | null;
     imageAlt?: string | null;
   };
+  /**
+   * Arrastra para reordenar. Si el listado está vacío se usan los textos e iconos por defecto.
+   */
   features?:
     | {
+        icon: 'leaf' | 'sun' | 'heart' | 'mapPin' | 'users' | 'waves' | 'sparkles' | 'flower';
         title: string;
         text: string;
+        id?: string | null;
+      }[]
+    | null;
+  quote?: {
+    text?: string | null;
+    author?: string | null;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * Orden de secciones y textos de /sobre-mi. Si no editas nada, la web usa los valores por defecto.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "about-page-content".
+ */
+export interface AboutPageContent {
+  id: number;
+  /**
+   * Arrastra para reordenar las secciones de /sobre-mi. Desactiva «Visible» para ocultarlas.
+   */
+  sections?:
+    | {
+        section: 'intro' | 'story' | 'philosophy' | 'training' | 'stats' | 'reviews' | 'values' | 'offMat' | 'cta';
+        visible?: boolean | null;
+        id?: string | null;
+      }[]
+    | null;
+  about?: {
+    label?: string | null;
+    /**
+     * Ej. Hola, soy {name}
+     */
+    title?: string | null;
+    cta?: string | null;
+    imageAlt?: string | null;
+  };
+  story?: {
+    label?: string | null;
+    title?: string | null;
+    subtitle?: string | null;
+    steps?: {
+      discover?: {
+        label?: string | null;
+        title?: string | null;
+        text?: string | null;
+      };
+      train?: {
+        label?: string | null;
+        title?: string | null;
+        text?: string | null;
+      };
+      change?: {
+        label?: string | null;
+        title?: string | null;
+        text?: string | null;
+      };
+      teach?: {
+        label?: string | null;
+        title?: string | null;
+        text?: string | null;
+      };
+    };
+  };
+  philosophy?: {
+    label?: string | null;
+    title?: string | null;
+    subtitle?: string | null;
+    points?: {
+      accessible?: {
+        title?: string | null;
+        text?: string | null;
+      };
+      breath?: {
+        title?: string | null;
+        text?: string | null;
+      };
+      levels?: {
+        title?: string | null;
+        text?: string | null;
+      };
+      safe?: {
+        title?: string | null;
+        text?: string | null;
+      };
+    };
+  };
+  training?: {
+    label?: string | null;
+    title?: string | null;
+    subtitle?: string | null;
+    items?: {
+      main?: {
+        label?: string | null;
+        title?: string | null;
+        text?: string | null;
+      };
+      extra?: {
+        label?: string | null;
+        title?: string | null;
+        text?: string | null;
+      };
+      retreats?: {
+        label?: string | null;
+        title?: string | null;
+        text?: string | null;
+      };
+    };
+  };
+  values?: {
+    label?: string | null;
+    title?: string | null;
+    subtitle?: string | null;
+    items?: {
+      authenticity?: {
+        title?: string | null;
+        text?: string | null;
+      };
+      listening?: {
+        title?: string | null;
+        text?: string | null;
+      };
+      community?: {
+        title?: string | null;
+        text?: string | null;
+      };
+      awareness?: {
+        title?: string | null;
+        text?: string | null;
+      };
+      accessibility?: {
+        title?: string | null;
+        text?: string | null;
+      };
+    };
+  };
+  offMat?: {
+    label?: string | null;
+    title?: string | null;
+    subtitle?: string | null;
+    items?: {
+      barcelona?: {
+        label?: string | null;
+        title?: string | null;
+        text?: string | null;
+      };
+      rituals?: {
+        label?: string | null;
+        title?: string | null;
+        text?: string | null;
+      };
+      inspire?: {
+        label?: string | null;
+        title?: string | null;
+        text?: string | null;
+      };
+    };
+  };
+  cta?: {
+    label?: string | null;
+    title?: string | null;
+    subtitle?: string | null;
+    primary?: string | null;
+    whatsapp?: string | null;
+    instagram?: string | null;
+    /**
+     * Puedes usar {teacherName}.
+     */
+    whatsappMessage?: string | null;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * Orden de secciones y textos del estudio (también usa la home en el bloque Estudio).
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "studio-page-content".
+ */
+export interface StudioPageContent {
+  id: number;
+  /**
+   * Arrastra para reordenar las secciones de /estudio. Desactiva «Visible» para ocultarlas.
+   */
+  sections?:
+    | {
+        section: 'hero' | 'intro' | 'gallery' | 'rental';
+        visible?: boolean | null;
         id?: string | null;
       }[]
     | null;
@@ -990,22 +1209,27 @@ export interface SiteContent {
       };
     };
   };
-  quote?: {
-    text?: string | null;
-    author?: string | null;
-  };
-  classes?: {
-    label?: string | null;
-    title?: string | null;
-    subtitle?: string | null;
-    cta?: string | null;
-  };
-  schedule?: {
-    label?: string | null;
-    title?: string | null;
-    subtitle?: string | null;
-    book?: string | null;
-  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * Orden de secciones y textos de /precios (y el bloque de precios en la home).
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "pricing-page-content".
+ */
+export interface PricingPageContent {
+  id: number;
+  /**
+   * Arrastra para reordenar las secciones de /precios. Desactiva «Visible» para ocultarlas.
+   */
+  sections?:
+    | {
+        section: 'hero' | 'plans' | 'faq';
+        visible?: boolean | null;
+        id?: string | null;
+      }[]
+    | null;
   pricing?: {
     label?: string | null;
     title?: string | null;
@@ -1018,35 +1242,108 @@ export interface SiteContent {
       subtitle?: string | null;
     };
   };
-  reviews?: {
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * Orden de secciones y textos de /clases (y el bloque de clases en la home).
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "classes-page-content".
+ */
+export interface ClassesPageContent {
+  id: number;
+  /**
+   * Arrastra para reordenar las secciones de /clases. Desactiva «Visible» para ocultarlas.
+   */
+  sections?:
+    | {
+        section: 'hero' | 'list';
+        visible?: boolean | null;
+        id?: string | null;
+      }[]
+    | null;
+  classes?: {
     label?: string | null;
     title?: string | null;
+    subtitle?: string | null;
+    cta?: string | null;
   };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * Orden de secciones y textos de /horarios (y el bloque de horarios en la home).
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "schedule-page-content".
+ */
+export interface SchedulePageContent {
+  id: number;
+  /**
+   * Arrastra para reordenar las secciones de /horarios. Desactiva «Visible» para ocultarlas.
+   */
+  sections?:
+    | {
+        section: 'hero' | 'list';
+        visible?: boolean | null;
+        id?: string | null;
+      }[]
+    | null;
+  schedule?: {
+    label?: string | null;
+    title?: string | null;
+    subtitle?: string | null;
+    book?: string | null;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * Orden de secciones y textos de /contacto (y el bloque de contacto en la home).
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contact-page-content".
+ */
+export interface ContactPageContent {
+  id: number;
+  /**
+   * Arrastra para reordenar las secciones de /contacto. Desactiva «Visible» para ocultarlas.
+   */
+  sections?:
+    | {
+        section: 'hero' | 'form';
+        visible?: boolean | null;
+        id?: string | null;
+      }[]
+    | null;
   contact?: {
     label?: string | null;
     title?: string | null;
     subtitle?: string | null;
     imageAlt?: string | null;
   };
-  about?: {
-    label?: string | null;
-    /**
-     * Ej. Hola, soy {name}
-     */
-    title?: string | null;
-    cta?: string | null;
-    imageAlt?: string | null;
-  };
-  footer?: {
-    tagline?: string | null;
-    explore?: string | null;
-    follow?: string | null;
-    /**
-     * Ej. © {year} Blau Yoga. Todos los derechos reservados.
-     */
-    rights?: string | null;
-    values?: string | null;
-  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * Orden de secciones y textos de /blog.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "blog-page-content".
+ */
+export interface BlogPageContent {
+  id: number;
+  /**
+   * Arrastra para reordenar las secciones de /blog. Desactiva «Visible» para ocultarlas.
+   */
+  sections?:
+    | {
+        section: 'hero' | 'list';
+        visible?: boolean | null;
+        id?: string | null;
+      }[]
+    | null;
   blog?: {
     label?: string | null;
     title?: string | null;
@@ -1057,153 +1354,6 @@ export interface SiteContent {
     back?: string | null;
     empty?: string | null;
   };
-  aboutPage?: {
-    story?: {
-      label?: string | null;
-      title?: string | null;
-      subtitle?: string | null;
-      steps?: {
-        discover?: {
-          label?: string | null;
-          title?: string | null;
-          text?: string | null;
-        };
-        train?: {
-          label?: string | null;
-          title?: string | null;
-          text?: string | null;
-        };
-        change?: {
-          label?: string | null;
-          title?: string | null;
-          text?: string | null;
-        };
-        teach?: {
-          label?: string | null;
-          title?: string | null;
-          text?: string | null;
-        };
-      };
-    };
-    philosophy?: {
-      label?: string | null;
-      title?: string | null;
-      subtitle?: string | null;
-      points?: {
-        accessible?: {
-          title?: string | null;
-          text?: string | null;
-        };
-        breath?: {
-          title?: string | null;
-          text?: string | null;
-        };
-        levels?: {
-          title?: string | null;
-          text?: string | null;
-        };
-        safe?: {
-          title?: string | null;
-          text?: string | null;
-        };
-      };
-    };
-    training?: {
-      label?: string | null;
-      title?: string | null;
-      subtitle?: string | null;
-      items?: {
-        main?: {
-          label?: string | null;
-          title?: string | null;
-          text?: string | null;
-        };
-        extra?: {
-          label?: string | null;
-          title?: string | null;
-          text?: string | null;
-        };
-        retreats?: {
-          label?: string | null;
-          title?: string | null;
-          text?: string | null;
-        };
-      };
-    };
-    values?: {
-      label?: string | null;
-      title?: string | null;
-      subtitle?: string | null;
-      items?: {
-        authenticity?: {
-          title?: string | null;
-          text?: string | null;
-        };
-        listening?: {
-          title?: string | null;
-          text?: string | null;
-        };
-        community?: {
-          title?: string | null;
-          text?: string | null;
-        };
-        awareness?: {
-          title?: string | null;
-          text?: string | null;
-        };
-        accessibility?: {
-          title?: string | null;
-          text?: string | null;
-        };
-      };
-    };
-    offMat?: {
-      label?: string | null;
-      title?: string | null;
-      subtitle?: string | null;
-      items?: {
-        barcelona?: {
-          label?: string | null;
-          title?: string | null;
-          text?: string | null;
-        };
-        rituals?: {
-          label?: string | null;
-          title?: string | null;
-          text?: string | null;
-        };
-        inspire?: {
-          label?: string | null;
-          title?: string | null;
-          text?: string | null;
-        };
-      };
-    };
-    cta?: {
-      label?: string | null;
-      title?: string | null;
-      subtitle?: string | null;
-      primary?: string | null;
-      whatsapp?: string | null;
-      instagram?: string | null;
-      /**
-       * Puedes usar {teacherName}.
-       */
-      whatsappMessage?: string | null;
-    };
-  };
-  /**
-   * Ej. { "classes": { "metaTitle": "...", "metaDescription": "..." }, ... }
-   */
-  pageMeta?:
-    | {
-        [k: string]: unknown;
-      }
-    | unknown[]
-    | string
-    | number
-    | boolean
-    | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -1292,52 +1442,11 @@ export interface SiteSettingsSelect<T extends boolean = true> {
   footerNav?:
     | T
     | {
-        classes?: T;
-        schedule?: T;
-        studio?: T;
-        about?: T;
-        blog?: T;
-        pricing?: T;
-        contact?: T;
+        section?: T;
+        visible?: T;
+        id?: T;
       };
   footerSocial?:
-    | T
-    | {
-        facebook?: T;
-        instagram?: T;
-        email?: T;
-        whatsapp?: T;
-        spotify?: T;
-      };
-  landingSections?:
-    | T
-    | {
-        section?: T;
-        visible?: T;
-        id?: T;
-      };
-  landingStudioCtas?:
-    | T
-    | {
-        section?: T;
-        visible?: T;
-        id?: T;
-      };
-  aboutSections?:
-    | T
-    | {
-        section?: T;
-        visible?: T;
-        id?: T;
-      };
-  studioSections?:
-    | T
-    | {
-        section?: T;
-        visible?: T;
-        id?: T;
-      };
-  pricingSections?:
     | T
     | {
         section?: T;
@@ -1372,6 +1481,45 @@ export interface SiteContentSelect<T extends boolean = true> {
         contact?: T;
         cta?: T;
       };
+  reviews?:
+    | T
+    | {
+        label?: T;
+        title?: T;
+      };
+  footer?:
+    | T
+    | {
+        tagline?: T;
+        explore?: T;
+        follow?: T;
+        rights?: T;
+        values?: T;
+      };
+  pageMeta?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "home-page-content_select".
+ */
+export interface HomePageContentSelect<T extends boolean = true> {
+  sections?:
+    | T
+    | {
+        section?: T;
+        visible?: T;
+        id?: T;
+      };
+  studioCtas?:
+    | T
+    | {
+        section?: T;
+        visible?: T;
+        id?: T;
+      };
   hero?:
     | T
     | {
@@ -1384,8 +1532,245 @@ export interface SiteContentSelect<T extends boolean = true> {
   features?:
     | T
     | {
+        icon?: T;
         title?: T;
         text?: T;
+        id?: T;
+      };
+  quote?:
+    | T
+    | {
+        text?: T;
+        author?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "about-page-content_select".
+ */
+export interface AboutPageContentSelect<T extends boolean = true> {
+  sections?:
+    | T
+    | {
+        section?: T;
+        visible?: T;
+        id?: T;
+      };
+  about?:
+    | T
+    | {
+        label?: T;
+        title?: T;
+        cta?: T;
+        imageAlt?: T;
+      };
+  story?:
+    | T
+    | {
+        label?: T;
+        title?: T;
+        subtitle?: T;
+        steps?:
+          | T
+          | {
+              discover?:
+                | T
+                | {
+                    label?: T;
+                    title?: T;
+                    text?: T;
+                  };
+              train?:
+                | T
+                | {
+                    label?: T;
+                    title?: T;
+                    text?: T;
+                  };
+              change?:
+                | T
+                | {
+                    label?: T;
+                    title?: T;
+                    text?: T;
+                  };
+              teach?:
+                | T
+                | {
+                    label?: T;
+                    title?: T;
+                    text?: T;
+                  };
+            };
+      };
+  philosophy?:
+    | T
+    | {
+        label?: T;
+        title?: T;
+        subtitle?: T;
+        points?:
+          | T
+          | {
+              accessible?:
+                | T
+                | {
+                    title?: T;
+                    text?: T;
+                  };
+              breath?:
+                | T
+                | {
+                    title?: T;
+                    text?: T;
+                  };
+              levels?:
+                | T
+                | {
+                    title?: T;
+                    text?: T;
+                  };
+              safe?:
+                | T
+                | {
+                    title?: T;
+                    text?: T;
+                  };
+            };
+      };
+  training?:
+    | T
+    | {
+        label?: T;
+        title?: T;
+        subtitle?: T;
+        items?:
+          | T
+          | {
+              main?:
+                | T
+                | {
+                    label?: T;
+                    title?: T;
+                    text?: T;
+                  };
+              extra?:
+                | T
+                | {
+                    label?: T;
+                    title?: T;
+                    text?: T;
+                  };
+              retreats?:
+                | T
+                | {
+                    label?: T;
+                    title?: T;
+                    text?: T;
+                  };
+            };
+      };
+  values?:
+    | T
+    | {
+        label?: T;
+        title?: T;
+        subtitle?: T;
+        items?:
+          | T
+          | {
+              authenticity?:
+                | T
+                | {
+                    title?: T;
+                    text?: T;
+                  };
+              listening?:
+                | T
+                | {
+                    title?: T;
+                    text?: T;
+                  };
+              community?:
+                | T
+                | {
+                    title?: T;
+                    text?: T;
+                  };
+              awareness?:
+                | T
+                | {
+                    title?: T;
+                    text?: T;
+                  };
+              accessibility?:
+                | T
+                | {
+                    title?: T;
+                    text?: T;
+                  };
+            };
+      };
+  offMat?:
+    | T
+    | {
+        label?: T;
+        title?: T;
+        subtitle?: T;
+        items?:
+          | T
+          | {
+              barcelona?:
+                | T
+                | {
+                    label?: T;
+                    title?: T;
+                    text?: T;
+                  };
+              rituals?:
+                | T
+                | {
+                    label?: T;
+                    title?: T;
+                    text?: T;
+                  };
+              inspire?:
+                | T
+                | {
+                    label?: T;
+                    title?: T;
+                    text?: T;
+                  };
+            };
+      };
+  cta?:
+    | T
+    | {
+        label?: T;
+        title?: T;
+        subtitle?: T;
+        primary?: T;
+        whatsapp?: T;
+        instagram?: T;
+        whatsappMessage?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "studio-page-content_select".
+ */
+export interface StudioPageContentSelect<T extends boolean = true> {
+  sections?:
+    | T
+    | {
+        section?: T;
+        visible?: T;
         id?: T;
       };
   studio?:
@@ -1417,27 +1802,21 @@ export interface SiteContentSelect<T extends boolean = true> {
                   };
             };
       };
-  quote?:
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "pricing-page-content_select".
+ */
+export interface PricingPageContentSelect<T extends boolean = true> {
+  sections?:
     | T
     | {
-        text?: T;
-        author?: T;
-      };
-  classes?:
-    | T
-    | {
-        label?: T;
-        title?: T;
-        subtitle?: T;
-        cta?: T;
-      };
-  schedule?:
-    | T
-    | {
-        label?: T;
-        title?: T;
-        subtitle?: T;
-        book?: T;
+        section?: T;
+        visible?: T;
+        id?: T;
       };
   pricing?:
     | T
@@ -1455,11 +1834,69 @@ export interface SiteContentSelect<T extends boolean = true> {
               subtitle?: T;
             };
       };
-  reviews?:
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "classes-page-content_select".
+ */
+export interface ClassesPageContentSelect<T extends boolean = true> {
+  sections?:
+    | T
+    | {
+        section?: T;
+        visible?: T;
+        id?: T;
+      };
+  classes?:
     | T
     | {
         label?: T;
         title?: T;
+        subtitle?: T;
+        cta?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "schedule-page-content_select".
+ */
+export interface SchedulePageContentSelect<T extends boolean = true> {
+  sections?:
+    | T
+    | {
+        section?: T;
+        visible?: T;
+        id?: T;
+      };
+  schedule?:
+    | T
+    | {
+        label?: T;
+        title?: T;
+        subtitle?: T;
+        book?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contact-page-content_select".
+ */
+export interface ContactPageContentSelect<T extends boolean = true> {
+  sections?:
+    | T
+    | {
+        section?: T;
+        visible?: T;
+        id?: T;
       };
   contact?:
     | T
@@ -1469,22 +1906,21 @@ export interface SiteContentSelect<T extends boolean = true> {
         subtitle?: T;
         imageAlt?: T;
       };
-  about?:
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "blog-page-content_select".
+ */
+export interface BlogPageContentSelect<T extends boolean = true> {
+  sections?:
     | T
     | {
-        label?: T;
-        title?: T;
-        cta?: T;
-        imageAlt?: T;
-      };
-  footer?:
-    | T
-    | {
-        tagline?: T;
-        explore?: T;
-        follow?: T;
-        rights?: T;
-        values?: T;
+        section?: T;
+        visible?: T;
+        id?: T;
       };
   blog?:
     | T
@@ -1498,201 +1934,6 @@ export interface SiteContentSelect<T extends boolean = true> {
         back?: T;
         empty?: T;
       };
-  aboutPage?:
-    | T
-    | {
-        story?:
-          | T
-          | {
-              label?: T;
-              title?: T;
-              subtitle?: T;
-              steps?:
-                | T
-                | {
-                    discover?:
-                      | T
-                      | {
-                          label?: T;
-                          title?: T;
-                          text?: T;
-                        };
-                    train?:
-                      | T
-                      | {
-                          label?: T;
-                          title?: T;
-                          text?: T;
-                        };
-                    change?:
-                      | T
-                      | {
-                          label?: T;
-                          title?: T;
-                          text?: T;
-                        };
-                    teach?:
-                      | T
-                      | {
-                          label?: T;
-                          title?: T;
-                          text?: T;
-                        };
-                  };
-            };
-        philosophy?:
-          | T
-          | {
-              label?: T;
-              title?: T;
-              subtitle?: T;
-              points?:
-                | T
-                | {
-                    accessible?:
-                      | T
-                      | {
-                          title?: T;
-                          text?: T;
-                        };
-                    breath?:
-                      | T
-                      | {
-                          title?: T;
-                          text?: T;
-                        };
-                    levels?:
-                      | T
-                      | {
-                          title?: T;
-                          text?: T;
-                        };
-                    safe?:
-                      | T
-                      | {
-                          title?: T;
-                          text?: T;
-                        };
-                  };
-            };
-        training?:
-          | T
-          | {
-              label?: T;
-              title?: T;
-              subtitle?: T;
-              items?:
-                | T
-                | {
-                    main?:
-                      | T
-                      | {
-                          label?: T;
-                          title?: T;
-                          text?: T;
-                        };
-                    extra?:
-                      | T
-                      | {
-                          label?: T;
-                          title?: T;
-                          text?: T;
-                        };
-                    retreats?:
-                      | T
-                      | {
-                          label?: T;
-                          title?: T;
-                          text?: T;
-                        };
-                  };
-            };
-        values?:
-          | T
-          | {
-              label?: T;
-              title?: T;
-              subtitle?: T;
-              items?:
-                | T
-                | {
-                    authenticity?:
-                      | T
-                      | {
-                          title?: T;
-                          text?: T;
-                        };
-                    listening?:
-                      | T
-                      | {
-                          title?: T;
-                          text?: T;
-                        };
-                    community?:
-                      | T
-                      | {
-                          title?: T;
-                          text?: T;
-                        };
-                    awareness?:
-                      | T
-                      | {
-                          title?: T;
-                          text?: T;
-                        };
-                    accessibility?:
-                      | T
-                      | {
-                          title?: T;
-                          text?: T;
-                        };
-                  };
-            };
-        offMat?:
-          | T
-          | {
-              label?: T;
-              title?: T;
-              subtitle?: T;
-              items?:
-                | T
-                | {
-                    barcelona?:
-                      | T
-                      | {
-                          label?: T;
-                          title?: T;
-                          text?: T;
-                        };
-                    rituals?:
-                      | T
-                      | {
-                          label?: T;
-                          title?: T;
-                          text?: T;
-                        };
-                    inspire?:
-                      | T
-                      | {
-                          label?: T;
-                          title?: T;
-                          text?: T;
-                        };
-                  };
-            };
-        cta?:
-          | T
-          | {
-              label?: T;
-              title?: T;
-              subtitle?: T;
-              primary?: T;
-              whatsapp?: T;
-              instagram?: T;
-              whatsappMessage?: T;
-            };
-      };
-  pageMeta?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

@@ -1,6 +1,6 @@
 import type {
-  SiteFooterNavVisibility,
-  SiteFooterSocialVisibility,
+  FooterNavKey,
+  FooterSocialKey,
   SiteHeaderNavVisibility,
   SitePageVisibility,
   SiteSettings,
@@ -8,8 +8,15 @@ import type {
 
 type PageKey = keyof SitePageVisibility;
 type HeaderNavKey = keyof SiteHeaderNavVisibility;
-type FooterNavKey = keyof SiteFooterNavVisibility;
-type FooterSocialKey = keyof SiteFooterSocialVisibility;
+
+function isOrderedVisible(
+  items: SiteSettings["footerNav"] | undefined,
+  key: string,
+): boolean {
+  const item = items?.find((entry) => entry.id === key);
+  if (!item) return true;
+  return item.visible !== false;
+}
 
 /** Page must be enabled to be linked; nav toggle then decides if it appears. */
 export function isHeaderNavVisible(
@@ -27,12 +34,12 @@ export function isFooterNavVisible(
   pageKey: PageKey,
 ): boolean {
   if (!site.pages[pageKey]) return false;
-  return site.footerNav[navKey] !== false;
+  return isOrderedVisible(site.footerNav, navKey);
 }
 
 export function isFooterSocialVisible(
   site: SiteSettings,
   socialKey: FooterSocialKey,
 ): boolean {
-  return site.footerSocial[socialKey] !== false;
+  return isOrderedVisible(site.footerSocial, socialKey);
 }

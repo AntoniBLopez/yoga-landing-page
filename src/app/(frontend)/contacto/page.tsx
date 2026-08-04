@@ -7,6 +7,7 @@ import { PageHero } from "@/presentation/components/layout/PageHero";
 import { PageShell } from "@/presentation/components/layout/PageShell";
 import { ContactSection } from "@/presentation/components/sections/ContactSection";
 import { assertPageVisible } from "@/presentation/lib/page-visibility";
+import { renderOrderedSections } from "@/presentation/lib/section-order";
 
 export const dynamic = "force-dynamic";
 
@@ -23,8 +24,8 @@ export default async function ContactPage() {
   ]);
   assertPageVisible(settings.pages, "contact");
 
-  return (
-    <PageShell>
+  const sections = renderOrderedSections(settings.contactSections, {
+    hero: () => (
       <PageHero
         label={t("label")}
         title={t("title")}
@@ -32,7 +33,9 @@ export default async function ContactPage() {
         image={settings.images.contactUrl}
         imageAlt={t("imageAlt")}
       />
-      <ContactSection pageMode />
-    </PageShell>
-  );
+    ),
+    form: () => <ContactSection pageMode />,
+  });
+
+  return <PageShell>{sections}</PageShell>;
 }
