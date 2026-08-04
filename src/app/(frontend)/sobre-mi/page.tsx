@@ -3,6 +3,7 @@ import { getLocale, getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
 
 import { getReviews } from "@/application/use-cases/get-reviews";
+import { getSiteSettings } from "@/application/use-cases/get-site-settings";
 import { getTeachers } from "@/application/use-cases/get-teachers";
 import type { Locale } from "@/domain/entities";
 import { PageShell } from "@/presentation/components/layout/PageShell";
@@ -15,6 +16,8 @@ import { AboutTraining } from "@/presentation/components/sections/about/AboutTra
 import { AboutValues } from "@/presentation/components/sections/about/AboutValues";
 import { AboutSection } from "@/presentation/components/sections/AboutSection";
 import { ReviewsSection } from "@/presentation/components/sections/ReviewsSection";
+import { assertPageVisible } from "@/presentation/lib/page-visibility";
+import { renderOrderedSections } from "@/presentation/lib/section-order";
 
 export const dynamic = "force-dynamic";
 
@@ -25,21 +28,27 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function AboutPage() {
   const locale = (await getLocale()) as Locale;
-  const [teachers, reviews] = await Promise.all([getTeachers(locale), getReviews(locale)]);
+  const [teachers, reviews, settings] = await Promise.all([
+    getTeachers(locale),
+    getReviews(locale),
+    getSiteSettings(locale),
+  ]);
+  assertPageVisible(settings.pages, "about");
+
   const founder = teachers[0];
   if (!founder) notFound();
 
-  return (
-    <PageShell>
-      <AboutSection teacher={founder} pageMode showStats={false} />
-      <AboutStory />
-      <AboutPhilosophy />
-      <AboutTraining />
-      <AboutStatsBanner />
-      <ReviewsSection reviews={reviews} />
-      <AboutValues />
-      <AboutOffMat />
-      <AboutCta />
-    </PageShell>
-  );
+  const sections = renderOrderedSections(settings.aboutSections, {
+    intro: () => <AboutSection teacher={founder} pageMode showStats={false} />,
+    story: () => <AboutStory />,
+    philosophy: () => <AboutPhilosophy />,
+    training: () => <AboutTraining />,
+    stats: () => <AboutStatsBanner />,
+    reviews: () => <ReviewsSection reviews={reviews} />,
+    values: () => <AboutValues />,
+    offMat: () => <AboutOffMat />,
+    cta: () => <AboutCta />,
+  });
+
+  return <PageShell>{sections}</PageShell>;
 }

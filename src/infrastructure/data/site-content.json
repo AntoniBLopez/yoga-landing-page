@@ -1,0 +1,570 @@
+{
+  "es": {
+    "meta": {
+      "title": "Blau Yoga · {teacherName} · Yoga en Barcelona",
+      "description": "Clases de yoga con {teacherName}: Hatha, Yin, Ashtanga y Yoga Facial. Clases presenciales y privadas. Yoga en la playa todos los domingos. RYT 220H (India)."
+    },
+    "nav": {
+      "home": "Inicio",
+      "classes": "Clases",
+      "schedule": "Horarios",
+      "about": "Sobre mí",
+      "blog": "Blog",
+      "pricing": "Precios",
+      "contact": "Contacto",
+      "cta": "Reservar clase",
+      "studio": "Estudio"
+    },
+    "hero": {
+      "eyebrow": "Respira. Conecta. Florece.",
+      "title": "Tu espacio de calma en el corazón de Barcelona",
+      "subtitle": "Clases de yoga para todos los niveles en un ambiente acogedor y auténtico.",
+      "cta": "Reserva tu clase",
+      "imageAlt": "Práctica de yoga frente al mar"
+    },
+    "features": [
+      {
+        "title": "Bienestar integral",
+        "text": "Cuerpo, mente y emociones"
+      },
+      {
+        "title": "Todos los niveles",
+        "text": "Clases adaptadas a ti"
+      },
+      {
+        "title": "Comunidad",
+        "text": "Conecta y crece en comunidad"
+      },
+      {
+        "title": "Cerca de ti",
+        "text": "En el corazón de Barcelona"
+      }
+    ],
+    "studio": {
+      "label": "Nuestro estudio",
+      "title": "Un espacio creado para tu bienestar",
+      "text": "Blau Yoga es un estudio de yoga y bienestar en Barcelona, creado para que encuentres equilibrio, te escuches y te sientas como en casa. Luz natural, materiales cálidos y grupos reducidos para acompañarte de cerca.",
+      "cta": "Conoce el estudio",
+      "imageAlt": "Interior del estudio Blau Yoga",
+      "galleryLabel": "El espacio",
+      "galleryTitle": "Luz, calma y materiales naturales",
+      "gallerySubtitle": "Un rincón pensado para practicar con presencia, en grupos reducidos y con la calidez de una casa.",
+      "rental": {
+        "label": "Alquiler de sala",
+        "title": "¿Quieres alquilar el estudio?",
+        "text": "La sala también está disponible para alquilar: clases privadas, talleres, sesiones de bienestar o encuentros pequeños. Un espacio luminoso, íntimo y listo para que tu práctica o tu evento se sientan especiales.",
+        "highlights": {
+          "light": "Luz natural y ambiente sereno",
+          "equip": "Esterillas y apoyos disponibles",
+          "groups": "Ideal para grupos reducidos"
+        },
+        "cta": "Consultar disponibilidad",
+        "whatsappMessage": "¡Hola {teacherName}! Me gustaría alquilar la sala del estudio Blau Yoga. ¿Me das más información sobre disponibilidad y precios? ¡Gracias!"
+      },
+      "ctaRental": "Alquilar sala"
+    },
+    "quote": {
+      "text": "El yoga no se trata de tocar los pies, se trata de lo que aprendes en el camino.",
+      "author": "Jigar Gor"
+    },
+    "classes": {
+      "label": "Clases",
+      "title": "Encuentra tu práctica",
+      "subtitle": "Hatha, Yin, Ashtanga, Yoga Facial y yoga en la playa: elige la clase que tu cuerpo necesita hoy.",
+      "cta": "Ver horarios y reservar"
+    },
+    "schedule": {
+      "label": "Horarios",
+      "title": "Reserva tu momento",
+      "subtitle": "Clases presenciales entre semana y yoga en la playa los domingos. Confirma tu plaza por WhatsApp.",
+      "book": "Reservar"
+    },
+    "pricing": {
+      "label": "Precios",
+      "title": "Elige tu plan",
+      "subtitle": "Clases grupales, bono mensual o sesión privada. Sin permanencia.",
+      "cta": "Empezar ahora",
+      "popular": "Más popular",
+      "faq": {
+        "label": "Dudas frecuentes",
+        "title": "Preguntas frecuentes",
+        "subtitle": "Lo esencial para elegir con calma y empezar cuando estés lista."
+      }
+    },
+    "reviews": {
+      "label": "Testimonios",
+      "title": "Lo que dicen las alumnas"
+    },
+    "contact": {
+      "label": "Contacto",
+      "title": "¿Hablamos?",
+      "subtitle": "Escríbeme para reservar una clase presencial, una sesión privada o el yoga de domingo en la playa.",
+      "imageAlt": "Agua en la orilla de la playa"
+    },
+    "about": {
+      "label": "Sobre mí",
+      "title": "Hola, soy {name}",
+      "cta": "Conóceme mejor",
+      "imageAlt": "{teacherName} practicando yoga en la naturaleza"
+    },
+    "footer": {
+      "tagline": "Yoga con {teacherName} · RYT 220H",
+      "explore": "Explorar",
+      "follow": "Sígueme",
+      "rights": "© {year} Blau Yoga. Todos los derechos reservados.",
+      "values": "Calma · Conexión · Equilibrio · Bienestar · Naturalidad · Presencia"
+    },
+    "blog": {
+      "label": "Blog",
+      "title": "Notas desde el mat",
+      "subtitle": "Reflexiones, prácticas y tips de yoga para tu día a día.",
+      "metaTitle": "Blog · Blau Yoga",
+      "metaDescription": "Artículos de yoga, bienestar y práctica consciente con {teacherName} · Blau Yoga.",
+      "readMore": "Leer artículo →",
+      "back": "Volver al blog",
+      "empty": "Pronto habrá nuevos artículos. Mientras tanto, reserva una clase."
+    },
+    "aboutPage": {
+      "story": {
+        "label": "Mi historia",
+        "title": "Mi camino hacia el yoga",
+        "subtitle": "Una práctica que empezó como búsqueda personal y se convirtió en mi forma de acompañar a otras.",
+        "steps": {
+          "discover": {
+            "label": "El comienzo",
+            "title": "Cómo descubrí el yoga",
+            "text": "Llegué al yoga en un momento en el que necesitaba parar. No buscaba perfeccionar posturas: buscaba un espacio donde respirar, escucharme y volver al cuerpo con amabilidad."
+          },
+          "train": {
+            "label": "La decisión",
+            "title": "El momento de formarme",
+            "text": "Cuanto más practicaba, más claro era: quería profundizar. Decidí formarme con seriedad para entender no solo el movimiento, sino también la respiración, la anatomía y la dimensión consciente del yoga."
+          },
+          "change": {
+            "label": "La transformación",
+            "title": "Qué cambió en mi vida",
+            "text": "El yoga me enseñó a habitarme con más presencia. Suavizó mi relación con el estrés, me devolvió confianza y me recordó que el bienestar no es un destino: es una práctica diaria."
+          },
+          "teach": {
+            "label": "Compartir",
+            "title": "Por qué enseño",
+            "text": "Enseño porque quiero que otras personas encuentren lo que yo encontré: un yoga cercano, sin presión y con espacio para ser. Acompañarte a volver a ti es mi forma de dar sentido a este camino."
+          }
+        }
+      },
+      "philosophy": {
+        "label": "Mi enfoque",
+        "title": "Cómo enseño",
+        "subtitle": "Lo que encontrarás en mis clases: presencia, cuidado y un yoga que se adapta a ti.",
+        "points": {
+          "accessible": {
+            "title": "Yoga accesible y sin presión",
+            "text": "No se trata de llegar más lejos, sino de llegar a ti. Practicamos con respeto, sin competir y sin forzar."
+          },
+          "breath": {
+            "title": "Atención a la respiración y al cuerpo",
+            "text": "La respiración guía el movimiento. Te invito a sentir, a observar y a elegir desde la escucha interna."
+          },
+          "levels": {
+            "title": "Adaptaciones para todos los niveles",
+            "text": "Cada cuerpo es distinto. Ofrezco variaciones y opciones para que puedas practicar con seguridad, empieces cuando empieces."
+          },
+          "safe": {
+            "title": "Ambiente seguro y sin juicios",
+            "text": "Creo espacios cálidos donde puedes ser tú. Aquí no hay rendimiento: hay presencia, cuidado y comunidad."
+          }
+        }
+      },
+      "training": {
+        "label": "Credenciales",
+        "title": "Formación y certificaciones",
+        "subtitle": "Una base sólida para acompañarte con rigor, cercanía y conciencia.",
+        "items": {
+          "main": {
+            "label": "Formación principal",
+            "title": "RYT 220H · India",
+            "text": "Formación certificada RYT 220H en India, donde profundicé en asana, pranayama, filosofía y la esencia de una práctica consciente."
+          },
+          "extra": {
+            "label": "Formación continua",
+            "title": "Cursos y especialización",
+            "text": "Sigo formándome en Yin Yoga, anatomía aplicada, meditación y herramientas de acompañamiento para adaptar la práctica a cada etapa de la vida."
+          },
+          "retreats": {
+            "label": "Inmersiones",
+            "title": "Retiros y estudios",
+            "text": "He vivido retiros e inmersiones que han marcado mi manera de enseñar: más presencia, más escucha y una mirada más humana del yoga."
+          }
+        }
+      },
+      "values": {
+        "label": "Brújula",
+        "title": "Valores que guían mi práctica",
+        "subtitle": "Lo que quiero que sientas cada vez que entras en clase.",
+        "items": {
+          "authenticity": {
+            "title": "Autenticidad",
+            "text": "Un yoga real, cercano y sin máscaras."
+          },
+          "listening": {
+            "title": "Escucha del cuerpo",
+            "text": "Priorizar señales, límites y ritmo propio."
+          },
+          "community": {
+            "title": "Comunidad",
+            "text": "Crecer acompañadas, con calidez y respeto."
+          },
+          "awareness": {
+            "title": "Consciencia",
+            "text": "Presencia en la respiración, el gesto y el día a día."
+          },
+          "accessibility": {
+            "title": "Accesibilidad",
+            "text": "Una práctica abierta a todos los cuerpos y niveles."
+          }
+        }
+      },
+      "offMat": {
+        "label": "Más allá de la esterilla",
+        "title": "Fuera del mat",
+        "subtitle": "Así soy también cuando no estoy enseñando.",
+        "items": {
+          "barcelona": {
+            "label": "Barcelona",
+            "title": "Mi ciudad",
+            "text": "Me encanta caminar cerca del mar, perdernos por el Born y buscar rincones con luz donde respirar más despacio."
+          },
+          "rituals": {
+            "label": "Cotidianidad",
+            "title": "Rituales diarios",
+            "text": "Café con calma, unos minutos de respiración consciente y mover el cuerpo aunque sea un poco: así empiezo muchos días."
+          },
+          "inspire": {
+            "label": "Inspiración",
+            "title": "Lo que me nutre",
+            "text": "Libros que abren perspectiva, playlists suaves para practicar y la naturaleza como recordatorio constante de presencia."
+          }
+        }
+      },
+      "cta": {
+        "label": "Próximo paso",
+        "title": "¿Quieres saber si mi estilo es para ti?",
+        "subtitle": "Escríbeme o reserva una clase de prueba. Estaré encantada de acompañarte.",
+        "primary": "Reservar una clase de prueba",
+        "whatsapp": "Escríbeme",
+        "instagram": "Sígueme en Instagram →",
+        "whatsappMessage": "¡Hola {teacherName}! He leído tu historia y me gustaría saber si tu estilo de yoga es para mí. ¿Me das más información? ¡Gracias!"
+      }
+    },
+    "pageMeta": {
+      "classes": {
+        "metaTitle": "Clases · Blau Yoga",
+        "metaDescription": "Hatha, Yin, Ashtanga, Yoga Facial y yoga en la playa con {teacherName} en Barcelona."
+      },
+      "schedule": {
+        "metaTitle": "Horarios · Blau Yoga",
+        "metaDescription": "Consulta horarios y reserva tu clase de yoga presencial o en la playa por WhatsApp."
+      },
+      "about": {
+        "metaTitle": "Sobre mí · {teacherName} · Blau Yoga",
+        "metaDescription": "Conoce a {teacherName}, profesora de yoga RYT 220H. Práctica consciente en Barcelona."
+      },
+      "pricing": {
+        "metaTitle": "Precios · Blau Yoga",
+        "metaDescription": "Clase presencial, bono mensual y clase privada. Elige el plan que mejor se adapta a ti."
+      },
+      "contact": {
+        "metaTitle": "Contacto · Blau Yoga",
+        "metaDescription": "Escríbeme para reservar una clase presencial, privada o yoga en la playa en Barcelona."
+      },
+      "studio": {
+        "metaTitle": "El estudio · Blau Yoga",
+        "metaDescription": "Conoce el espacio Blau Yoga en Barcelona y alquila la sala para tus prácticas, talleres o sesiones privadas."
+      }
+    }
+  },
+  "en": {
+    "meta": {
+      "title": "Blau Yoga · {teacherName} · Yoga in Barcelona",
+      "description": "Yoga classes with {teacherName}: Hatha, Yin, Ashtanga and Facial Yoga. In-person and private classes. Beach yoga every Sunday. RYT 220H (India)."
+    },
+    "nav": {
+      "home": "Home",
+      "classes": "Classes",
+      "schedule": "Schedule",
+      "about": "About me",
+      "blog": "Blog",
+      "pricing": "Pricing",
+      "contact": "Contact",
+      "cta": "Book a class",
+      "studio": "Studio"
+    },
+    "hero": {
+      "eyebrow": "Breathe. Connect. Bloom.",
+      "title": "Your space of calm in the heart of Barcelona",
+      "subtitle": "Yoga classes for all levels in a warm and authentic atmosphere.",
+      "cta": "Book your class",
+      "imageAlt": "Yoga practice by the sea"
+    },
+    "features": [
+      {
+        "title": "Whole-self wellbeing",
+        "text": "Body, mind and emotions"
+      },
+      {
+        "title": "All levels",
+        "text": "Classes adapted to you"
+      },
+      {
+        "title": "Community",
+        "text": "Connect and grow together"
+      },
+      {
+        "title": "Close to you",
+        "text": "In the heart of Barcelona"
+      }
+    ],
+    "studio": {
+      "label": "Our studio",
+      "title": "A space created for your wellbeing",
+      "text": "Blau Yoga is a yoga and wellness studio in Barcelona, created for you to find balance, listen to yourself and feel at home. Natural light, warm materials and small groups so we can accompany you closely.",
+      "cta": "Discover the studio",
+      "imageAlt": "Blau Yoga studio interior",
+      "galleryLabel": "The space",
+      "galleryTitle": "Light, calm and natural materials",
+      "gallerySubtitle": "A corner designed for mindful practice, in small groups, with the warmth of home.",
+      "rental": {
+        "label": "Room rental",
+        "title": "Want to rent the studio?",
+        "text": "The room is also available to rent: private classes, workshops, wellness sessions or small gatherings. A bright, intimate space ready to make your practice or event feel special.",
+        "highlights": {
+          "light": "Natural light and a serene atmosphere",
+          "equip": "Mats and props available",
+          "groups": "Ideal for small groups"
+        },
+        "cta": "Check availability",
+        "whatsappMessage": "Hi {teacherName}! I’d like to rent the Blau Yoga studio room. Could you give me more information about availability and pricing? Thank you!"
+      },
+      "ctaRental": "Rent the room"
+    },
+    "quote": {
+      "text": "Yoga is not about touching your toes, it is about what you learn on the way down.",
+      "author": "Jigar Gor"
+    },
+    "classes": {
+      "label": "Classes",
+      "title": "Find your practice",
+      "subtitle": "Hatha, Yin, Ashtanga, Facial Yoga and beach yoga: choose the class your body needs today.",
+      "cta": "See schedule & book"
+    },
+    "schedule": {
+      "label": "Schedule",
+      "title": "Book your moment",
+      "subtitle": "In-person classes during the week and beach yoga on Sundays. Confirm your spot via WhatsApp.",
+      "book": "Book"
+    },
+    "pricing": {
+      "label": "Pricing",
+      "title": "Choose your plan",
+      "subtitle": "Group classes, a monthly pack or a private session. No commitment.",
+      "cta": "Get started",
+      "popular": "Most popular",
+      "faq": {
+        "label": "Common questions",
+        "title": "FAQ",
+        "subtitle": "The essentials so you can choose calmly and start when you’re ready."
+      }
+    },
+    "reviews": {
+      "label": "Testimonials",
+      "title": "What students say"
+    },
+    "contact": {
+      "label": "Contact",
+      "title": "Let's talk",
+      "subtitle": "Write to me to book an in-person class, a private session or Sunday beach yoga.",
+      "imageAlt": "Water at the shoreline"
+    },
+    "about": {
+      "label": "About me",
+      "title": "Hi, I'm {name}",
+      "cta": "Get to know me",
+      "imageAlt": "{teacherName} practising yoga in nature"
+    },
+    "footer": {
+      "tagline": "Yoga with {teacherName} · RYT 220H",
+      "explore": "Explore",
+      "follow": "Follow me",
+      "rights": "© {year} Blau Yoga. All rights reserved.",
+      "values": "Calm · Connection · Balance · Wellbeing · Nature · Presence"
+    },
+    "blog": {
+      "label": "Blog",
+      "title": "Notes from the mat",
+      "subtitle": "Reflections, practices and yoga tips for everyday life.",
+      "metaTitle": "Blog · Blau Yoga",
+      "metaDescription": "Articles on yoga, wellbeing and mindful practice with {teacherName} · Blau Yoga.",
+      "readMore": "Read article →",
+      "back": "Back to blog",
+      "empty": "New articles coming soon. In the meantime, book a class."
+    },
+    "aboutPage": {
+      "story": {
+        "label": "My story",
+        "title": "My path to yoga",
+        "subtitle": "A practice that began as a personal search and became my way of supporting others.",
+        "steps": {
+          "discover": {
+            "label": "The beginning",
+            "title": "How I discovered yoga",
+            "text": "I came to yoga at a time when I needed to pause. I wasn’t looking to perfect poses — I was looking for a space to breathe, listen inward and return to my body with kindness."
+          },
+          "train": {
+            "label": "The decision",
+            "title": "When I chose to train",
+            "text": "The more I practised, the clearer it became: I wanted to go deeper. I decided to train seriously to understand not only movement, but also breath, anatomy and the mindful dimension of yoga."
+          },
+          "change": {
+            "label": "The shift",
+            "title": "What changed in my life",
+            "text": "Yoga taught me to inhabit myself with more presence. It softened my relationship with stress, restored confidence and reminded me that wellbeing is not a destination — it is a daily practice."
+          },
+          "teach": {
+            "label": "Sharing",
+            "title": "Why I teach",
+            "text": "I teach because I want others to find what I found: a warm yoga practice without pressure, with space to simply be. Helping you come back to yourself is how this path makes sense to me."
+          }
+        }
+      },
+      "philosophy": {
+        "label": "My approach",
+        "title": "How I teach",
+        "subtitle": "What you’ll find in my classes: presence, care and yoga that adapts to you.",
+        "points": {
+          "accessible": {
+            "title": "Accessible yoga, no pressure",
+            "text": "It isn’t about going further — it’s about coming home to yourself. We practise with respect, without competing or forcing."
+          },
+          "breath": {
+            "title": "Attention to breath and body",
+            "text": "Breath guides movement. I invite you to feel, observe and choose from inner listening."
+          },
+          "levels": {
+            "title": "Adaptations for all levels",
+            "text": "Every body is different. I offer variations and options so you can practise safely, wherever you start."
+          },
+          "safe": {
+            "title": "A safe, judgement-free space",
+            "text": "I create warm spaces where you can be yourself. There is no performance here — only presence, care and community."
+          }
+        }
+      },
+      "training": {
+        "label": "Credentials",
+        "title": "Training & certifications",
+        "subtitle": "A solid foundation to guide you with care, clarity and awareness.",
+        "items": {
+          "main": {
+            "label": "Main training",
+            "title": "RYT 220H · India",
+            "text": "Certified RYT 220H training in India, where I deepened asana, pranayama, philosophy and the essence of mindful practice."
+          },
+          "extra": {
+            "label": "Ongoing learning",
+            "title": "Courses & specialisation",
+            "text": "I continue training in Yin Yoga, applied anatomy, meditation and supportive tools to adapt practice to every stage of life."
+          },
+          "retreats": {
+            "label": "Immersions",
+            "title": "Retreats & study",
+            "text": "Retreats and immersions have shaped how I teach: more presence, deeper listening and a more human approach to yoga."
+          }
+        }
+      },
+      "values": {
+        "label": "Compass",
+        "title": "Values that guide my practice",
+        "subtitle": "What I want you to feel every time you step into class.",
+        "items": {
+          "authenticity": {
+            "title": "Authenticity",
+            "text": "Real, warm yoga — without masks."
+          },
+          "listening": {
+            "title": "Body listening",
+            "text": "Honouring signals, limits and your own pace."
+          },
+          "community": {
+            "title": "Community",
+            "text": "Growing together, with kindness and respect."
+          },
+          "awareness": {
+            "title": "Awareness",
+            "text": "Presence in breath, movement and everyday life."
+          },
+          "accessibility": {
+            "title": "Accessibility",
+            "text": "A practice open to every body and level."
+          }
+        }
+      },
+      "offMat": {
+        "label": "Beyond the mat",
+        "title": "Off the mat",
+        "subtitle": "Who I am when I’m not teaching.",
+        "items": {
+          "barcelona": {
+            "label": "Barcelona",
+            "title": "My city",
+            "text": "I love walking by the sea, wandering through El Born and finding quiet corners of light where I can slow down."
+          },
+          "rituals": {
+            "label": "Everyday",
+            "title": "Daily rituals",
+            "text": "A calm coffee, a few minutes of conscious breath, and moving my body even a little — that’s how many of my days begin."
+          },
+          "inspire": {
+            "label": "Inspiration",
+            "title": "What nourishes me",
+            "text": "Books that open perspective, soft playlists for practice, and nature as a constant reminder of presence."
+          }
+        }
+      },
+      "cta": {
+        "label": "Next step",
+        "title": "Want to know if my style is for you?",
+        "subtitle": "Message me or book a trial class. I’d love to support you.",
+        "primary": "Book a trial class",
+        "whatsapp": "Write to me",
+        "instagram": "Follow me on Instagram →",
+        "whatsappMessage": "Hi {teacherName}! I read your story and would like to know if your yoga style is for me. Could you give me more information? Thank you!"
+      }
+    },
+    "pageMeta": {
+      "classes": {
+        "metaTitle": "Classes · Blau Yoga",
+        "metaDescription": "Hatha, Yin, Ashtanga, Facial Yoga and beach yoga with {teacherName} in Barcelona."
+      },
+      "schedule": {
+        "metaTitle": "Schedule · Blau Yoga",
+        "metaDescription": "Check class times and book in-person or beach yoga via WhatsApp."
+      },
+      "about": {
+        "metaTitle": "About me · {teacherName} · Blau Yoga",
+        "metaDescription": "Meet {teacherName}, RYT 220H yoga teacher. Mindful practice in Barcelona."
+      },
+      "pricing": {
+        "metaTitle": "Pricing · Blau Yoga",
+        "metaDescription": "Drop-in class, monthly pack and private session. Choose the plan that fits you."
+      },
+      "contact": {
+        "metaTitle": "Contact · Blau Yoga",
+        "metaDescription": "Write to book an in-person class, a private session or beach yoga in Barcelona."
+      },
+      "studio": {
+        "metaTitle": "The studio · Blau Yoga",
+        "metaDescription": "Discover the Blau Yoga space in Barcelona and rent the room for practices, workshops or private sessions."
+      }
+    }
+  }
+}

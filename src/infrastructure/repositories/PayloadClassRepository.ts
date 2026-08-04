@@ -12,17 +12,23 @@ export class PayloadClassRepository implements ClassRepository {
       locale,
       sort: "order",
       limit: 100,
+      where: {
+        or: [{ visible: { equals: true } }, { visible: { exists: false } }],
+      },
     });
 
-    return docs.map((doc) => ({
-      id: String(doc.id),
-      slug: doc.slug,
-      title: doc.title,
-      description: doc.description,
-      durationMin: doc.durationMin,
-      level: doc.level,
-      imageUrl: resolveImageUrl(doc.image, doc.imageUrl),
-      order: doc.order ?? 0,
-    }));
+    return docs
+      .filter((doc) => doc.visible !== false)
+      .map((doc) => ({
+        id: String(doc.id),
+        slug: doc.slug,
+        title: doc.title,
+        description: doc.description,
+        durationMin: doc.durationMin,
+        level: doc.level,
+        imageUrl: resolveImageUrl(doc.image, doc.imageUrl),
+        visible: doc.visible !== false,
+        order: doc.order ?? 0,
+      }));
   }
 }

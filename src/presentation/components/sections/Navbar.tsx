@@ -4,27 +4,43 @@ import { Menu, X } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useEffect, useRef, useState } from "react";
 
+import type { SiteHeaderNavVisibility, SitePageVisibility } from "@/domain/site";
+import { useSite } from "@/presentation/components/providers/SiteProvider";
 import { Button } from "@/presentation/components/ui/Button";
 import { LanguageSwitcher } from "@/presentation/components/ui/LanguageSwitcher";
 import { Logo } from "@/presentation/components/ui/Logo";
+import { isHeaderNavVisible } from "@/presentation/lib/nav-visibility";
 import { cn } from "@/presentation/lib/utils";
 
-const NAV_ITEMS = [
-  { key: "home", href: "/" },
-  { key: "classes", href: "/clases" },
-  { key: "schedule", href: "/horarios" },
-  { key: "about", href: "/sobre-mi" },
-  { key: "blog", href: "/blog" },
-  { key: "pricing", href: "/precios" },
-  { key: "contact", href: "/contacto" },
-] as const;
+type HeaderLink = {
+  key: keyof SiteHeaderNavVisibility;
+  href: string;
+  page: keyof SitePageVisibility | null;
+};
+
+const NAV_ITEMS: HeaderLink[] = [
+  { key: "home", href: "/", page: null },
+  { key: "classes", href: "/clases", page: "classes" },
+  { key: "schedule", href: "/horarios", page: "schedule" },
+  { key: "studio", href: "/estudio", page: "studio" },
+  { key: "about", href: "/sobre-mi", page: "about" },
+  { key: "blog", href: "/blog", page: "blog" },
+  { key: "pricing", href: "/precios", page: "pricing" },
+  { key: "contact", href: "/contacto", page: "contact" },
+];
 
 export function Navbar() {
   const t = useTranslations("nav");
   const tFooter = useTranslations("footer");
+  const site = useSite();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
+
+  const items = NAV_ITEMS.filter((item) =>
+    isHeaderNavVisible(site, item.key, item.page),
+  );
+  const showCta = isHeaderNavVisible(site, "cta");
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -47,6 +63,8 @@ export function Navbar() {
     return () => document.removeEventListener("pointerdown", onPointerDown);
   }, [open]);
 
+  const scheduleHref = site.pages.schedule ? "/horarios" : "/contacto";
+
   return (
     <>
       {open ? (
@@ -68,12 +86,12 @@ export function Navbar() {
         )}
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 md:px-8">
-          <a href="/" aria-label="Blau Yoga">
+          <a href="/" aria-label={site.brandName}>
             <Logo tagline={tFooter("tagline")} tone="light" />
           </a>
 
           <nav className="hidden items-center gap-7 lg:flex">
-            {NAV_ITEMS.map((item) => (
+            {items.map((item) => (
               <a
                 key={item.key}
                 href={item.href}
@@ -83,10 +101,12 @@ export function Navbar() {
               </a>
             ))}
             <LanguageSwitcher tone="light" />
-          <Button asChild size="sm" variant="primary">
-            <a href="/horarios">{t("cta")}</a>
-          </Button>
-        </nav>
+            {showCta ? (
+              <Button asChild size="sm" variant="primary">
+                <a href={scheduleHref}>{t("cta")}</a>
+              </Button>
+            ) : null}
+          </nav>
 
           <button
             type="button"
@@ -101,7 +121,7 @@ export function Navbar() {
 
         {open ? (
           <nav className="flex flex-col gap-1 border-t border-linen bg-sand px-5 pt-2 pb-6 lg:hidden">
-            {NAV_ITEMS.map((item) => (
+            {items.map((item) => (
               <a
                 key={item.key}
                 href={item.href}
@@ -113,11 +133,13 @@ export function Navbar() {
             ))}
             <div className="mt-3 flex items-center justify-between">
               <LanguageSwitcher />
-              <Button asChild size="sm" variant="primary">
-              <a href="/horarios" onClick={() => setOpen(false)}>
-                {t("cta")}
-              </a>
-              </Button>
+              {showCta ? (
+                <Button asChild size="sm" variant="primary">
+                  <a href={scheduleHref} onClick={() => setOpen(false)}>
+                    {t("cta")}
+                  </a>
+                </Button>
+              ) : null}
             </div>
           </nav>
         ) : null}

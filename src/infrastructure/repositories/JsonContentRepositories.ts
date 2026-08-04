@@ -1,6 +1,7 @@
 import type {
   BlogPost,
   BlogPostSummary,
+  Faq,
   Locale,
   PricingPlan,
   Review,
@@ -11,6 +12,7 @@ import type {
 } from "@/domain/entities";
 import type {
   ClassRepository,
+  FaqRepository,
   PostRepository,
   PricingPlanRepository,
   ReviewRepository,
@@ -19,6 +21,7 @@ import type {
 } from "@/domain/repositories";
 
 import classesData from "../data/classes.json";
+import faqsData from "../data/faqs.json";
 import { lexicalFromParagraphs } from "../data/lexical";
 import postsData from "../data/posts.json";
 import pricingData from "../data/pricing-plans.json";
@@ -35,6 +38,7 @@ function pickLocale<T>(localized: Localized<T>, locale: Locale): T {
 export class JsonClassRepository implements ClassRepository {
   async findAll(locale: Locale): Promise<YogaClass[]> {
     return [...classesData]
+      .filter((item) => item.visible !== false)
       .sort((a, b) => a.order - b.order)
       .map((item, index) => {
         const copy = pickLocale(item, locale);
@@ -46,6 +50,7 @@ export class JsonClassRepository implements ClassRepository {
           durationMin: item.durationMin,
           level: item.level as YogaClass["level"],
           imageUrl: item.imageUrl,
+          visible: item.visible !== false,
           order: item.order,
         };
       });
@@ -74,6 +79,8 @@ export class JsonScheduleSlotRepository implements ScheduleSlotRepository {
     const bySlug = new Map(classes.map((c) => [c.slug, c]));
 
     return scheduleData.flatMap((item, index) => {
+      const isVisible = (item as { visible?: boolean }).visible !== false;
+      if (!isVisible) return [];
       const yogaClass = bySlug.get(item.classSlug);
       if (!yogaClass) return [];
       return [
@@ -84,6 +91,7 @@ export class JsonScheduleSlotRepository implements ScheduleSlotRepository {
           className: yogaClass.title,
           classSlug: yogaClass.slug,
           durationMin: yogaClass.durationMin,
+          visible: isVisible,
         },
       ];
     });
@@ -93,7 +101,9 @@ export class JsonScheduleSlotRepository implements ScheduleSlotRepository {
 export class JsonPricingPlanRepository implements PricingPlanRepository {
   async findAll(locale: Locale): Promise<PricingPlan[]> {
     return [...pricingData]
+      .filter((item) => (item as { visible?: boolean }).visible !== false)
       .sort((a, b) => a.order - b.order)
+      .slice(0, 4)
       .map((item, index) => {
         const copy = pickLocale(item, locale);
         return {
@@ -105,6 +115,7 @@ export class JsonPricingPlanRepository implements PricingPlanRepository {
           period: item.period as PricingPlan["period"],
           features: copy.features,
           featured: item.featured,
+          visible: (item as { visible?: boolean }).visible !== false,
           order: item.order,
         };
       });
@@ -123,6 +134,24 @@ export class JsonReviewRepository implements ReviewRepository {
         rating: item.rating,
       };
     });
+  }
+}
+
+export class JsonFaqRepository implements FaqRepository {
+  async findVisible(locale: Locale): Promise<Faq[]> {
+    return [...faqsData]
+      .filter((item) => item.visible)
+      .sort((a, b) => a.order - b.order)
+      .map((item, index) => {
+        const copy = pickLocale(item, locale);
+        return {
+          id: String(index + 1),
+          question: copy.question,
+          answer: copy.answer,
+          visible: item.visible,
+          order: item.order,
+        };
+      });
   }
 }
 

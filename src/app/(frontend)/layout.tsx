@@ -4,7 +4,11 @@ import { getLocale, getMessages, getTranslations } from "next-intl/server";
 import { Cormorant_Garamond, Jost } from "next/font/google";
 import { Toaster } from "sonner";
 
+import { getSiteSettings } from "@/application/use-cases/get-site-settings";
+import type { Locale } from "@/domain/entities";
+import { SiteProvider } from "@/presentation/components/providers/SiteProvider";
 import { SmoothScroll } from "@/presentation/components/providers/SmoothScroll";
+import { siteColorStyle } from "@/presentation/lib/site-theme";
 
 import "../globals.css";
 
@@ -31,15 +35,22 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function FrontendLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
-  const locale = await getLocale();
+  const locale = (await getLocale()) as Locale;
   const messages = await getMessages();
+  const settings = await getSiteSettings(locale);
 
   return (
-    <html lang={locale} className={`${displayFont.variable} ${sansFont.variable} antialiased`}>
+    <html
+      lang={locale}
+      className={`${displayFont.variable} ${sansFont.variable} antialiased`}
+      style={siteColorStyle(settings.colors)}
+    >
       <body className="bg-sand font-sans text-ink">
         <NextIntlClientProvider locale={locale} messages={messages}>
-          <SmoothScroll>{children}</SmoothScroll>
-          <Toaster position="bottom-right" richColors />
+          <SiteProvider settings={settings}>
+            <SmoothScroll>{children}</SmoothScroll>
+            <Toaster position="bottom-right" richColors />
+          </SiteProvider>
         </NextIntlClientProvider>
       </body>
     </html>

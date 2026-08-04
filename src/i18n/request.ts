@@ -1,6 +1,12 @@
 import { getRequestConfig } from "next-intl/server";
 import { cookies, headers } from "next/headers";
 
+import { getSiteContentMessages } from "@/application/use-cases/get-site-content";
+import { getSiteSettings } from "@/application/use-cases/get-site-settings";
+import type { Locale } from "@/domain/entities";
+import { deepMerge } from "@/presentation/lib/deep-merge";
+import { injectPlaceholders } from "@/presentation/lib/inject-placeholders";
+
 import { defaultLocale, isAppLocale, LOCALE_COOKIE, type AppLocale } from "./config";
 
 /**
@@ -43,8 +49,29 @@ export default getRequestConfig(async () => {
   // 3. Fallback
   const resolved = locale ?? defaultLocale;
 
+  const baseMessages = (await import(`../../messages/${resolved}.json`)).default;
+  const contentLocale = resolved as Locale;
+
+  let messages: Record<string, unknown> = baseMessages as Record<string, unknown>;
+  let teacherName = "Cyane";
+  let brandName = "Blau Yoga";
+
+  try {
+    const [overrides, settings] = await Promise.all([
+      getSiteContentMessages(contentLocale),
+      getSiteSettings(contentLocale),
+    ]);
+    teacherName = settings.teacherName || teacherName;
+    brandName = settings.brandName || brandName;
+    messages = deepMerge(messages, overrides);
+  } catch {
+    // CMS unavailable — keep file defaults
+  }
+
+  messages = injectPlaceholders(messages, { teacherName, brandName });
+
   return {
     locale: resolved,
-    messages: (await import(`../../messages/${resolved}.json`)).default,
+    messages,
   };
 });

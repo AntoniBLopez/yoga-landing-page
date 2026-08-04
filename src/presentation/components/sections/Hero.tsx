@@ -4,18 +4,19 @@ import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 
+import { useSite } from "@/presentation/components/providers/SiteProvider";
 import { Button } from "@/presentation/components/ui/Button";
-
-const HERO_IMAGE = "/images/hero.png";
 
 export function Hero() {
   const t = useTranslations("hero");
+  const site = useSite();
+  const ctaHref = site.pages.schedule ? "/horarios" : "/contacto";
 
   return (
     <section id="inicio" className="relative bg-sand">
       <div className="relative min-h-[78dvh] w-full overflow-hidden md:min-h-[100dvh]">
         <Image
-          src={HERO_IMAGE}
+          src={site.images.heroUrl}
           alt={t("imageAlt")}
           fill
           priority
@@ -42,7 +43,7 @@ export function Hero() {
             </h1>
             <p className="mt-6 max-w-md text-lg text-ink">{t("subtitle")}</p>
             <Button asChild size="lg" variant="primary" className="mt-9">
-              <a href="/horarios">{t("cta")}</a>
+              <a href={ctaHref}>{t("cta")}</a>
             </Button>
           </motion.div>
         </div>

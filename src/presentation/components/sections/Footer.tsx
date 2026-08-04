@@ -3,19 +3,31 @@
 import { useTranslations } from "next-intl";
 import type { SVGProps } from "react";
 
-import { SOCIAL_LINKS } from "@/config/contact";
 import { WEB_CREATOR } from "@/config/site";
+import type { SiteFooterNavVisibility, SitePageVisibility } from "@/domain/site";
+import { useSite } from "@/presentation/components/providers/SiteProvider";
 import { Logo } from "@/presentation/components/ui/Logo";
-import { getWhatsAppChatUrl } from "@/presentation/lib/whatsapp";
+import { useContactLinks } from "@/presentation/hooks/useContactLinks";
+import {
+  isFooterNavVisible,
+  isFooterSocialVisible,
+} from "@/presentation/lib/nav-visibility";
 
-const NAV_ITEMS = [
-  { key: "classes", href: "/clases" },
-  { key: "schedule", href: "/horarios" },
-  { key: "about", href: "/sobre-mi" },
-  { key: "blog", href: "/blog" },
-  { key: "pricing", href: "/precios" },
-  { key: "contact", href: "/contacto" },
-] as const;
+type FooterLink = {
+  key: keyof SiteFooterNavVisibility;
+  href: string;
+  page: keyof SitePageVisibility;
+};
+
+const NAV_ITEMS: FooterLink[] = [
+  { key: "classes", href: "/clases", page: "classes" },
+  { key: "schedule", href: "/horarios", page: "schedule" },
+  { key: "studio", href: "/estudio", page: "studio" },
+  { key: "about", href: "/sobre-mi", page: "about" },
+  { key: "blog", href: "/blog", page: "blog" },
+  { key: "pricing", href: "/precios", page: "pricing" },
+  { key: "contact", href: "/contacto", page: "contact" },
+];
 
 function iconProps(props: SVGProps<SVGSVGElement>) {
   return {
@@ -75,17 +87,24 @@ function SpotifyIcon(props: SVGProps<SVGSVGElement>) {
   );
 }
 
-const SOCIAL = [
-  { key: "facebook", href: SOCIAL_LINKS.facebook, Icon: FacebookIcon },
-  { key: "instagram", href: SOCIAL_LINKS.instagram, Icon: InstagramIcon },
-  { key: "email", href: SOCIAL_LINKS.email, Icon: MailIcon },
-  { key: "whatsapp", href: getWhatsAppChatUrl(), Icon: WhatsAppIcon },
-  { key: "spotify", href: SOCIAL_LINKS.spotify, Icon: SpotifyIcon },
-] as const;
-
 export function Footer() {
   const t = useTranslations("footer");
   const tNav = useTranslations("nav");
+  const site = useSite();
+  const contact = useContactLinks();
+
+  const navItems = NAV_ITEMS.filter((item) =>
+    isFooterNavVisible(site, item.key, item.page),
+  );
+  const social = (
+    [
+      { key: "facebook" as const, href: contact.facebook, Icon: FacebookIcon },
+      { key: "instagram" as const, href: contact.instagram, Icon: InstagramIcon },
+      { key: "email" as const, href: contact.emailHref, Icon: MailIcon },
+      { key: "whatsapp" as const, href: contact.whatsappChatUrl, Icon: WhatsAppIcon },
+      { key: "spotify" as const, href: contact.spotify, Icon: SpotifyIcon },
+    ] as const
+  ).filter((item) => isFooterSocialVisible(site, item.key) && Boolean(item.href));
 
   return (
     <footer className="bg-deep text-sky">
@@ -95,43 +114,47 @@ export function Footer() {
             <Logo tone="dark" tagline={t("tagline")} />
           </div>
 
-          <div>
-            <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.28em] text-aqua">
-              {t("explore")}
-            </p>
-            <nav className="flex flex-col gap-3">
-              {NAV_ITEMS.map((item) => (
-                <a
-                  key={item.key}
-                  href={item.href}
-                  className="w-fit text-sm text-sky/85 transition-colors hover:text-aqua"
-                >
-                  {tNav(item.key)}
-                </a>
-              ))}
-            </nav>
-          </div>
-
-          <div>
-            <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.28em] text-aqua">
-              {t("follow")}
-            </p>
-            <ul className="flex flex-col gap-3">
-              {SOCIAL.map(({ key, href, Icon }) => (
-                <li key={key}>
+          {navItems.length > 0 ? (
+            <div>
+              <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.28em] text-aqua">
+                {t("explore")}
+              </p>
+              <nav className="flex flex-col gap-3">
+                {navItems.map((item) => (
                   <a
-                    href={href}
-                    target={href.startsWith("http") ? "_blank" : undefined}
-                    rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
-                    className="inline-flex items-center gap-3 text-sm text-sky/85 transition-colors hover:text-aqua"
+                    key={item.key}
+                    href={item.href}
+                    className="w-fit text-sm text-sky/85 transition-colors hover:text-aqua"
                   >
-                    <Icon />
-                    {t(`social.${key}`)}
+                    {tNav(item.key)}
                   </a>
-                </li>
-              ))}
-            </ul>
-          </div>
+                ))}
+              </nav>
+            </div>
+          ) : null}
+
+          {social.length > 0 ? (
+            <div>
+              <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.28em] text-aqua">
+                {t("follow")}
+              </p>
+              <ul className="flex flex-col gap-3">
+                {social.map(({ key, href, Icon }) => (
+                  <li key={key}>
+                    <a
+                      href={href}
+                      target={href.startsWith("http") ? "_blank" : undefined}
+                      rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+                      className="inline-flex items-center gap-3 text-sm text-sky/85 transition-colors hover:text-aqua"
+                    >
+                      <Icon />
+                      {t(`social.${key}`)}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ) : null}
         </div>
 
         <div className="mt-12 border-t border-sky/15 pt-8">

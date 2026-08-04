@@ -73,6 +73,7 @@ export interface Config {
     teachers: Teacher;
     'schedule-slots': ScheduleSlot;
     'pricing-plans': PricingPlan;
+    faqs: Faq;
     reviews: Review;
     posts: Post;
     'payload-kv': PayloadKv;
@@ -88,6 +89,7 @@ export interface Config {
     teachers: TeachersSelect<false> | TeachersSelect<true>;
     'schedule-slots': ScheduleSlotsSelect<false> | ScheduleSlotsSelect<true>;
     'pricing-plans': PricingPlansSelect<false> | PricingPlansSelect<true>;
+    faqs: FaqsSelect<false> | FaqsSelect<true>;
     reviews: ReviewsSelect<false> | ReviewsSelect<true>;
     posts: PostsSelect<false> | PostsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
@@ -99,8 +101,14 @@ export interface Config {
     defaultIDType: number;
   };
   fallbackLocale: ('false' | 'none' | 'null') | false | null | ('es' | 'en') | ('es' | 'en')[];
-  globals: {};
-  globalsSelect: {};
+  globals: {
+    'site-settings': SiteSetting;
+    'site-content': SiteContent;
+  };
+  globalsSelect: {
+    'site-settings': SiteSettingsSelect<false> | SiteSettingsSelect<true>;
+    'site-content': SiteContentSelect<false> | SiteContentSelect<true>;
+  };
   locale: 'es' | 'en';
   widgets: {
     collections: CollectionsWidget;
@@ -201,6 +209,8 @@ export interface Media {
   };
 }
 /**
+ * Desactiva «Visible» para ocultar una clase en la web sin borrarla.
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "classes".
  */
@@ -216,6 +226,10 @@ export interface Class {
    * URL externa de imagen (se usa si no hay imagen subida)
    */
   imageUrl?: string | null;
+  /**
+   * Si está desactivado, la clase no aparece en /clases ni en la landing.
+   */
+  visible?: boolean | null;
   order?: number | null;
   updatedAt: string;
   createdAt: string;
@@ -239,6 +253,8 @@ export interface Teacher {
   createdAt: string;
 }
 /**
+ * Franjas del calendario. Desactiva «Visible» para ocultar una hora sin borrarla.
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "schedule-slots".
  */
@@ -251,15 +267,24 @@ export interface ScheduleSlot {
   time: string;
   class: number | Class;
   teacher?: (number | null) | Teacher;
+  /**
+   * Si está desactivado, este horario no aparece en /horarios ni en la landing.
+   */
+  visible?: boolean | null;
   updatedAt: string;
   createdAt: string;
 }
 /**
+ * Máximo 4 planes. Desactiva «Visible» para ocultar un plan sin borrarlo.
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "pricing-plans".
  */
 export interface PricingPlan {
   id: number;
+  /**
+   * Identificador interno, p. ej. bono-8
+   */
   slug: string;
   name: string;
   price: number;
@@ -272,6 +297,34 @@ export interface PricingPlan {
       }[]
     | null;
   featured?: boolean | null;
+  /**
+   * Si está desactivado, el plan no aparece en /precios ni en la landing.
+   */
+  visible?: boolean | null;
+  /**
+   * Menor número = aparece antes.
+   */
+  order?: number | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * Preguntas frecuentes de la página de precios. Desactiva «Visible» para ocultarlas en la web.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "faqs".
+ */
+export interface Faq {
+  id: number;
+  question: string;
+  answer: string;
+  /**
+   * Si está desactivado, la pregunta no aparece en /precios.
+   */
+  visible?: boolean | null;
+  /**
+   * Menor número = aparece antes.
+   */
   order?: number | null;
   updatedAt: string;
   createdAt: string;
@@ -384,6 +437,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'pricing-plans';
         value: number | PricingPlan;
+      } | null)
+    | ({
+        relationTo: 'faqs';
+        value: number | Faq;
       } | null)
     | ({
         relationTo: 'reviews';
@@ -522,6 +579,7 @@ export interface ClassesSelect<T extends boolean = true> {
   level?: T;
   image?: T;
   imageUrl?: T;
+  visible?: T;
   order?: T;
   updatedAt?: T;
   createdAt?: T;
@@ -549,6 +607,7 @@ export interface ScheduleSlotsSelect<T extends boolean = true> {
   time?: T;
   class?: T;
   teacher?: T;
+  visible?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -569,6 +628,19 @@ export interface PricingPlansSelect<T extends boolean = true> {
         id?: T;
       };
   featured?: T;
+  visible?: T;
+  order?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "faqs_select".
+ */
+export interface FaqsSelect<T extends boolean = true> {
+  question?: T;
+  answer?: T;
+  visible?: T;
   order?: T;
   updatedAt?: T;
   createdAt?: T;
@@ -640,6 +712,990 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
   batch?: T;
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * Marca, logo, colores, contacto, imágenes principales y qué páginas/secciones se muestran.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "site-settings".
+ */
+export interface SiteSetting {
+  id: number;
+  /**
+   * Usado en textos con {brandName}.
+   */
+  brandName: string;
+  /**
+   * Nombre usado en toda la web: metas, WhatsApp, tagline, «Hola, soy…», etc. Usa {teacherName} en los textos.
+   */
+  teacherName: string;
+  /**
+   * Normalmente en mayúsculas, como aparece junto al símbolo.
+   */
+  logoText: string;
+  /**
+   * Puedes usar {teacherName} y {brandName}.
+   */
+  tagline?: string | null;
+  /**
+   * Si subes una imagen, sustituye el símbolo SVG por defecto.
+   */
+  logo?: (number | null) | Media;
+  /**
+   * Solo si no hay imagen subida.
+   */
+  logoUrl?: string | null;
+  showLogoMark?: boolean | null;
+  showLogoText?: boolean | null;
+  showTagline?: boolean | null;
+  colors: {
+    /**
+     * Color HEX, p. ej. #0F4C5C. El cuadrado muestra la vista previa y permite elegir el color.
+     */
+    deep: string;
+    /**
+     * Color HEX, p. ej. #0F4C5C. El cuadrado muestra la vista previa y permite elegir el color.
+     */
+    deepDark: string;
+    /**
+     * Color HEX, p. ej. #0F4C5C. El cuadrado muestra la vista previa y permite elegir el color.
+     */
+    teal: string;
+    /**
+     * Color HEX, p. ej. #0F4C5C. El cuadrado muestra la vista previa y permite elegir el color.
+     */
+    tealDark: string;
+    /**
+     * Color HEX, p. ej. #0F4C5C. El cuadrado muestra la vista previa y permite elegir el color.
+     */
+    aqua: string;
+    /**
+     * Color HEX, p. ej. #0F4C5C. El cuadrado muestra la vista previa y permite elegir el color.
+     */
+    sky: string;
+    /**
+     * Color HEX, p. ej. #0F4C5C. El cuadrado muestra la vista previa y permite elegir el color.
+     */
+    sand: string;
+    /**
+     * Color HEX, p. ej. #0F4C5C. El cuadrado muestra la vista previa y permite elegir el color.
+     */
+    linen: string;
+    /**
+     * Color HEX, p. ej. #0F4C5C. El cuadrado muestra la vista previa y permite elegir el color.
+     */
+    wood: string;
+    /**
+     * Color HEX, p. ej. #0F4C5C. El cuadrado muestra la vista previa y permite elegir el color.
+     */
+    ink: string;
+  };
+  contact: {
+    /**
+     * Solo dígitos con prefijo país, sin + ni espacios. Ej. 34610429326. Usado en TODOS los WhatsApp de la web.
+     */
+    whatsappPhone: string;
+    /**
+     * Texto visible junto al icono de teléfono en Contacto.
+     */
+    whatsappDisplay: string;
+    /**
+     * Correo mostrado en Contacto y en el footer.
+     */
+    email: string;
+    address?: string | null;
+    instagram?: string | null;
+    facebook?: string | null;
+    spotify?: string | null;
+  };
+  images?: {
+    hero?: (number | null) | Media;
+    heroUrl?: string | null;
+    studio?: (number | null) | Media;
+    studioUrl?: string | null;
+    contact?: (number | null) | Media;
+    contactUrl?: string | null;
+  };
+  /**
+   * Fotos de la página /estudio. La primera marcada como «Destacada» ocupa más espacio.
+   */
+  studioGallery?:
+    | {
+        image?: (number | null) | Media;
+        imageUrl?: string | null;
+        alt?: string | null;
+        featured?: boolean | null;
+        id?: string | null;
+      }[]
+    | null;
+  pages?: {
+    classes?: boolean | null;
+    schedule?: boolean | null;
+    studio?: boolean | null;
+    about?: boolean | null;
+    blog?: boolean | null;
+    pricing?: boolean | null;
+    contact?: boolean | null;
+  };
+  headerNav?: {
+    home?: boolean | null;
+    classes?: boolean | null;
+    schedule?: boolean | null;
+    /**
+     * Oculto en el header por defecto. La página sigue accesible si está activa en «Páginas visibles».
+     */
+    studio?: boolean | null;
+    about?: boolean | null;
+    blog?: boolean | null;
+    pricing?: boolean | null;
+    contact?: boolean | null;
+    cta?: boolean | null;
+  };
+  footerNav?: {
+    classes?: boolean | null;
+    schedule?: boolean | null;
+    studio?: boolean | null;
+    about?: boolean | null;
+    blog?: boolean | null;
+    pricing?: boolean | null;
+    contact?: boolean | null;
+  };
+  footerSocial?: {
+    facebook?: boolean | null;
+    instagram?: boolean | null;
+    email?: boolean | null;
+    whatsapp?: boolean | null;
+    spotify?: boolean | null;
+  };
+  /**
+   * Arrastra para cambiar el orden. Desactiva «Visible» para ocultar una sección.
+   */
+  landingSections?:
+    | {
+        section:
+          | 'hero'
+          | 'features'
+          | 'studio'
+          | 'quote'
+          | 'classes'
+          | 'schedule'
+          | 'about'
+          | 'pricing'
+          | 'reviews'
+          | 'contact';
+        visible?: boolean | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Arrastra para poner uno encima del otro. Desactiva «Visible» para ocultar un botón.
+   */
+  landingStudioCtas?:
+    | {
+        section: 'explore' | 'rental';
+        visible?: boolean | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Arrastra para cambiar el orden. Desactiva «Visible» para ocultar una sección.
+   */
+  aboutSections?:
+    | {
+        section: 'intro' | 'story' | 'philosophy' | 'training' | 'stats' | 'reviews' | 'values' | 'offMat' | 'cta';
+        visible?: boolean | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Arrastra para cambiar el orden. Desactiva «Visible» para ocultar una sección.
+   */
+  studioSections?:
+    | {
+        section: 'hero' | 'intro' | 'gallery' | 'rental';
+        visible?: boolean | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Arrastra para cambiar el orden. Desactiva «Visible» para ocultar una sección.
+   */
+  pricingSections?:
+    | {
+        section: 'hero' | 'plans' | 'faq';
+        visible?: boolean | null;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * Títulos, subtítulos y textos de la web. Cambia el idioma arriba a la derecha del admin para editar ES/EN.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "site-content".
+ */
+export interface SiteContent {
+  id: number;
+  meta: {
+    title: string;
+    description: string;
+  };
+  nav?: {
+    home?: string | null;
+    classes?: string | null;
+    schedule?: string | null;
+    studio?: string | null;
+    about?: string | null;
+    blog?: string | null;
+    pricing?: string | null;
+    contact?: string | null;
+    cta?: string | null;
+  };
+  hero: {
+    eyebrow?: string | null;
+    title: string;
+    subtitle?: string | null;
+    cta?: string | null;
+    imageAlt?: string | null;
+  };
+  features?:
+    | {
+        title: string;
+        text: string;
+        id?: string | null;
+      }[]
+    | null;
+  studio?: {
+    label?: string | null;
+    title?: string | null;
+    text?: string | null;
+    cta?: string | null;
+    ctaRental?: string | null;
+    imageAlt?: string | null;
+    galleryLabel?: string | null;
+    galleryTitle?: string | null;
+    gallerySubtitle?: string | null;
+    rental?: {
+      label?: string | null;
+      title?: string | null;
+      text?: string | null;
+      cta?: string | null;
+      whatsappMessage?: string | null;
+      highlights?: {
+        light?: string | null;
+        equip?: string | null;
+        groups?: string | null;
+      };
+    };
+  };
+  quote?: {
+    text?: string | null;
+    author?: string | null;
+  };
+  classes?: {
+    label?: string | null;
+    title?: string | null;
+    subtitle?: string | null;
+    cta?: string | null;
+  };
+  schedule?: {
+    label?: string | null;
+    title?: string | null;
+    subtitle?: string | null;
+    book?: string | null;
+  };
+  pricing?: {
+    label?: string | null;
+    title?: string | null;
+    subtitle?: string | null;
+    cta?: string | null;
+    popular?: string | null;
+    faq?: {
+      label?: string | null;
+      title?: string | null;
+      subtitle?: string | null;
+    };
+  };
+  reviews?: {
+    label?: string | null;
+    title?: string | null;
+  };
+  contact?: {
+    label?: string | null;
+    title?: string | null;
+    subtitle?: string | null;
+    imageAlt?: string | null;
+  };
+  about?: {
+    label?: string | null;
+    /**
+     * Ej. Hola, soy {name}
+     */
+    title?: string | null;
+    cta?: string | null;
+    imageAlt?: string | null;
+  };
+  footer?: {
+    tagline?: string | null;
+    explore?: string | null;
+    follow?: string | null;
+    /**
+     * Ej. © {year} Blau Yoga. Todos los derechos reservados.
+     */
+    rights?: string | null;
+    values?: string | null;
+  };
+  blog?: {
+    label?: string | null;
+    title?: string | null;
+    subtitle?: string | null;
+    metaTitle?: string | null;
+    metaDescription?: string | null;
+    readMore?: string | null;
+    back?: string | null;
+    empty?: string | null;
+  };
+  aboutPage?: {
+    story?: {
+      label?: string | null;
+      title?: string | null;
+      subtitle?: string | null;
+      steps?: {
+        discover?: {
+          label?: string | null;
+          title?: string | null;
+          text?: string | null;
+        };
+        train?: {
+          label?: string | null;
+          title?: string | null;
+          text?: string | null;
+        };
+        change?: {
+          label?: string | null;
+          title?: string | null;
+          text?: string | null;
+        };
+        teach?: {
+          label?: string | null;
+          title?: string | null;
+          text?: string | null;
+        };
+      };
+    };
+    philosophy?: {
+      label?: string | null;
+      title?: string | null;
+      subtitle?: string | null;
+      points?: {
+        accessible?: {
+          title?: string | null;
+          text?: string | null;
+        };
+        breath?: {
+          title?: string | null;
+          text?: string | null;
+        };
+        levels?: {
+          title?: string | null;
+          text?: string | null;
+        };
+        safe?: {
+          title?: string | null;
+          text?: string | null;
+        };
+      };
+    };
+    training?: {
+      label?: string | null;
+      title?: string | null;
+      subtitle?: string | null;
+      items?: {
+        main?: {
+          label?: string | null;
+          title?: string | null;
+          text?: string | null;
+        };
+        extra?: {
+          label?: string | null;
+          title?: string | null;
+          text?: string | null;
+        };
+        retreats?: {
+          label?: string | null;
+          title?: string | null;
+          text?: string | null;
+        };
+      };
+    };
+    values?: {
+      label?: string | null;
+      title?: string | null;
+      subtitle?: string | null;
+      items?: {
+        authenticity?: {
+          title?: string | null;
+          text?: string | null;
+        };
+        listening?: {
+          title?: string | null;
+          text?: string | null;
+        };
+        community?: {
+          title?: string | null;
+          text?: string | null;
+        };
+        awareness?: {
+          title?: string | null;
+          text?: string | null;
+        };
+        accessibility?: {
+          title?: string | null;
+          text?: string | null;
+        };
+      };
+    };
+    offMat?: {
+      label?: string | null;
+      title?: string | null;
+      subtitle?: string | null;
+      items?: {
+        barcelona?: {
+          label?: string | null;
+          title?: string | null;
+          text?: string | null;
+        };
+        rituals?: {
+          label?: string | null;
+          title?: string | null;
+          text?: string | null;
+        };
+        inspire?: {
+          label?: string | null;
+          title?: string | null;
+          text?: string | null;
+        };
+      };
+    };
+    cta?: {
+      label?: string | null;
+      title?: string | null;
+      subtitle?: string | null;
+      primary?: string | null;
+      whatsapp?: string | null;
+      instagram?: string | null;
+      /**
+       * Puedes usar {teacherName}.
+       */
+      whatsappMessage?: string | null;
+    };
+  };
+  /**
+   * Ej. { "classes": { "metaTitle": "...", "metaDescription": "..." }, ... }
+   */
+  pageMeta?:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "site-settings_select".
+ */
+export interface SiteSettingsSelect<T extends boolean = true> {
+  brandName?: T;
+  teacherName?: T;
+  logoText?: T;
+  tagline?: T;
+  logo?: T;
+  logoUrl?: T;
+  showLogoMark?: T;
+  showLogoText?: T;
+  showTagline?: T;
+  colors?:
+    | T
+    | {
+        deep?: T;
+        deepDark?: T;
+        teal?: T;
+        tealDark?: T;
+        aqua?: T;
+        sky?: T;
+        sand?: T;
+        linen?: T;
+        wood?: T;
+        ink?: T;
+      };
+  contact?:
+    | T
+    | {
+        whatsappPhone?: T;
+        whatsappDisplay?: T;
+        email?: T;
+        address?: T;
+        instagram?: T;
+        facebook?: T;
+        spotify?: T;
+      };
+  images?:
+    | T
+    | {
+        hero?: T;
+        heroUrl?: T;
+        studio?: T;
+        studioUrl?: T;
+        contact?: T;
+        contactUrl?: T;
+      };
+  studioGallery?:
+    | T
+    | {
+        image?: T;
+        imageUrl?: T;
+        alt?: T;
+        featured?: T;
+        id?: T;
+      };
+  pages?:
+    | T
+    | {
+        classes?: T;
+        schedule?: T;
+        studio?: T;
+        about?: T;
+        blog?: T;
+        pricing?: T;
+        contact?: T;
+      };
+  headerNav?:
+    | T
+    | {
+        home?: T;
+        classes?: T;
+        schedule?: T;
+        studio?: T;
+        about?: T;
+        blog?: T;
+        pricing?: T;
+        contact?: T;
+        cta?: T;
+      };
+  footerNav?:
+    | T
+    | {
+        classes?: T;
+        schedule?: T;
+        studio?: T;
+        about?: T;
+        blog?: T;
+        pricing?: T;
+        contact?: T;
+      };
+  footerSocial?:
+    | T
+    | {
+        facebook?: T;
+        instagram?: T;
+        email?: T;
+        whatsapp?: T;
+        spotify?: T;
+      };
+  landingSections?:
+    | T
+    | {
+        section?: T;
+        visible?: T;
+        id?: T;
+      };
+  landingStudioCtas?:
+    | T
+    | {
+        section?: T;
+        visible?: T;
+        id?: T;
+      };
+  aboutSections?:
+    | T
+    | {
+        section?: T;
+        visible?: T;
+        id?: T;
+      };
+  studioSections?:
+    | T
+    | {
+        section?: T;
+        visible?: T;
+        id?: T;
+      };
+  pricingSections?:
+    | T
+    | {
+        section?: T;
+        visible?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "site-content_select".
+ */
+export interface SiteContentSelect<T extends boolean = true> {
+  meta?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+      };
+  nav?:
+    | T
+    | {
+        home?: T;
+        classes?: T;
+        schedule?: T;
+        studio?: T;
+        about?: T;
+        blog?: T;
+        pricing?: T;
+        contact?: T;
+        cta?: T;
+      };
+  hero?:
+    | T
+    | {
+        eyebrow?: T;
+        title?: T;
+        subtitle?: T;
+        cta?: T;
+        imageAlt?: T;
+      };
+  features?:
+    | T
+    | {
+        title?: T;
+        text?: T;
+        id?: T;
+      };
+  studio?:
+    | T
+    | {
+        label?: T;
+        title?: T;
+        text?: T;
+        cta?: T;
+        ctaRental?: T;
+        imageAlt?: T;
+        galleryLabel?: T;
+        galleryTitle?: T;
+        gallerySubtitle?: T;
+        rental?:
+          | T
+          | {
+              label?: T;
+              title?: T;
+              text?: T;
+              cta?: T;
+              whatsappMessage?: T;
+              highlights?:
+                | T
+                | {
+                    light?: T;
+                    equip?: T;
+                    groups?: T;
+                  };
+            };
+      };
+  quote?:
+    | T
+    | {
+        text?: T;
+        author?: T;
+      };
+  classes?:
+    | T
+    | {
+        label?: T;
+        title?: T;
+        subtitle?: T;
+        cta?: T;
+      };
+  schedule?:
+    | T
+    | {
+        label?: T;
+        title?: T;
+        subtitle?: T;
+        book?: T;
+      };
+  pricing?:
+    | T
+    | {
+        label?: T;
+        title?: T;
+        subtitle?: T;
+        cta?: T;
+        popular?: T;
+        faq?:
+          | T
+          | {
+              label?: T;
+              title?: T;
+              subtitle?: T;
+            };
+      };
+  reviews?:
+    | T
+    | {
+        label?: T;
+        title?: T;
+      };
+  contact?:
+    | T
+    | {
+        label?: T;
+        title?: T;
+        subtitle?: T;
+        imageAlt?: T;
+      };
+  about?:
+    | T
+    | {
+        label?: T;
+        title?: T;
+        cta?: T;
+        imageAlt?: T;
+      };
+  footer?:
+    | T
+    | {
+        tagline?: T;
+        explore?: T;
+        follow?: T;
+        rights?: T;
+        values?: T;
+      };
+  blog?:
+    | T
+    | {
+        label?: T;
+        title?: T;
+        subtitle?: T;
+        metaTitle?: T;
+        metaDescription?: T;
+        readMore?: T;
+        back?: T;
+        empty?: T;
+      };
+  aboutPage?:
+    | T
+    | {
+        story?:
+          | T
+          | {
+              label?: T;
+              title?: T;
+              subtitle?: T;
+              steps?:
+                | T
+                | {
+                    discover?:
+                      | T
+                      | {
+                          label?: T;
+                          title?: T;
+                          text?: T;
+                        };
+                    train?:
+                      | T
+                      | {
+                          label?: T;
+                          title?: T;
+                          text?: T;
+                        };
+                    change?:
+                      | T
+                      | {
+                          label?: T;
+                          title?: T;
+                          text?: T;
+                        };
+                    teach?:
+                      | T
+                      | {
+                          label?: T;
+                          title?: T;
+                          text?: T;
+                        };
+                  };
+            };
+        philosophy?:
+          | T
+          | {
+              label?: T;
+              title?: T;
+              subtitle?: T;
+              points?:
+                | T
+                | {
+                    accessible?:
+                      | T
+                      | {
+                          title?: T;
+                          text?: T;
+                        };
+                    breath?:
+                      | T
+                      | {
+                          title?: T;
+                          text?: T;
+                        };
+                    levels?:
+                      | T
+                      | {
+                          title?: T;
+                          text?: T;
+                        };
+                    safe?:
+                      | T
+                      | {
+                          title?: T;
+                          text?: T;
+                        };
+                  };
+            };
+        training?:
+          | T
+          | {
+              label?: T;
+              title?: T;
+              subtitle?: T;
+              items?:
+                | T
+                | {
+                    main?:
+                      | T
+                      | {
+                          label?: T;
+                          title?: T;
+                          text?: T;
+                        };
+                    extra?:
+                      | T
+                      | {
+                          label?: T;
+                          title?: T;
+                          text?: T;
+                        };
+                    retreats?:
+                      | T
+                      | {
+                          label?: T;
+                          title?: T;
+                          text?: T;
+                        };
+                  };
+            };
+        values?:
+          | T
+          | {
+              label?: T;
+              title?: T;
+              subtitle?: T;
+              items?:
+                | T
+                | {
+                    authenticity?:
+                      | T
+                      | {
+                          title?: T;
+                          text?: T;
+                        };
+                    listening?:
+                      | T
+                      | {
+                          title?: T;
+                          text?: T;
+                        };
+                    community?:
+                      | T
+                      | {
+                          title?: T;
+                          text?: T;
+                        };
+                    awareness?:
+                      | T
+                      | {
+                          title?: T;
+                          text?: T;
+                        };
+                    accessibility?:
+                      | T
+                      | {
+                          title?: T;
+                          text?: T;
+                        };
+                  };
+            };
+        offMat?:
+          | T
+          | {
+              label?: T;
+              title?: T;
+              subtitle?: T;
+              items?:
+                | T
+                | {
+                    barcelona?:
+                      | T
+                      | {
+                          label?: T;
+                          title?: T;
+                          text?: T;
+                        };
+                    rituals?:
+                      | T
+                      | {
+                          label?: T;
+                          title?: T;
+                          text?: T;
+                        };
+                    inspire?:
+                      | T
+                      | {
+                          label?: T;
+                          title?: T;
+                          text?: T;
+                        };
+                  };
+            };
+        cta?:
+          | T
+          | {
+              label?: T;
+              title?: T;
+              subtitle?: T;
+              primary?: T;
+              whatsapp?: T;
+              instagram?: T;
+              whatsappMessage?: T;
+            };
+      };
+  pageMeta?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

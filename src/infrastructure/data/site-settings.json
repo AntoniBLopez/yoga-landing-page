@@ -1,0 +1,217 @@
+{
+  "brandName": "Blau Yoga",
+  "teacherName": "Cyane",
+  "logoText": "BLAU YOGA",
+  "tagline": {
+    "es": "Yoga con {teacherName} · RYT 220H",
+    "en": "Yoga with {teacherName} · RYT 220H"
+  },
+  "logoUrl": "",
+  "showLogoMark": true,
+  "showLogoText": true,
+  "showTagline": true,
+  "colors": {
+    "deep": "#0F4C5C",
+    "deepDark": "#0A3A47",
+    "teal": "#2FA7A6",
+    "tealDark": "#248F8E",
+    "aqua": "#A8D5D1",
+    "sky": "#DCEEF0",
+    "sand": "#F4F1EA",
+    "linen": "#E6DED1",
+    "wood": "#D7C2A4",
+    "ink": "#35565F"
+  },
+  "contact": {
+    "whatsappPhone": "34610429326",
+    "whatsappDisplay": "+34 610 42 93 26",
+    "email": "cyaneyoga@gmail.com",
+    "address": {
+      "es": "Barcelona",
+      "en": "Barcelona"
+    },
+    "instagram": "https://www.instagram.com/cyaneyoga/",
+    "facebook": "https://www.facebook.com/profile.php?id=100056892065471",
+    "spotify": "https://open.spotify.com/playlist/6Fp8AowBrbG9r7M02z19JN"
+  },
+  "images": {
+    "heroUrl": "/images/hero.png",
+    "studioUrl": "/images/estudio.png",
+    "contactUrl": "/images/contacto-orilla-3.png",
+    "studioGallery": [
+      {
+        "url": "/images/estudio.png",
+        "alt": "Interior del estudio Blau Yoga",
+        "featured": true
+      },
+      {
+        "url": "/images/estudio.png",
+        "alt": "Esterillas en el estudio Blau Yoga",
+        "featured": false
+      },
+      {
+        "url": "/images/estudio.png",
+        "alt": "Luz natural en el estudio Blau Yoga",
+        "featured": false
+      }
+    ]
+  },
+  "pages": {
+    "classes": true,
+    "schedule": true,
+    "studio": true,
+    "about": true,
+    "blog": true,
+    "pricing": true,
+    "contact": true
+  },
+  "headerNav": {
+    "home": true,
+    "classes": true,
+    "schedule": true,
+    "studio": false,
+    "about": true,
+    "blog": true,
+    "pricing": true,
+    "contact": true,
+    "cta": true
+  },
+  "footerNav": {
+    "classes": true,
+    "schedule": true,
+    "studio": true,
+    "about": true,
+    "blog": true,
+    "pricing": true,
+    "contact": true
+  },
+  "footerSocial": {
+    "facebook": true,
+    "instagram": true,
+    "email": true,
+    "whatsapp": true,
+    "spotify": true
+  },
+  "landingSections": [
+    {
+      "id": "hero",
+      "visible": true
+    },
+    {
+      "id": "features",
+      "visible": true
+    },
+    {
+      "id": "studio",
+      "visible": true
+    },
+    {
+      "id": "quote",
+      "visible": true
+    },
+    {
+      "id": "classes",
+      "visible": true
+    },
+    {
+      "id": "schedule",
+      "visible": true
+    },
+    {
+      "id": "about",
+      "visible": true
+    },
+    {
+      "id": "pricing",
+      "visible": true
+    },
+    {
+      "id": "reviews",
+      "visible": true
+    },
+    {
+      "id": "contact",
+      "visible": true
+    }
+  ],
+  "landingStudioCtas": [
+    {
+      "id": "explore",
+      "visible": true
+    },
+    {
+      "id": "rental",
+      "visible": true
+    }
+  ],
+  "aboutSections": [
+    {
+      "id": "intro",
+      "visible": true
+    },
+    {
+      "id": "story",
+      "visible": true
+    },
+    {
+      "id": "philosophy",
+      "visible": true
+    },
+    {
+      "id": "training",
+      "visible": true
+    },
+    {
+      "id": "stats",
+      "visible": true
+    },
+    {
+      "id": "reviews",
+      "visible": true
+    },
+    {
+      "id": "values",
+      "visible": true
+    },
+    {
+      "id": "offMat",
+      "visible": true
+    },
+    {
+      "id": "cta",
+      "visible": true
+    }
+  ],
+  "studioSections": [
+    {
+      "id": "hero",
+      "visible": true
+    },
+    {
+      "id": "intro",
+      "visible": true
+    },
+    {
+      "id": "gallery",
+      "visible": true
+    },
+    {
+      "id": "rental",
+      "visible": true
+    }
+  ],
+  "pricingSections": [
+    {
+      "id": "hero",
+      "visible": true
+    },
+    {
+      "id": "plans",
+      "visible": true
+    },
+    {
+      "id": "faq",
+      "visible": true
+    }
+  ]
+}

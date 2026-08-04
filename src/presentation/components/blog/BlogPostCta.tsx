@@ -3,12 +3,16 @@
 import { ArrowUpRight } from "lucide-react";
 import { useTranslations } from "next-intl";
 
+import { useSite } from "@/presentation/components/providers/SiteProvider";
 import { Button } from "@/presentation/components/ui/Button";
 import { FadeIn } from "@/presentation/components/ui/FadeIn";
-import { buildWhatsAppUrl } from "@/presentation/lib/whatsapp";
+import { useContactLinks } from "@/presentation/hooks/useContactLinks";
 
 export function BlogPostCta() {
   const t = useTranslations("blog.cta");
+  const site = useSite();
+  const contact = useContactLinks();
+  const primaryHref = site.pages.schedule ? "/horarios" : "/contacto";
 
   return (
     <FadeIn className="mt-14 border-t border-linen pt-12 md:mt-16 md:pt-14">
@@ -30,10 +34,10 @@ export function BlogPostCta() {
 
         <div className="relative mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
           <Button asChild variant="primary" size="lg">
-            <a href="/horarios">{t("primary")}</a>
+            <a href={primaryHref}>{t("primary")}</a>
           </Button>
           <a
-            href={buildWhatsAppUrl(t("whatsappMessage"))}
+            href={contact.whatsappUrl(t("whatsappMessage"))}
             target="_blank"
             rel="noopener noreferrer"
             className="group inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-deep transition-colors hover:text-teal"

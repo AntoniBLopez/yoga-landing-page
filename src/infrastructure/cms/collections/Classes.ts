@@ -2,12 +2,23 @@ import type { CollectionConfig } from "payload";
 
 export const Classes: CollectionConfig = {
   slug: "classes",
+  labels: {
+    singular: "Clase",
+    plural: "Clases",
+  },
   admin: {
     useAsTitle: "title",
-    defaultColumns: ["title", "level", "durationMin", "order"],
+    defaultColumns: ["title", "visible", "level", "durationMin", "order"],
+    description: "Desactiva «Visible» para ocultar una clase en la web sin borrarla.",
   },
   access: {
-    read: () => true,
+    read: ({ req }) => {
+      if (req.user) return true;
+      // Treat missing `visible` as true (legacy docs before the field existed)
+      return {
+        or: [{ visible: { equals: true } }, { visible: { exists: false } }],
+      };
+    },
   },
   fields: [
     {
@@ -60,9 +71,22 @@ export const Classes: CollectionConfig = {
       },
     },
     {
+      name: "visible",
+      type: "checkbox",
+      defaultValue: true,
+      label: "Visible en la web",
+      admin: {
+        position: "sidebar",
+        description: "Si está desactivado, la clase no aparece en /clases ni en la landing.",
+      },
+    },
+    {
       name: "order",
       type: "number",
       defaultValue: 0,
+      admin: {
+        position: "sidebar",
+      },
     },
   ],
 };

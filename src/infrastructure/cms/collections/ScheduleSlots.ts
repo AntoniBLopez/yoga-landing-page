@@ -2,12 +2,23 @@ import type { CollectionConfig } from "payload";
 
 export const ScheduleSlots: CollectionConfig = {
   slug: "schedule-slots",
+  labels: {
+    singular: "Horario",
+    plural: "Horarios",
+  },
   admin: {
     useAsTitle: "time",
-    defaultColumns: ["day", "time", "class"],
+    defaultColumns: ["day", "time", "class", "visible"],
+    description:
+      "Franjas del calendario. Desactiva «Visible» para ocultar una hora sin borrarla.",
   },
   access: {
-    read: () => true,
+    read: ({ req }) => {
+      if (req.user) return true;
+      return {
+        or: [{ visible: { equals: true } }, { visible: { exists: false } }],
+      };
+    },
   },
   fields: [
     {
@@ -39,11 +50,24 @@ export const ScheduleSlots: CollectionConfig = {
       type: "relationship",
       relationTo: "classes",
       required: true,
+      label: "Clase",
     },
     {
       name: "teacher",
       type: "relationship",
       relationTo: "teachers",
+      label: "Profesora",
+    },
+    {
+      name: "visible",
+      type: "checkbox",
+      defaultValue: true,
+      label: "Visible en la web",
+      admin: {
+        position: "sidebar",
+        description:
+          "Si está desactivado, este horario no aparece en /horarios ni en la landing.",
+      },
     },
   ],
 };

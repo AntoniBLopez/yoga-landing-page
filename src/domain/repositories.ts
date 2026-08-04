@@ -1,6 +1,7 @@
 import type {
   BlogPost,
   BlogPostSummary,
+  Faq,
   Locale,
   PricingPlan,
   Review,
@@ -31,6 +32,10 @@ export interface PricingPlanRepository {
 
 export interface ReviewRepository {
   findAll(locale: Locale): Promise<Review[]>;
+}
+
+export interface FaqRepository {
+  findVisible(locale: Locale): Promise<Faq[]>;
 }
 
 export interface PostRepository {

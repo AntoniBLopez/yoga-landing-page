@@ -2,12 +2,14 @@ import type { Metadata } from "next";
 import { getLocale, getTranslations } from "next-intl/server";
 
 import { getPosts } from "@/application/use-cases/get-posts";
+import { getSiteSettings } from "@/application/use-cases/get-site-settings";
 import type { Locale } from "@/domain/entities";
 import { BlogPostCard } from "@/presentation/components/blog/BlogPostCard";
 import { Footer } from "@/presentation/components/sections/Footer";
 import { Navbar } from "@/presentation/components/sections/Navbar";
 import { FadeIn } from "@/presentation/components/ui/FadeIn";
 import { SectionHeading } from "@/presentation/components/ui/SectionHeading";
+import { assertPageVisible } from "@/presentation/lib/page-visibility";
 
 export const dynamic = "force-dynamic";
 
@@ -22,7 +24,11 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function BlogPage() {
   const locale = (await getLocale()) as Locale;
   const t = await getTranslations("blog");
-  const posts = await getPosts(locale);
+  const [posts, settings] = await Promise.all([
+    getPosts(locale),
+    getSiteSettings(locale),
+  ]);
+  assertPageVisible(settings.pages, "blog");
 
   return (
     <>

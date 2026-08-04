@@ -1,9 +1,12 @@
 import type { Metadata } from "next";
-import { getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 
+import { getSiteSettings } from "@/application/use-cases/get-site-settings";
+import type { Locale } from "@/domain/entities";
 import { PageHero } from "@/presentation/components/layout/PageHero";
 import { PageShell } from "@/presentation/components/layout/PageShell";
 import { ContactSection } from "@/presentation/components/sections/ContactSection";
+import { assertPageVisible } from "@/presentation/lib/page-visibility";
 
 export const dynamic = "force-dynamic";
 
@@ -13,7 +16,12 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function ContactPage() {
-  const t = await getTranslations("contact");
+  const locale = (await getLocale()) as Locale;
+  const [t, settings] = await Promise.all([
+    getTranslations("contact"),
+    getSiteSettings(locale),
+  ]);
+  assertPageVisible(settings.pages, "contact");
 
   return (
     <PageShell>
@@ -21,7 +29,7 @@ export default async function ContactPage() {
         label={t("label")}
         title={t("title")}
         subtitle={t("subtitle")}
-        image="/images/contacto-orilla-3.png"
+        image={settings.images.contactUrl}
         imageAlt={t("imageAlt")}
       />
       <ContactSection pageMode />

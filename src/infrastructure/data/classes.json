@@ -12,7 +12,8 @@
     "en": {
       "title": "Hatha Yoga",
       "description": "Held postures and conscious breathing to strengthen the body, calm the mind and find balance."
-    }
+    },
+    "visible": true
   },
   {
     "slug": "yin",
@@ -27,7 +28,8 @@
     "en": {
       "title": "Yin Yoga",
       "description": "A slow, deep practice: long-held postures that release tension, open connective tissue and invite you to let go."
-    }
+    },
+    "visible": true
   },
   {
     "slug": "ashtanga",
@@ -42,7 +44,8 @@
     "en": {
       "title": "Ashtanga",
       "description": "A dynamic, energising sequence that links movement and breath to build strength, flexibility and focus."
-    }
+    },
+    "visible": true
   },
   {
     "slug": "yoga-facial",
@@ -57,7 +60,8 @@
     "en": {
       "title": "Facial Yoga",
       "description": "Gentle exercises for the face and neck that tone, release tension and help you reconnect with your natural expression."
-    }
+    },
+    "visible": true
   },
   {
     "slug": "yoga-playa",
@@ -72,6 +76,7 @@
     "en": {
       "title": "Beach Yoga",
       "description": "Outdoor practice by the sea, every Sunday. Breathe, move and connect with nature."
-    }
+    },
+    "visible": true
   }
 ]

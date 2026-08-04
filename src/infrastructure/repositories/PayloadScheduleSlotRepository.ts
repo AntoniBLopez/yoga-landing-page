@@ -12,10 +12,14 @@ export class PayloadScheduleSlotRepository implements ScheduleSlotRepository {
       depth: 1,
       sort: "time",
       limit: 200,
+      where: {
+        or: [{ visible: { equals: true } }, { visible: { exists: false } }],
+      },
     });
 
     return docs.flatMap((doc) => {
       if (typeof doc.class !== "object" || doc.class === null) return [];
+      if (doc.class.visible === false) return [];
       return [
         {
           id: String(doc.id),
@@ -24,6 +28,7 @@ export class PayloadScheduleSlotRepository implements ScheduleSlotRepository {
           className: doc.class.title,
           classSlug: doc.class.slug,
           durationMin: doc.class.durationMin,
+          visible: true,
         },
       ];
     });

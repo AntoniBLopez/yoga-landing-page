@@ -1,6 +1,6 @@
 /**
- * Site contact & social constants — single source of truth.
- * Use these everywhere instead of hardcoding URLs or addresses.
+ * Fallback contact constants used only if CMS Site Settings are unavailable.
+ * Runtime source of truth: Globals → Ajustes del sitio → Contacto y redes.
  */
 
 /** International digits only (no "+"), for wa.me / API links */

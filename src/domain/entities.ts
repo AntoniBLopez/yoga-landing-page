@@ -15,6 +15,7 @@ export interface YogaClass {
   durationMin: number;
   level: ClassLevel;
   imageUrl: string;
+  visible: boolean;
   order: number;
 }
 
@@ -44,6 +45,7 @@ export interface ScheduleSlot {
   className: string;
   classSlug: string;
   durationMin: number;
+  visible: boolean;
 }
 
 export type PlanPeriod = "single" | "monthly";
@@ -57,6 +59,7 @@ export interface PricingPlan {
   period: PlanPeriod;
   features: string[];
   featured: boolean;
+  visible: boolean;
   order: number;
 }
 
@@ -66,6 +69,14 @@ export interface Review {
   context: string;
   text: string;
   rating: number;
+}
+
+export interface Faq {
+  id: string;
+  question: string;
+  answer: string;
+  visible: boolean;
+  order: number;
 }
 
 /** Lexical editor state from Payload rich text */

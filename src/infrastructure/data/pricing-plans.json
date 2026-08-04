@@ -8,12 +8,21 @@
     "order": 1,
     "es": {
       "name": "Clase presencial",
-      "features": ["1 clase grupal a tu elección", "Hatha, Yin, Ashtanga o Yoga Facial", "Sin permanencia"]
+      "features": [
+        "1 clase grupal a tu elección",
+        "Hatha, Yin, Ashtanga o Yoga Facial",
+        "Sin permanencia"
+      ]
     },
     "en": {
       "name": "In-person class",
-      "features": ["1 group class of your choice", "Hatha, Yin, Ashtanga or Facial Yoga", "No commitment"]
-    }
+      "features": [
+        "1 group class of your choice",
+        "Hatha, Yin, Ashtanga or Facial Yoga",
+        "No commitment"
+      ]
+    },
+    "visible": true
   },
   {
     "slug": "bono-8",
@@ -24,12 +33,23 @@
     "order": 2,
     "es": {
       "name": "Bono 8 clases",
-      "features": ["8 clases grupales al mes", "Incluye yoga en la playa (domingos)", "Todos los estilos", "Reserva prioritaria"]
+      "features": [
+        "8 clases grupales al mes",
+        "Incluye yoga en la playa (domingos)",
+        "Todos los estilos",
+        "Reserva prioritaria"
+      ]
     },
     "en": {
       "name": "8-class pack",
-      "features": ["8 group classes per month", "Includes beach yoga (Sundays)", "All styles", "Priority booking"]
-    }
+      "features": [
+        "8 group classes per month",
+        "Includes beach yoga (Sundays)",
+        "All styles",
+        "Priority booking"
+      ]
+    },
+    "visible": true
   },
   {
     "slug": "clase-privada",
@@ -40,11 +60,22 @@
     "order": 3,
     "es": {
       "name": "Clase privada",
-      "features": ["Sesión 1:1 adaptada a ti", "En estudio o a domicilio", "Ideal para empezar o profundizar", "Horario flexible"]
+      "features": [
+        "Sesión 1:1 adaptada a ti",
+        "En estudio o a domicilio",
+        "Ideal para empezar o profundizar",
+        "Horario flexible"
+      ]
     },
     "en": {
       "name": "Private class",
-      "features": ["1:1 session tailored to you", "At the studio or at home", "Ideal to start or go deeper", "Flexible schedule"]
-    }
+      "features": [
+        "1:1 session tailored to you",
+        "At the studio or at home",
+        "Ideal to start or go deeper",
+        "Flexible schedule"
+      ]
+    },
+    "visible": true
   }
 ]

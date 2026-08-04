@@ -1,13 +1,14 @@
 {
   "meta": {
-    "title": "Blau Yoga · Cyane · Yoga in Barcelona",
-    "description": "Yoga classes with Cyane: Hatha, Yin, Ashtanga and Facial Yoga. In-person and private classes. Beach yoga every Sunday. RYT 220H (India)."
+    "title": "Blau Yoga · {teacherName} · Yoga in Barcelona",
+    "description": "Yoga classes with {teacherName}: Hatha, Yin, Ashtanga and Facial Yoga. In-person and private classes. Beach yoga every Sunday. RYT 220H (India)."
   },
   "nav": {
     "home": "Home",
     "classes": "Classes",
     "schedule": "Schedule",
     "about": "About me",
+    "studio": "Studio",
     "blog": "Blog",
     "pricing": "Pricing",
     "contact": "Contact",
@@ -16,15 +17,19 @@
   "pages": {
     "classes": {
       "metaTitle": "Classes · Blau Yoga",
-      "metaDescription": "Hatha, Yin, Ashtanga, Facial Yoga and beach yoga with Cyane in Barcelona."
+      "metaDescription": "Hatha, Yin, Ashtanga, Facial Yoga and beach yoga with {teacherName} in Barcelona."
     },
     "schedule": {
       "metaTitle": "Schedule · Blau Yoga",
       "metaDescription": "Check class times and book in-person or beach yoga via WhatsApp."
     },
     "about": {
-      "metaTitle": "About me · Cyane · Blau Yoga",
-      "metaDescription": "Meet Cyane, RYT 220H yoga teacher. Mindful practice in Barcelona."
+      "metaTitle": "About me · {teacherName} · Blau Yoga",
+      "metaDescription": "Meet {teacherName}, RYT 220H yoga teacher. Mindful practice in Barcelona."
+    },
+    "studio": {
+      "metaTitle": "The studio · Blau Yoga",
+      "metaDescription": "Discover the Blau Yoga space in Barcelona and rent the room for practices, workshops or private sessions."
     },
     "pricing": {
       "metaTitle": "Pricing · Blau Yoga",
@@ -40,7 +45,7 @@
     "title": "Notes from the mat",
     "subtitle": "Reflections, practices and yoga tips for everyday life.",
     "metaTitle": "Blog · Blau Yoga",
-    "metaDescription": "Articles on yoga, wellbeing and mindful practice with Cyane · Blau Yoga.",
+    "metaDescription": "Articles on yoga, wellbeing and mindful practice with {teacherName} · Blau Yoga.",
     "readMore": "Read article →",
     "back": "Back to blog",
     "empty": "New articles coming soon. In the meantime, book a class.",
@@ -50,7 +55,7 @@
       "subtitle": "Book an in-person class, a private session or Sunday beach yoga. I’m here to guide you.",
       "primary": "View schedule",
       "secondary": "Message on WhatsApp",
-      "whatsappMessage": "Hi Cyane! I read a blog article and would like to know more about the classes. Could you give me more information? Thank you!"
+      "whatsappMessage": "Hi {teacherName}! I read a blog article and would like to know more about the classes. Could you give me more information? Thank you!"
     }
   },
   "hero": {
@@ -83,7 +88,23 @@
     "title": "A space created for your wellbeing",
     "text": "Blau Yoga is a yoga and wellness studio in Barcelona, created for you to find balance, listen to yourself and feel at home. Natural light, warm materials and small groups so we can accompany you closely.",
     "cta": "Discover the studio",
-    "imageAlt": "Blau Yoga studio interior"
+    "ctaRental": "Rent the room",
+    "imageAlt": "Blau Yoga studio interior",
+    "galleryLabel": "The space",
+    "galleryTitle": "Light, calm and natural materials",
+    "gallerySubtitle": "A corner designed for mindful practice, in small groups, with the warmth of home.",
+    "rental": {
+      "label": "Room rental",
+      "title": "Want to rent the studio?",
+      "text": "The room is also available to rent: private classes, workshops, wellness sessions or small gatherings. A bright, intimate space ready to make your practice or event feel special.",
+      "highlights": {
+        "light": "Natural light and a serene atmosphere",
+        "equip": "Mats and props available",
+        "groups": "Ideal for small groups"
+      },
+      "cta": "Check availability",
+      "whatsappMessage": "Hi {teacherName}! I’d like to rent the Blau Yoga studio room. Could you give me more information about availability and pricing? Thank you!"
+    }
   },
   "quote": {
     "text": "Yoga is not about touching your toes, it is about what you learn on the way down.",
@@ -108,7 +129,7 @@
     "book": "Book",
     "prevDay": "Previous day",
     "nextDay": "Next day",
-    "whatsappMessage": "Hi Cyane! I'd like to book a spot for the {className} class on {day} at {time}. Could you give me more information? Thank you!",
+    "whatsappMessage": "Hi {teacherName}! I'd like to book a spot for the {className} class on {day} at {time}. Could you give me more information? Thank you!",
     "days": {
       "monday": "Monday",
       "tuesday": "Tuesday",
@@ -123,12 +144,24 @@
     "label": "About me",
     "title": "Hi, I'm {name}",
     "cta": "Get to know me",
-    "imageAlt": "Cyane practising yoga in nature",
+    "imageAlt": "{teacherName} practising yoga in nature",
     "stats": {
-      "years": { "value": "+5 years", "label": "of practice" },
-      "students": { "value": "+500", "label": "students" },
-      "city": { "value": "Barcelona", "label": "Born" },
-      "passion": { "value": "Passion", "label": "for teaching" }
+      "years": {
+        "value": "+5 years",
+        "label": "of practice"
+      },
+      "students": {
+        "value": "+500",
+        "label": "students"
+      },
+      "city": {
+        "value": "Barcelona",
+        "label": "Born"
+      },
+      "passion": {
+        "value": "Passion",
+        "label": "for teaching"
+      }
     },
     "page": {
       "story": {
@@ -259,7 +292,7 @@
         "primary": "Book a trial class",
         "whatsapp": "Write to me",
         "instagram": "Follow me on Instagram →",
-        "whatsappMessage": "Hi Cyane! I read your story and would like to know if your yoga style is for me. Could you give me more information? Thank you!"
+        "whatsappMessage": "Hi {teacherName}! I read your story and would like to know if your yoga style is for me. Could you give me more information? Thank you!"
       }
     }
   },
@@ -271,25 +304,11 @@
     "single": "one-time",
     "popular": "Most popular",
     "cta": "Get started",
-    "whatsappMessage": "Hi Cyane! I'd like to sign up for {planName} ({priceLabel}). Could you give me more information? Thank you!",
+    "whatsappMessage": "Hi {teacherName}! I'd like to sign up for {planName} ({priceLabel}). Could you give me more information? Thank you!",
     "faq": {
       "label": "Common questions",
       "title": "FAQ",
-      "subtitle": "The essentials so you can choose calmly and start when you’re ready.",
-      "items": {
-        "beginner": {
-          "question": "Can I come if I’ve never practised yoga?",
-          "answer": "Yes. Classes are open to all levels and I offer adaptations so you can practise safely, even if it’s your first time. If you’re unsure, message me and I’ll guide you."
-        },
-        "pack": {
-          "question": "How does the 8-class pack work?",
-          "answer": "The pack gives you 8 group classes per month, including Sunday beach yoga. You can mix styles according to what your body needs each week. No commitment."
-        },
-        "cancel": {
-          "question": "What if I can’t attend a booked class?",
-          "answer": "Please let me know as early as possible on WhatsApp. That way I can free your spot and, when the plan allows, move you to another class in the week. I’m happy to find the best option with you."
-        }
-      }
+      "subtitle": "The essentials so you can choose calmly and start when you’re ready."
     }
   },
   "reviews": {
@@ -323,7 +342,7 @@
     }
   },
   "footer": {
-    "tagline": "Yoga with Cyane · RYT 220H",
+    "tagline": "Yoga with {teacherName} · RYT 220H",
     "explore": "Explore",
     "follow": "Follow me",
     "rights": "© {year} Blau Yoga. All rights reserved.",

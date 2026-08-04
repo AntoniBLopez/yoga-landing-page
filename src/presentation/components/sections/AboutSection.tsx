@@ -5,6 +5,7 @@ import { useTranslations } from "next-intl";
 import Image from "next/image";
 
 import type { Teacher } from "@/domain/entities";
+import { useSiteOptional } from "@/presentation/components/providers/SiteProvider";
 import { AboutStatsBanner } from "@/presentation/components/sections/about/AboutStatsBanner";
 import { FadeIn } from "@/presentation/components/ui/FadeIn";
 
@@ -19,6 +20,9 @@ export function AboutSection({
   showStats?: boolean;
 }) {
   const t = useTranslations("about");
+  const site = useSiteOptional();
+  const showAboutLink = !pageMode && (site?.pages.about ?? true);
+  const displayName = site?.teacherName || teacher.name;
 
   return (
     <section id="sobre-mi" className={pageMode ? "bg-sand pt-20 md:pt-24" : "bg-sand"}>
@@ -28,12 +32,12 @@ export function AboutSection({
             {t("label")}
           </p>
           <h2 className="font-display text-4xl leading-tight font-medium text-deep md:text-5xl">
-            {t("title", { name: teacher.name })}
+            {t("title", { name: displayName })}
           </h2>
           <p className="mt-6 max-w-lg text-base leading-relaxed whitespace-pre-line text-ink/80">
             {teacher.bio}
           </p>
-          {!pageMode ? (
+          {showAboutLink ? (
             <a
               href="/sobre-mi"
               className="group mt-8 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-deep transition-colors hover:text-teal"
@@ -46,7 +50,11 @@ export function AboutSection({
 
         <FadeIn
           delay={0.15}
-          className="relative order-1 min-h-80 w-full bg-sky/35 lg:order-2 lg:min-h-[36rem] lg:bg-transparent"
+          className={
+            pageMode
+              ? "relative order-1 min-h-80 w-full bg-sand lg:order-2 lg:min-h-[36rem]"
+              : "relative order-1 min-h-80 w-full bg-sky/35 lg:order-2 lg:min-h-[36rem] lg:bg-transparent"
+          }
         >
           <div className="absolute inset-0 overflow-hidden rounded-tl-[6rem] sm:rounded-tl-[8rem] lg:rounded-tl-[10rem]">
             <Image

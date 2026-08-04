@@ -7,6 +7,7 @@ import { buildConfig } from "payload";
 import sharp from "sharp";
 
 import { Classes } from "./infrastructure/cms/collections/Classes";
+import { Faqs } from "./infrastructure/cms/collections/Faqs";
 import { Media } from "./infrastructure/cms/collections/Media";
 import { Posts } from "./infrastructure/cms/collections/Posts";
 import { PricingPlans } from "./infrastructure/cms/collections/PricingPlans";
@@ -14,6 +15,8 @@ import { Reviews } from "./infrastructure/cms/collections/Reviews";
 import { ScheduleSlots } from "./infrastructure/cms/collections/ScheduleSlots";
 import { Teachers } from "./infrastructure/cms/collections/Teachers";
 import { Users } from "./infrastructure/cms/collections/Users";
+import { SiteContent } from "./infrastructure/cms/globals/SiteContent";
+import { SiteSettings } from "./infrastructure/cms/globals/SiteSettings";
 import { seed } from "./infrastructure/cms/seed";
 
 const filename = fileURLToPath(import.meta.url);
@@ -29,7 +32,18 @@ export default buildConfig({
       titleSuffix: "· Blau Yoga",
     },
   },
-  collections: [Users, Media, Classes, Teachers, ScheduleSlots, PricingPlans, Reviews, Posts],
+  collections: [
+    Users,
+    Media,
+    Classes,
+    Teachers,
+    ScheduleSlots,
+    PricingPlans,
+    Faqs,
+    Reviews,
+    Posts,
+  ],
+  globals: [SiteSettings, SiteContent],
   editor: lexicalEditor(),
   localization: {
     locales: [

@@ -6,6 +6,7 @@ import { notFound } from "next/navigation";
 import { getLocale, getTranslations } from "next-intl/server";
 
 import { getPostBySlug } from "@/application/use-cases/get-post-by-slug";
+import { getSiteSettings } from "@/application/use-cases/get-site-settings";
 import type { Locale } from "@/domain/entities";
 import { BlogPostCta } from "@/presentation/components/blog/BlogPostCta";
 import { BlogRichText } from "@/presentation/components/blog/BlogRichText";
@@ -13,6 +14,7 @@ import { Footer } from "@/presentation/components/sections/Footer";
 import { Navbar } from "@/presentation/components/sections/Navbar";
 import { FadeIn } from "@/presentation/components/ui/FadeIn";
 import { formatPostDate } from "@/presentation/lib/format-date";
+import { assertPageVisible } from "@/presentation/lib/page-visibility";
 
 export const dynamic = "force-dynamic";
 
@@ -35,7 +37,11 @@ export default async function BlogPostPage({ params }: PageProps) {
   const { slug } = await params;
   const locale = (await getLocale()) as Locale;
   const t = await getTranslations("blog");
-  const post = await getPostBySlug(slug, locale);
+  const [post, settings] = await Promise.all([
+    getPostBySlug(slug, locale),
+    getSiteSettings(locale),
+  ]);
+  assertPageVisible(settings.pages, "blog");
 
   if (!post) notFound();
 

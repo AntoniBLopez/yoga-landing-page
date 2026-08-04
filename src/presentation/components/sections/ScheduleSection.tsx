@@ -7,16 +7,16 @@ import type { ScheduleSlot, Weekday } from "@/domain/entities";
 import { Button } from "@/presentation/components/ui/Button";
 import { FadeIn } from "@/presentation/components/ui/FadeIn";
 import { SectionHeading } from "@/presentation/components/ui/SectionHeading";
-import { buildWhatsAppUrl } from "@/presentation/lib/whatsapp";
+import { useContactLinks } from "@/presentation/hooks/useContactLinks";
 
 function SlotRow({
   slot,
   bookLabel,
-  whatsappMessage,
+  whatsappHref,
 }: {
   slot: ScheduleSlot;
   bookLabel: string;
-  whatsappMessage: string;
+  whatsappHref: string;
 }) {
   return (
     <li className="flex flex-col gap-3 border-b border-linen/80 py-4 last:border-b-0 last:pb-0 first:pt-0 sm:flex-row sm:items-center sm:justify-between sm:gap-6">
@@ -31,7 +31,7 @@ function SlotRow({
       </div>
 
       <Button asChild variant="primary" size="sm" className="self-start sm:self-auto">
-        <a href={buildWhatsAppUrl(whatsappMessage)} target="_blank" rel="noopener noreferrer">
+        <a href={whatsappHref} target="_blank" rel="noopener noreferrer">
           {bookLabel}
         </a>
       </Button>
@@ -47,6 +47,7 @@ export function ScheduleSection({
   showHeading?: boolean;
 }) {
   const t = useTranslations("schedule");
+  const contact = useContactLinks();
 
   if (schedule.length === 0) return null;
 
@@ -88,7 +89,7 @@ export function ScheduleSection({
                       key={slot.id}
                       slot={slot}
                       bookLabel={t("book")}
-                      whatsappMessage={messageFor(slot, day.day)}
+                      whatsappHref={contact.whatsappUrl(messageFor(slot, day.day))}
                     />
                   ))}
                 </ul>

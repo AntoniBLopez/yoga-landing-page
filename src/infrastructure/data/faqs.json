@@ -1,0 +1,38 @@
+[
+  {
+    "order": 0,
+    "visible": true,
+    "es": {
+      "question": "¿Puedo venir si nunca he practicado yoga?",
+      "answer": "Sí. Las clases están abiertas a todos los niveles y ofrezco adaptaciones para que puedas practicar con seguridad, aunque sea tu primera vez. Si tienes dudas, escríbeme y te oriento."
+    },
+    "en": {
+      "question": "Can I come if I’ve never practised yoga?",
+      "answer": "Yes. Classes are open to all levels and I offer adaptations so you can practise safely, even if it’s your first time. If you’re unsure, message me and I’ll guide you."
+    }
+  },
+  {
+    "order": 1,
+    "visible": true,
+    "es": {
+      "question": "¿Cómo funciona el bono de 8 clases?",
+      "answer": "El bono te permite asistir a 8 clases grupales al mes, incluyendo el yoga en la playa de los domingos. Puedes combinar estilos según lo que tu cuerpo necesite cada semana. Sin permanencia."
+    },
+    "en": {
+      "question": "How does the 8-class pack work?",
+      "answer": "The pack gives you 8 group classes per month, including Sunday beach yoga. You can mix styles according to what your body needs each week. No commitment."
+    }
+  },
+  {
+    "order": 2,
+    "visible": true,
+    "es": {
+      "question": "¿Qué pasa si no puedo asistir a una clase reservada?",
+      "answer": "Avísame con la mayor antelación posible por WhatsApp. Así puedo liberar tu plaza y, si el plan lo permite, recolocarte en otra clase de la semana. Hablo contigo sin problema para encontrar la mejor opción."
+    },
+    "en": {
+      "question": "What if I can’t attend a booked class?",
+      "answer": "Please let me know as early as possible on WhatsApp. That way I can free your spot and, when the plan allows, move you to another class in the week. I’m happy to find the best option with you."
+    }
+  }
+]

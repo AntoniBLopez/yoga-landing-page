@@ -1,28 +1,40 @@
 import { useStaticContent } from "@/config/content";
 import type {
   ClassRepository,
+  FaqRepository,
   PostRepository,
   PricingPlanRepository,
   ReviewRepository,
   ScheduleSlotRepository,
   TeacherRepository,
 } from "@/domain/repositories";
+import type { Locale } from "@/domain/entities";
+import type { SiteContentMessages, SiteSettings } from "@/domain/site";
 
 import {
   JsonClassRepository,
+  JsonFaqRepository,
   JsonPostRepository,
   JsonPricingPlanRepository,
   JsonReviewRepository,
   JsonScheduleSlotRepository,
   JsonTeacherRepository,
 } from "./JsonContentRepositories";
+import { JsonSiteRepository } from "./JsonSiteRepository";
+
+export interface SiteRepository {
+  getSettings(locale: Locale): Promise<SiteSettings>;
+  getContentMessages(locale: Locale): Promise<SiteContentMessages>;
+}
 
 let classRepo: ClassRepository | undefined;
 let teacherRepo: TeacherRepository | undefined;
 let scheduleRepo: ScheduleSlotRepository | undefined;
 let pricingRepo: PricingPlanRepository | undefined;
 let reviewRepo: ReviewRepository | undefined;
+let faqRepo: FaqRepository | undefined;
 let postRepo: PostRepository | undefined;
+let siteRepo: SiteRepository | undefined;
 
 export async function getClassRepository(): Promise<ClassRepository> {
   if (!classRepo) {
@@ -84,6 +96,18 @@ export async function getReviewRepository(): Promise<ReviewRepository> {
   return reviewRepo;
 }
 
+export async function getFaqRepository(): Promise<FaqRepository> {
+  if (!faqRepo) {
+    if (useStaticContent()) {
+      faqRepo = new JsonFaqRepository();
+    } else {
+      const { PayloadFaqRepository } = await import("./PayloadFaqRepository");
+      faqRepo = new PayloadFaqRepository();
+    }
+  }
+  return faqRepo;
+}
+
 export async function getPostRepository(): Promise<PostRepository> {
   if (!postRepo) {
     if (useStaticContent()) {
@@ -94,4 +118,16 @@ export async function getPostRepository(): Promise<PostRepository> {
     }
   }
   return postRepo;
+}
+
+export async function getSiteRepository(): Promise<SiteRepository> {
+  if (!siteRepo) {
+    if (useStaticContent()) {
+      siteRepo = new JsonSiteRepository();
+    } else {
+      const { PayloadSiteRepository } = await import("./PayloadSiteRepository");
+      siteRepo = new PayloadSiteRepository();
+    }
+  }
+  return siteRepo;
 }

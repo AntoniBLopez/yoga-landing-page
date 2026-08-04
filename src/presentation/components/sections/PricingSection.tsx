@@ -8,7 +8,7 @@ import { Button } from "@/presentation/components/ui/Button";
 import { FadeIn } from "@/presentation/components/ui/FadeIn";
 import { SectionHeading } from "@/presentation/components/ui/SectionHeading";
 import { cn } from "@/presentation/lib/utils";
-import { buildWhatsAppUrl } from "@/presentation/lib/whatsapp";
+import { useContactLinks } from "@/presentation/hooks/useContactLinks";
 
 export function PricingSection({
   plans,
@@ -18,6 +18,7 @@ export function PricingSection({
   showHeading?: boolean;
 }) {
   const t = useTranslations("pricing");
+  const contact = useContactLinks();
 
   return (
     <section id="precios" className="bg-sky/50">
@@ -32,7 +33,15 @@ export function PricingSection({
           <SectionHeading label={t("label")} title={t("title")} subtitle={t("subtitle")} />
         ) : null}
 
-        <div className="grid items-stretch gap-6 md:grid-cols-3">
+        <div
+          className={cn(
+            "grid items-stretch gap-6",
+            plans.length >= 4 && "sm:grid-cols-2 xl:grid-cols-4",
+            plans.length === 3 && "md:grid-cols-3",
+            plans.length === 2 && "mx-auto max-w-4xl md:grid-cols-2",
+            plans.length === 1 && "mx-auto max-w-md",
+          )}
+        >
           {plans.map((plan, index) => (
             <FadeIn key={plan.id} delay={index * 0.1} className="h-full">
               <article
@@ -93,7 +102,7 @@ export function PricingSection({
                   className="mt-8 w-full"
                 >
                   <a
-                    href={buildWhatsAppUrl(
+                    href={contact.whatsappUrl(
                       t("whatsappMessage", {
                         planName: plan.name,
                         priceLabel:
